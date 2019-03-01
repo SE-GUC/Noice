@@ -1,7 +1,7 @@
 const express = require('express')
 
 const users = require('./routes/api/users')
-const books = require('./routes/api/books')
+const books = require('./routes/api/')
 
 const app = express()
 app.use(express.json())
