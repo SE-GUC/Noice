@@ -3,7 +3,7 @@ const express = require('express')
 
 const location = require('./routes/api/Location')
 const calender = require('./routes/api/calender')
-
+const members=require('./routes/api/member')
 
 
 const app = express()
@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 
 // Direct routes to appropriate files 
 
+app.use('/api/member',members)
 app.use('/api/Location', location)
 app.use('/api/calender', calender)
 
@@ -26,3 +27,4 @@ app.use((req, res) => {
 
 const port = 3000
 app.listen(port, () => console.log(`Server up and running on port ${port}`))
+
