@@ -4,6 +4,7 @@ const express = require('express')
 const location = require('./routes/api/Location')
 const calender = require('./routes/api/calender')
 const members=require('./routes/api/member')
+const partners = require('./routes/api/partners')
 
 
 const app = express()
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 app.use('/api/member',members)
 app.use('/api/Location', location)
 app.use('/api/calender', calender)
+app.use('/api/partners', partners)
 
 // Handling 404
 app.use((req, res) => {
