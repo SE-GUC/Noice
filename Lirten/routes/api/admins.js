@@ -100,6 +100,42 @@ router.get('/ViewById', (req,res)=>{
 
 })
 
+router.post('/Update', (req,res) => {
+
+    const id= req.body.id
+    const firstName= req.body.firstName
+    const middleName = req.body.middleName
+    const lastName = req.body.lastName
+    const education = req.body.education
+    const age = req.body.age
+    const active = true;
+    const schema = {
+        id: Joi.required(),
+		firstName: Joi.string().min(2),
+        middleName: Joi.string().min(1),
+        lastName: Joi.string().min(1),
+        age: Joi.number(),
+        education: Joi.array()
+    }
+    const result = Joi.validate(req.body, schema);
+    if (result.error) return res.status(400).send({ error: result.error.details[0].message });
+        
+    
+        for (let index = 0; index < admins.length; index++) {
+           if (admins[index].id===id){
+            if(firstName!=null) admins[index].firstName=firstName
+            if(middleName!=null) admins[index].middleName=middleName
+            if(lastName!=null) admins[index].lastName=lastName
+            if(education!=null) admins[index].education=education
+            if(age!=null) admins[index].age=age;
+        return   
+        }  
+        }
+        return res.send({err: "Couldn't find admin with that id"})
+    
+         }
+           )
+
 
 
 module.exports = router;

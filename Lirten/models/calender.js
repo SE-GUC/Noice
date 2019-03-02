@@ -1,4 +1,4 @@
-
+const uuid = require('uuid');
 
 // The calender Model
 class calender {
@@ -7,6 +7,7 @@ class calender {
         this.timings = timings;
         this.Location = Location;
         this.status=status;
+        this.id=uuid.v4();
     };
 };
 
