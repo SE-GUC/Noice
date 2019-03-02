@@ -7,6 +7,7 @@ const members=require('./routes/api/member')
 const partners = require('./routes/api/partners')
 const admins = require ('./routes/api/admins')
 const requests = require('./routes/api/requests.js')
+const vacancies = require('./routes/api/vacancies')
 
 const app = express()
 app.use(express.json())
@@ -25,6 +26,7 @@ app.use('/api/calender', calender)
 app.use('/api/partners', partners)
 app.use('/api/admins',admins)
 app.use('/api/requests',requests)
+app.use('/api/vacancies', vacancies)
 
 // Handling 404
 app.use((req, res) => {
