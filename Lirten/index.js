@@ -1,7 +1,7 @@
 const express = require('express')
 
 const calender = require('./routes/api/calender')
-
+const notification = require('./routes/api/notifications')
 
 const app = express()
 app.use(express.json())
@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 // Direct routes to appropriate files 
 app.use('/api/calender', calender)
-
+app.use('/api/notifications', notification)
 
 // Handling 404
 app.use((req, res) => {

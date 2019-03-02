@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 // Models
-const calenders = require('../../model/calender');
+const calenders = require('../../models/calender');
 
 // temporary data created as if it was pulled out of the database ...
 const calenderss = [
