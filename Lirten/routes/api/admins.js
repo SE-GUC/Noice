@@ -74,6 +74,32 @@ router.delete('/delete',(req,res) => {
 
 })
 
+router.get('/ViewById', (req,res)=>{
+    var location = -1
+    var flag = false
+ const id = req.body.id
+ const schema = {
+     id: Joi.required()
+
+ }
+ const result = Joi.validate(req.body,schema)
+ if(result.error) return res.status(400).send({ error: result.error.details[0].message });
+ for (let index = 0; index < admins.length; index++) {
+     const element = admins[index];
+     if(element.id ===id){
+         location = index
+         flag = true
+        }
+ }
+ if(!flag){
+      return res.status(400).send({ err: 'couldnt find admin with that id' }); 
+ }
+ else {
+    return res.json({data:admins[location]})
+ }
+
+})
+
 
 
 module.exports = router;
