@@ -1,15 +1,40 @@
-const uuid = require('uuid')
+const mongoose = require('mongoose')
+const uuid = require('uuid');
+const Schema = mongoose.Schema
 
-class Location {
-    constructor(NameOfPlace,City,Region,Capacity,startingHours,endingHours,rate){
-        this.NameOfPlace = NameOfPlace;
-        this.City = City;
-        this.Region = Region;
-        this.Capacity = Capacity;
-        this.startingHours = startingHours;
-        this.endingHours = endingHours;
-        this.rate = rate;
-        this.id = uuid.v4();
-    }
-}
-module.exports = Location
+const LocationSchema = new Schema({
+    NameOfPlace: {
+        type: String,
+        required: true
+    },
+    City: {
+        type: String,
+        required: true
+    },
+    Region: {
+        type: String,
+        required: true
+    },
+    Capacity: {
+        type: Number,
+        required: true
+    },
+    startingHours: {
+        type: String,
+        required: true
+    },
+    endingHours: {
+        type: String,
+        required: true
+    },
+    rate: {
+        type: Number,
+        required: true
+    },
+    id: {
+        type: String,
+        default: function genUID() { uuid.v4()}
+    },
+})
+
+module.exports = User = mongoose.model('Location', LocationSchema)
