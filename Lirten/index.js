@@ -12,6 +12,17 @@ const notifications = require('./routes/api/notifications')
 
 const app = express()
 app.use(express.json())
+// DB Config
+const db = require('./config/keys').mongoURI
+// Connect to mongo
+mongoose
+    .connect(db)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err))
+    // Init middleware
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
 
 // DB Config
 const db = require('./config/keys').mongoURI
