@@ -8,6 +8,7 @@ const calender = require('../../models/calender');
 const validator = require('../../validations/calenderValidations')
 
 
+
 // Get all users
 router.get('/', async (req, res) => {
     const calenders = await calender.find()
