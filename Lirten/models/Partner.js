@@ -1,19 +1,55 @@
-const uuid = require('uuid')
-class Partner {
-    constructor(name, age,field,companyname,companylocation,occupation,partners,events,vacancies,projects,feedbackform) {
-        this.name=name;
-        this.age=age;
-        this.field=field;
-        this.companyname=companyname;
-        this.companylocation=companylocation;
-        this.occupation=occupation;
-        this.partners=partners;
-        this.events=events;
-        this.vacancies=vacancies;
-        this.projects=projects;
-        this.feedbackform=feedbackform;
-        this.id = uuid.v4();
-    };
-}
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+ 
+// Create the schema
+const PartnerSchema = new Schema({
+    companyName: {
+        type: String,
+        required: true
+    },
+    companyLocation: {
+        type: String,
+        required: true
+    },
+    partners:[
+        {
+            id:String
+        }
+    ],
+    events:[
+        {
+            id:String,
+            name:String,
+            startDate: Date,
+            endDate: Date
+    }      
+    ],
+    vacancies:[
+        {
+            id:String
+        }
+    ],
+    projects:[
+        {
+            id:String,
+            name:String,
+            startDate: Date,
+            endDate: Date
+        }
+    ]
+    ,
+    field: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
+})
 
-module.exports = Partner
+module.exports = Partner = mongoose.model('partners', PartnerSchema)
