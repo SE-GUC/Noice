@@ -11,6 +11,7 @@ const admins = require ('./routes/api/admins')
 const requests = require('./routes/api/requests.js')
 const vacancies = require('./routes/api/vacancies')
 const notifications = require('./routes/api/notifications')
+const vacancyads = require('./routes/api/vacancyads')
 
 const app = express()
 
@@ -65,6 +66,7 @@ app.use('/api/admins',admins)
 app.use('/api/requests',requests)
 app.use('/api/vacancies', vacancies)
 app.use('/api/notifications', notifications)
+app.use('/api/vacancyads', vacancyads)
 
 // Handling 404
 app.use((req, res) => {
