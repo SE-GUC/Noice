@@ -10,6 +10,8 @@ module.exports = {
             startingHours: Joi.string().min(3).max(500).required(),
             endingHours: Joi.string().min(3).max(500).required(),
             rate: Joi.number().min(0).max(3000).required(),
+            numberOfWorkingDepartments: Joi.number().min(0).max(3000).required(),
+            workingPlaceDepartments: Joi.array().required(),
         }
 
         return Joi.validate(request, createSchema)
@@ -24,6 +26,8 @@ module.exports = {
             startingHours: Joi.string().min(3).max(500).required(),
             endingHours: Joi.string().min(3).max(500).required(),
             rate: Joi.number().min(0).max(3000).required(),
+            numberOfWorkingDepartments: Joi.number().min(0).max(3000).required(),
+            workingPlaceDepartments: Joi.array().required(),
         }
 
         return Joi.validate(request, updateSchema)
