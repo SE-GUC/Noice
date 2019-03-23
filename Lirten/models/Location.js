@@ -31,6 +31,13 @@ const LocationSchema = new Schema({
         type: Number,
         required: true
     },
+     numberOfWorkingDepartments:{
+        type: Number,
+        required: true
+    },
+    workingPlaceDepartments: {
+        type: Array,
+        required: true},
     
     isAvailble:{
         type: Boolean,
