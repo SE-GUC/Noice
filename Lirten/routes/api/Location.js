@@ -19,7 +19,19 @@ router.post('/', async (req,res) => {
         console.log(error)
     }  
  })
-
+ //Get Location by Id
+ router.get('/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const locationId = await location.findById(id)
+        res.json({ data: locationId })
+       }
+       catch(error) {
+        // We will be handling the error later
+           console.log(error)
+       }
+  })
+  
  // Get all locations
 router.get('/', async (req,res) => {
     const location2 = await location.find()
@@ -42,7 +54,7 @@ router.put('/:id', async (req,res) => {
     }  
  })
  
-
+//Delete a Location
  router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
@@ -55,13 +67,4 @@ router.put('/:id', async (req,res) => {
     }  
  })
 
-
  module.exports = router
- 
-
-
-
-
-
-
-
