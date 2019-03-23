@@ -20,17 +20,18 @@ router.post('/', async (req,res) => {
     }  
  })
 
-vacancy2
 
- // Get all Vacancies
+
+ // Get ALL Vacancies
 router.get('/', async (req,res) => {
     const vacancy2 = await vacancy.find()
     res.json({data: vacancy2})
 })
 
 
-deletedVacancy
- router.delete('/:id', async (req,res) => {
+
+// Delete Vacancy
+router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
      const deletedVacancy = await vacancy.findByIdAndRemove(id)
@@ -41,6 +42,9 @@ deletedVacancy
         console.log(error)
     }  
  })
+
+
+
 
 
  module.exports = router
