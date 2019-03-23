@@ -1,122 +1,66 @@
 const express = require('express');
-const uuid = require('uuid');
 const router = express.Router();
+const mongoose = require('mongoose')
 
 //Models
 const location = require('../../models/Location')
+const validator = require('../../validations/locationValidations')
 
-// temporary data created
-const Locations = [
-    new location('302 Labs', 'Nasr City', 'El hay el sabea',300,8,8,4),
-    new location('Xtreme Center', 'Nasr City', 'Mostafa el nahas',150,10,8,4.5),
-    new location('Origin Center', 'Nasr City', 'Abbas el 3a2ad',60,6,5,3.8)
-]
-
-// Get all locations
-router.get('/',(req,res) => res.json({ data: Locations }));
 
 // Create a new Location
-router.post('/',(req,res) =>{
-    const NameOfPlace = req.body.NameOfPlace;
-    const City = req.body.City;
-    const Region = req.body.Region;
-    const Capacity = req.body.Capacity;
-    const startingHours = req.body.startingHours;
-    const endingHours = req.body.endingHours;
-    const rate = req.body.rate;
+router.post('/', async (req,res) => {
+    try {
+     const isValidated = validator.createValidation(req.body)
+     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+     const newLocation = await location.create(req.body)
+     res.json({msg:'Co-Working Space was created successfully', data: newLocation})
+    }
+    catch(error) {
+        console.log(error)
+    }  
+ })
 
-    if (!NameOfPlace) return res.status(400).send({ err: 'Name field is required' });
-    if (typeof NameOfPlace !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
-    
-    if (!City) return res.status(400).send({ err: 'City field is required' });
-	if (typeof City !== 'string') return res.status(400).send({ err: 'Invalid value for City' });
-
-    if (!Region) return res.status(400).send({ err: 'Region field is required' });
-	if (typeof Region !== 'string') return res.status(400).send({ err: 'Invalid value for Region' });
-
-    if (!Capacity) return res.status(400).send({ err: 'Capacity field is required' });
-	if (typeof Capacity !== 'number') return res.status(400).send({ err: 'Invalid value for Capacity' });
-
-    if (!startingHours) return res.status(400).send({ err: 'Starting Hours field is required' });
-    if (typeof startingHours !== 'number') return res.status(400).send({ err: 'Invalid value for Starting Hours' });
-    
-    if (!endingHours) return res.status(400).send({ err: 'Ending Hours field is required' });
-    if (typeof endingHours !== 'number') return res.status(400).send({ err: 'Invalid value for Ending Hours' });
-    
-    if (!rate) return res.status(400).send({ err: 'Rate field is required' });
-    if (typeof rate !== 'number') return res.status(400).send({ err: 'Invalid value for Rate' });
-
-    const newLocation = {
-		NameOfPlace,
-        City,
-        Region,
-        Capacity,
-        startingHours,
-        endingHours,
-        rate,
-         id :uuid.v4()}
-    ;
-    Locations.push(newLocation)
-	res.send(newLocation)
+ // Get all locations
+router.get('/', async (req,res) => {
+    const location2 = await location.find()
+    res.json({data: location2})
 })
 
-// update location id
-router.put('/:id',(req,res)=> {
-    const locationId = req.params.id
-    const updatedNameOfPlace = req.body.NameOfPlace;
-    const updatedCity = req.body.City;
-    const updatedRegion = req.body.Region;
-    const updatedCapacity = req.body.Capacity;
-    const updatedstartingHours = req.body.startingHours;
-    const updatedendingHours = req.body.endingHours;
-    const updatedrate = req.body.rate;
-    const location = Locations.find(location => location.id === locationId)
-    if (!updatedNameOfPlace) return res.status(400).send({ err: 'Name field is required' });
-    if (typeof updatedNameOfPlace !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
-    
-    if (!updatedCity) return res.status(400).send({ err: 'City field is required' });
-	if (typeof updatedCity !== 'string') return res.status(400).send({ err: 'Invalid value for City' });
+// Update a Location
+router.put('/:id', async (req,res) => {
+    try {
+     const id = req.params.id
+     const Location = await location.findById(id)
+     if(!Location) return res.status(404).send({error: 'Location does not exist'})
+     const isValidated = validator.updateValidation(req.body)
+     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+     const updatedLocation = await location.updateOne(req.body)
+     res.json({msg: 'Location is updated successfully'})
+    }
+    catch(error) {
+        console.log(error)
+    }  
+ })
+ 
 
-    if (!updatedRegion) return res.status(400).send({ err: 'Region field is required' });
-	if (typeof updatedRegion !== 'string') return res.status(400).send({ err: 'Invalid value for Region' });
+ router.delete('/:id', async (req,res) => {
+    try {
+     const id = req.params.id
+     const deletedLocation = await location.findByIdAndRemove(id)
+     res.json({msg:'Location was deleted successfully', data: deletedLocation})
+    }
+    catch(error) {
 
-    if (!updatedCapacity) return res.status(400).send({ err: 'Capacity field is required' });
-	if (typeof updatedCapacity !== 'number') return res.status(400).send({ err: 'Invalid value for Capacity' });
-
-    if (!updatedstartingHours) return res.status(400).send({ err: 'Starting Hours field is required' });
-    if (typeof updatedstartingHours !== 'number') return res.status(400).send({ err: 'Invalid value for Starting Hours' });
-    
-    if (!updatedendingHours) return res.status(400).send({ err: 'Ending Hours field is required' });
-    if (typeof updatedendingHours !== 'number') return res.status(400).send({ err: 'Invalid value for Ending Hours' });
-    
-    if (!updatedrate) return res.status(400).send({ err: 'Rate field is required' });
-    if (typeof updatedrate !== 'number') return res.status(400).send({ err: 'Invalid value for Rate' });
+        console.log(error)
+    }  
+ })
 
 
-    location.NameOfPlace = updatedNameOfPlace
-    location.City = updatedCity
-    location.Region = updatedRegion
-    location.Capacity = updatedCapacity
-    location.startingHours = updatedstartingHours
-    location.endingHours = updatedendingHours
-    location.rate = updatedrate
-     
-    res.send(location)
+ module.exports = router
+ 
 
-})
 
-// Delete a location
-router.delete('/:id',(req,res) => {
-    const locationId = req.params.id
-    const location = Locations.find(location => location.id === locationId)
-    const index = Locations.indexOf(location)
-    Locations.splice(index,1)
-    res.send(location)
-})
 
-router.use(express.json())
-
-module.exports = router;
 
 
 

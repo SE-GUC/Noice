@@ -1,6 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
+
 // Require Router Handlers
+const location = require('./routes/api/Location')
+const calender = require('./routes/api/calender')
+const members=require('./routes/api/member')
+const partners = require('./routes/api/partners')
+
 const admins = require ('./routes/api/admins')
 const location = require('./routes/api/Location')
 const calender = require('./routes/api/calender')
@@ -25,6 +31,19 @@ app.use(express.urlencoded({extended: false}))
 
 
 
+
+// DB Config
+const db = require('./config/keys').mongoURI
+
+// Connect to mongo
+mongoose
+    .connect(db)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err))
+
+// Init middleware
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
     res.send(`<h1>Welcome to Lirten Hub</h1>
