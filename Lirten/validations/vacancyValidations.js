@@ -9,7 +9,11 @@ module.exports = {
             skillsReq: Joi.array(),
             jobReq: Joi.string().min(20).required(),
             empID: Joi.string().required(),
-            educLvl: Joi.string().required()
+            educLvl: Joi.string().required(),
+            location: Joi.string().required(),
+            salary: Joi.number().required(),
+            dailyHours: Joi.number().required(),
+            owner: Joi.string().required()
         }
 
         return Joi.validate(request, createSchema)

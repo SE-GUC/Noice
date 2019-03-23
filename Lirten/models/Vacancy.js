@@ -35,6 +35,22 @@ const VacancySchema = new Schema({
         type: Number,
         required: true
     },
+    location:{
+        type: String,
+        required: true
+    },
+    owner:{
+        type: String,
+        required: true
+    },
+    salary:{
+        type: Number,
+        required: true
+    },
+    dailyHours:{
+        type: Number,
+        required: true
+    },
     id: {
         type: String,
         default: function genUID() { uuid.v4()}
