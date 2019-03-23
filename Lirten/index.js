@@ -1,4 +1,5 @@
 const express = require('express')
+const mongoose = require('mongoose');
 
 
 const location = require('./routes/api/Location')
@@ -11,6 +12,16 @@ const vacancies = require('./routes/api/vacancies')
 const notifications = require('./routes/api/notifications')
 
 const app = express()
+
+// DB Config
+const db = require('./config/keys').mongoURI
+
+// Connect to mongo
+mongoose
+    .connect(db)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err))
+
 app.use(express.json())
 
 app.get('/', (req, res) => {
