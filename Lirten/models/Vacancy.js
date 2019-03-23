@@ -1,18 +1,45 @@
 const uuid = require('uuid')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-// The User Model
-class Vacancy {
-    constructor(careerLvl, jobDesc,jobTyp,educLvl,  empID, skillsReq, jobReq ) {
-        this.careerLvl = careerLvl;
-        this.jobDesc = jobDesc;
-        this.jobTyp = jobTyp;
-        this.educLvl = educLvl;
-        this.empID = empID;
-        this.time = new Date();
-        this.skillsReq = skillsReq;
-        this.jobReq = jobReq;
-        this.id = uuid.v4();
-    };
-};
-
-module.exports = Vacancy
+// Create the schema
+const VacancySchema = new Schema({
+        careerLvl: {
+            type: String,
+            required: true
+        },
+        jobDesc: {
+            type: String,
+            required: true
+        },
+        jobTyp: {
+            type: String,
+            required: true
+        },
+        educLvl: {
+            type: String,
+            required: true
+        },
+        empID: {
+            type: Number,
+            required: true
+        },
+        time: {
+            type: Date,
+            required: true
+        },
+        skillsReq: {
+            type: String,
+            required: true
+        },
+        jobReq: {
+            type: String,
+            required: true
+        },
+        id: {
+            type: String,
+            required: true
+        },
+    }
+)
+module.exports = Vacancy = mongoose.model('Vacancy', VacancySchema)

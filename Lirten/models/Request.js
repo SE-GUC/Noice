@@ -1,17 +1,72 @@
-const uuid = require('uuid')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-// The User Model
-class Request {
-    constructor(type,recID,sndID,schedTime,vacID,adID) {
-        this.type = type;
-        this.recID = recID;
-        this.sndID = sndID;
-        this.schedTime = schedTime;
-        this.vacID = vacID;
-        this.adID = adID;  
-        this.time = new Date();
-        this.id = uuid.v4();
-    };
-};
+// Create the schema
+const RequestSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    Company: {
+        type: String,
+        required: true
+    },
+    Location: {
+        type: String,
+        required: true
+    },
+    CareerLevel: {
+        type: String,
+        required: true
+    },
+    EducationLevel: {
+        type: String,
+        required: true
+    },
+    Salary: {
+        type: Number,
+        required: true
+    },
+    Numberofapplicants: {
+        type: Number,
+    },
+    TravelFrequency: {
+        type: String,
+        required: true
+    },
+    Vacancies: {
+        type: String,
+        required: true
+    },
+    Language: {
+        type: String,
+        required: true
+    },
+    ExperienceNeeded: {
+        type: String,
+        required: true
+    },
+    JobType: {
+        type: String,
+        required: true
+    },
+    DescriptionofJob: {
+        type: [String],
+        required: true
+    },
+    JobRequirements:{
+        type:[String],
+        required: true
+    },
+    CompanyInformation :{
+        type:[String],
+    },
+    Status :{
+        type: String,
+        required: true
+    }
 
-module.exports = Request
+
+})
+
+module.exports = Request = mongoose.model('requests', RequestSchema)

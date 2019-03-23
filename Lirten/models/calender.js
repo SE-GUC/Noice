@@ -1,14 +1,34 @@
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 const uuid = require('uuid');
 
 // The calender Model
-class calender {
-    constructor(Date, timings,Location,status) {
-        this.Date = Date;
-        this.timings = timings;
-        this.Location = Location;
-        this.status=status;
-        this.id=uuid.v4();
-    };
-};
+const CalenderSchema = new Schema({
+    Date: {
+        type: String,
+        required: true
+    },
+    timings:{
+        type:String,
+        required:true
+        
+    },
+    Location:{
+        type:String,
+        required:true
+    },
+    status: {
+        type: String,
+        required: true
+    },
+    id: {
+        type: String, 
+        default: function genUUID() { uuid.v4() }
+    
 
-module.exports = calender
+    }
+    
+})
+
+
+module.exports = calender = mongoose.model('calender', CalenderSchema)
