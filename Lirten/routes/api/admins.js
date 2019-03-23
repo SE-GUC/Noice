@@ -8,7 +8,7 @@ const validator = require('../../validations/adminValidations')
 
 
 
-//show all admins
+//show all the good admins
 router.get('/',async (req, res) =>{
     const admins = await Admin.find()
     res.json({ data: admins })

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
+///dah el model
 const adminSchema = new Schema({
 
     firstName: {
