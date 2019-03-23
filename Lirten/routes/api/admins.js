@@ -27,6 +27,8 @@ router.post('/create', async (req,res) => {
         console.log(error)
     }  
  })
+ 
+ //edit
  router.put('/:id', async (req,res) => {
     try {
      const id = req.params.id
@@ -45,7 +47,7 @@ router.post('/create', async (req,res) => {
     }  
  })
  
-
+//delete
  router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
