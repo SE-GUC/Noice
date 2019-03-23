@@ -20,7 +20,7 @@ router.post('/create', async (req,res) => {
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const newAdmin = await Admin.create(req.body)
 
-     res.json({msg:'Admin was created successfully <3', data: newAdmin})
+     res.json({msg:'Admin was created ', data: newAdmin})
     }
     catch(error) {
         // We will be handling the error later
@@ -38,7 +38,7 @@ router.post('/create', async (req,res) => {
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const updatedAdmin = await Admin.findByIdAndUpdate(id,req.body,function (err) {
         if (err) return next(err);
-        res.json({msg: 'Admin updated successfully'});
+        res.json({msg: 'Admin updated'});
     });
     }
     catch(error) {
