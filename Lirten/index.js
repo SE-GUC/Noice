@@ -2,6 +2,14 @@ const express = require('express')
 const mongoose = require('mongoose')
 // Require Router Handlers
 const admins = require ('./routes/api/admins')
+const location = require('./routes/api/Location')
+const calender = require('./routes/api/calender')
+const members=require('./routes/api/member')
+const partners = require('./routes/api/partners')
+const requests = require('./routes/api/requests.js')
+const vacancies = require('./routes/api/vacancies')
+const notifications = require('./routes/api/notifications')
+
 const app = express()
 // DB Config
 const db = require('./config/keys').mongoURI

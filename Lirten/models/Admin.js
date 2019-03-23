@@ -24,7 +24,6 @@ const adminSchema = new Schema({
     },
     active: {
         type: Boolean,
-        default: true
     },
     deactivationDate:{
         type: Date
