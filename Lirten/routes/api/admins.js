@@ -20,7 +20,7 @@ router.post('/create', async (req,res) => {
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const newAdmin = await Admin.create(req.body)
 
-     res.json({msg:'Admin was created successfully', data: newAdmin})
+     res.json({msg:'Admin was created successfully <3', data: newAdmin})
     }
     catch(error) {
         // We will be handling the error later
@@ -52,7 +52,7 @@ router.post('/create', async (req,res) => {
     try {
      const id = req.params.id
      const deletedAdmin = await Admin.findByIdAndRemove(id)
-     res.json({msg:'Admin was deleted successfully', data: deletedAdmin})
+     res.json({msg:'Admin was deleted successfully.', data: deletedAdmin})
     }
     catch(error) {
         // We will be handling the error later
