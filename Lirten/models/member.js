@@ -1,46 +1,66 @@
-const uuid = require("uuid");
+const mongoose = require('mongoose')
+const uuid = require("uuid"); 
+const Schema = mongoose.Schema
+///dah el model
+const memberSchema = new Schema({
 
-class member {
-  constructor(
-    name,
-    age,
-    gender,
-    address,
-    email,
-    phone_number,
-    skills,
-    interests,
-    past_events,
-    projects_completed,
-    reviews_received,
-    certificaes_held
-  ) {
-    this.id = uuid.v4();
+   name: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    address:{
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: true
+    },
+    phoneNumber:{
+      type: String,
+      required: true
+    },
+    skills: {
+      type: [String],
+      required: true
+  },
+  interests: {
+      type: String,
+      required: true
+  },
+  pastEvents: 
+    [
+      {
+          id:String,
+          name:String,
+          startDate: Date,
+          endDate: Date
+      }
+  ],
+  projectsCompleted:{
+    type: String,
+    required: true
+  },
+  reviewsReceived: {
+    type: String,
+    required: true
+  },
+  certificaesHeld:{
+    type: String,
+    required: true
+    },
+    id: {
+        type: String,
+        default: function genUID() { uuid.v4()}
+    },
+})
+module.exports = Member = mongoose.model('member', memberSchema)
 
-    this.name = name;
-
-    this.age = age;
-
-    this.gender = gender;
-
-    this.address = address;
-
-    this.email = email;
-
-    this.phone_number = phone_number;
-
-    this.skills = skills;
-
-    this.interests = interests;
-
-    this.past_events = past_events;
-
-    this.projects_completed = projects_completed;
-
-    this.reviews_received = reviews_received;
-
-    this.certificaes_held = certificaes_held;
-  }
-}
-
-module.exports = member;
