@@ -22,9 +22,9 @@ router.get('/',partner_controller.findPartner)
 
 module.exports = router
 
-const express = require('express');
+//const express = require('express');
 const mongoose = require('mongoose');
-const router = express.Router();
+//const router = express.Router();
 
 const Vacancyad = require('../../models/Vacancyad');
 const Partner = require('../../models/Partner');
