@@ -5,7 +5,7 @@ module.exports = {
         const createSchema = {
             name: Joi.string().min(1).max(5000).required(),
             age: Joi.number().min(1).max(5000).required(),
-            gender:Joi.string().min(1).max(5000).required(),
+            gender:Joi.only("male","female").string().min(1).max(5000).required(),
             address:Joi.string().min(1).max(5000).required(),
             email: Joi.string().min(1).max(5000).required(),
             phonenumber: Joi.string().min(1).max(5000).required(),
@@ -24,7 +24,7 @@ module.exports = {
         const updateSchema = {
             name: Joi.string().min(1).max(5000),
             age: Joi.number().min(1).max(5000),
-            gender:Joi.string().min(1).max(5000),
+            gender:Joi.only("male","female").string().min(1).max(5000),
             address:Joi.string().min(1).max(5000),
             email: Joi.string().min(1).max(5000),
             phonenumber: Joi.string().min(1).max(5000),
