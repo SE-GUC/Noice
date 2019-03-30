@@ -5,10 +5,6 @@ const router = express.Router()
 
 const Notification = require('../../models/Notification')
 
-const notifications = [
-    new Notification('7amada', 'abo hmed', '1/2/2019', 'user', 'Hi, this is for your job'),
-    new Notification('bob', 'stookey', '3/4/2019', 'user', 'Hi, this is for your vacancy')
-]
 
 /******* get all notifications *****/
 router.get('/', (req, res) => res.json({data:notifications}));

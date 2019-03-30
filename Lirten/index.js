@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const location = require('./routes/api/Location')
 const calender = require('./routes/api/calender')
-const members=require('./routes/api/member')
+const members=require('./routes/api/members')
 const partners = require('./routes/api/partners')
 const admins = require ('./routes/api/admins')
 const requests = require('./routes/api/requests.js')
