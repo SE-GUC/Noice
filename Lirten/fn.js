@@ -1,0 +1,33 @@
+const axios = require('axios');
+
+const functions = {
+    viewNotification: async () => {
+        const notification = await axios.get(`localhost:3000/api/notifications/}`)
+        return notification
+    },
+
+    viewNotificationByID: async (id) => {
+        const notification = await axios.get(`localhost:3000/api/notifications/${id}`)
+        return notification
+    },
+
+    createNotification:async (req) => {
+        const notification = await axios.post('localhost:3000/api/notifications/',req)
+        return notification
+    },
+
+    updateNotification: async (id,req) => {
+        const notification = await axios.put(`localhost:3000/api/notifications/${id}`,req)
+        return notification
+    },
+
+    deleteNotification: async (id) => {
+        const notification = await axios.delete(`localhost:3000/api/notifications/${id}`)
+        return notification
+    }
+};
+     
+                
+        
+    module.exports = functions;
+        
