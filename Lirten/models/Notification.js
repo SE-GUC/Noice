@@ -23,9 +23,6 @@ const NotificationSchema = new Schema({
         type: String,
         required: true
     },
-    Description: {
-        type: String
-    },
     id: {
         type: String,
         default: function genUID() { uuid.v4()}
