@@ -5,13 +5,14 @@ const mongoose = require('mongoose');
 
 const location = require('./routes/api/Location')
 const calender = require('./routes/api/calender')
-const members=require('./routes/api/member')
+const members=require('./routes/api/members')
 const partners = require('./routes/api/partners')
 const admins = require ('./routes/api/admins')
 const requests = require('./routes/api/requests.js')
 const vacancies = require('./routes/api/vacancies')
 const notifications = require('./routes/api/notifications')
 const vacancyads = require('./routes/api/vacancyads')
+const message = require('./routes/api/message')
 
 const app = express()
 
@@ -45,6 +46,8 @@ app.use('/api/requests',requests)
 app.use('/api/vacancies', vacancies)
 app.use('/api/notifications', notifications)
 app.use('/api/vacancyads', vacancyads)
+app.use('/api/message', message)
+
 
 // Handling 404
 app.use((req, res) => {

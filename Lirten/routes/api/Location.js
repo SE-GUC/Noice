@@ -1,70 +1,21 @@
-const express = require('express');
-const router = express.Router();
-const mongoose = require('mongoose')
+const express = require('express')
+const router = express.Router()
+const location_controller = require('../../controllers/locationControllers')
 
-//Models
-const location = require('../../models/Location')
-const validator = require('../../validations/locationValidations')
+//Get all locations
+router.get('/',location_controller.getAllLocations)
 
-
-// Create a new Location
-router.post('/', async (req,res) => {
-    try {
-     const isValidated = validator.createValidation(req.body)
-     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     const newLocation = await location.create(req.body)
-     res.json({msg:'Co-Working Space was created successfully', data: newLocation})
-    }
-    catch(error) {
-        console.log(error)
-    }  
- })
- //Get Location by Id
- router.get('/:id', async (req, res) => {
-    try {
-        const id = req.params.id
-        const locationId = await location.findById(id)
-        res.json({ data: locationId })
-       }
-       catch(error) {
-        // We will be handling the error later
-           console.log(error)
-       }
-  })
-  
- // Get all locations
-router.get('/', async (req,res) => {
-    const location2 = await location.find()
-    res.json({data: location2})
-})
+// Create a Location
+router.post('/',location_controller.createLocation)
 
 // Update a Location
-router.put('/:id', async (req,res) => {
-    try {
-     const id = req.params.id
-     const Location = await location.findById(id)
-     if(!Location) return res.status(404).send({error: 'Location does not exist'})
-     const isValidated = validator.updateValidation(req.body)
-     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-     const updatedLocation = await location.updateOne(req.body)
-     res.json({msg: 'Location is updated successfully'})
-    }
-    catch(error) {
-        console.log(error)
-    }  
- })
- 
-//Delete a Location
- router.delete('/:id', async (req,res) => {
-    try {
-     const id = req.params.id
-     const deletedLocation = await location.findByIdAndRemove(id)
-     res.json({msg:'Location was deleted successfully', data: deletedLocation})
-    }
-    catch(error) {
+router.put('/', location_controller.updateLocation)
 
-        console.log(error)
-    }  
- })
+// Delete a Location
+router.delete('/',location_controller.deleteLocation)
+
+//Find a Location by ID
+router.get('/',location_controller.findLocation)
+
 
  module.exports = router

@@ -7,42 +7,25 @@ const LocationSchema = new Schema({
         type: String,
         required: true
     },
-    City: {
+    ownerName: {
         type: String,
         required: true
     },
-    Region: {
-        type: String,
-        required: true
-    },
-    Capacity: {
-        type: Number,
-        required: true
-    },
-    startingHours: {
-        type: String,
-        required: true
-    },
-    endingHours: {
-        type: String,
-        required: true
-    },
-    rate: {
-        type: Number,
-        required: true
-    },
-     numberOfWorkingDepartments:{
-        type: Number,
-        required: true
-    },
-    workingPlaceDepartments: {
-        type: Array,
-        required: true},
-    
-    isAvailble:{
-        type: Boolean,
-        required:true
-    },
+    workingPlaceDepartments: [
+        {
+            nameOfDepartments: String,
+            City: String,
+            Region: String,
+            startTime: String,
+            endTime: String,
+            rate: Number,
+            isDepartmentAvailable: [{
+                nameOfSubdepartment: String,
+                isAvailable: Boolean,
+                Capacity: Number,
+            }]
+        }
+    ],
     id: {
         type: String,
         default: function genUID() { uuid.v4()}
