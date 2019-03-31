@@ -1,0 +1,2 @@
+const funcs = require('./fn');
+
