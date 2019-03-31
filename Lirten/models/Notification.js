@@ -1,16 +1,32 @@
+const mongoose = require('mongoose')
 const uuid = require('uuid');
+const Schema = mongoose.Schema
 
-class Notification
-{
-    constructor(from, to, time, type, description)
-    {
-        this.from = from;
-        this.to = to;
-        this.time = time;
-        this.type = type;
-        this.description = description;
-        this.id = uuid.v4();
+const NotificationSchema = new Schema({
+    From: {
+        type: String,
+        required: true
+    },
+    To: {
+        type: String,
+        required: true
+    },
+    Time: {
+        type: Date,
+        required: true
+    },
+    Type: {
+        type: String,
+        required: true
+    },
+    Title: {
+        type: String,
+        required: true
+    },
+    id: {
+        type: String,
+        default: function genUID() { uuid.v4()}
     }
-}
+})
 
-module.exports = Notification;
+module.exports = Notification = mongoose.model('Notification', NotificationSchema)
