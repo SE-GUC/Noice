@@ -59,3 +59,14 @@ exports.findAdmin = async function(req,res){
            console.log(error)
        } 
 }
+exports.deleteVacancyAd = async function(req,res){
+    try {
+        const id = req.params.id
+        const deletedVacancyad = await Vacancyad.findByIdAndRemove(id)
+        res.json({msg:'Vacancyad was deleted successfully', data: deletedVacancyad})
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       } 
+}

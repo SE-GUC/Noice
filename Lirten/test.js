@@ -1,5 +1,12 @@
 const funcs = require('./fn');
+const functions = require('./functions');
 
+test('deleting vacancy ad', async () => {
+    const id="5c95c98dfcdb6317a0934a7c"
+    const response =  await functions.adminDeleteVacancyad(id)
+    expect(response).not.toContain(id)
+  })
+  
   
 test ('find a certain partner as an admin',async ()=>{
   const id = "5c93e8b88c10dc71806b8132"  
