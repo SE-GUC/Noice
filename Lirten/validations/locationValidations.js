@@ -22,7 +22,6 @@ module.exports = {
 
         return Joi.validate(request, createSchema)
     },
-
     updateValidation: request => {
         const updateSchema = {
             NameOfPlace: Joi.string().min(3).max(500).required(),
