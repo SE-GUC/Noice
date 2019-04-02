@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-///dah el model
+
 const adminSchema = new Schema({
 
     firstName: {
@@ -26,7 +26,8 @@ const adminSchema = new Schema({
         type: Boolean,
     },
     deactivationDate:{
-        type: Date
+        type: String,
+        required: true
     }
 })
 module.exports = Admin = mongoose.model('admins', adminSchema)

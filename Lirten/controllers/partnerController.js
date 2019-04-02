@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
-var Partner = require('../models/Partner');
-const validator = require('../validations/PartnerValidations')
+var Partner = require('../models/partner');
+const validator = require('../validations/partnerValidations')
 
 exports.createPartner = async function (req,res){
     try {
@@ -17,7 +17,7 @@ exports.createPartner = async function (req,res){
 exports.updatePartner = async function(req,res){
     try {
         const id = req.params.id
-        const partner = await Partner.findOne({id})
+        const partner = await Partner.findById(id)
         if(!partner) return res.status(404).send({error: 'Partner does not exist'})
         const isValidated = validator.updateValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
@@ -37,9 +37,9 @@ exports.getAllPartners = async function(req,res){
 exports.deletePartner = async function(req,res){
     try {
         const id = req.params.id
-        const partner = await Partner.findOne({id})
+        const partner = await Partner.findById(id)
         if(!partner) return res.status(404).send({error: 'Partner does not exist'})
-        const deletedPartner = await Partner.findOneAndDelete(id)
+        const deletedPartner = await Partner.findByIdAndRemove(id)
         res.json({msg:'Partner was deleted successfully', data: deletedPartner})
        }
        catch(error) {
@@ -50,7 +50,7 @@ exports.deletePartner = async function(req,res){
 exports.findPartner = async function(req,res){
     try {
         const id = req.params.id
-        const partner = await Partner.findOne({id})
+        const partner = await Partner.findById(id)
         if(!partner) return res.status(404).send({error: 'Partner does not exist'})
         res.json({msg: 'Partner found successfully', data: partner})
        }

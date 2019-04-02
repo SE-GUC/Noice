@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const uuid = require('uuid');
 const Schema = mongoose.Schema
 
 const LocationSchema = new Schema({
@@ -22,14 +21,11 @@ const LocationSchema = new Schema({
             isDepartmentAvailable: [{
                 nameOfSubdepartment: String,
                 isAvailable: Boolean,
-                Capacity: Number,
+                capacity: Number,
             }]
         }
-    ],
-    id: {
-        type: String,
-        default: function genUID() { uuid.v4()}
-    },
+    ]
+   
 })
 
 module.exports = User = mongoose.model('Location', LocationSchema)

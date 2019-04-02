@@ -1,8 +1,6 @@
-const uuid = require('uuid')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-// Create the schema
 const VacancySchema = new Schema({
         careerLvl: {
             type: String,
@@ -35,11 +33,7 @@ const VacancySchema = new Schema({
         jobReq: {
             type: String,
             required: true
-        },
-        id: {
-            type: String,
-            required: true
-        },
+        }
     }
 )
 module.exports = Vacancy = mongoose.model('Vacancy', VacancySchema)

@@ -2,7 +2,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
  
-// Create the schema
 const PartnerSchema = new Schema({
     companyName: {
         type: String,
@@ -40,14 +39,6 @@ const PartnerSchema = new Schema({
     ]
     ,
     field: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
         type: String,
         required: true
     }

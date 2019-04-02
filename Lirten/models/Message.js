@@ -1,13 +1,8 @@
 const mongoose = require('mongoose')
-const uuid = require('uuid')
 const Schema = mongoose.Schema
 
-// Create the schema
 const MesageSchema = new Schema({
-    id: {
-        type: String,
-        default: function genUID() { uuid.v4()}
-    },
+
     senderID: {
         type: String,
         required: true

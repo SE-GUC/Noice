@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-var Message = require('../models/Message');
+var Message = require('../models/message');
 const validator = require('../validations/messageValidations')
 
 exports.createMessage = async function (req,res){

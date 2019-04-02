@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const uuid = require('uuid');
 
-// The calender Model
 const CalenderSchema = new Schema({
     Date: {
         type: String,
@@ -20,12 +18,6 @@ const CalenderSchema = new Schema({
     status: {
         type: String,
         required: true
-    },
-    id: {
-        type: String, 
-        default: function genUUID() { uuid.v4() }
-    
-
     }
     
 })

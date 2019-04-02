@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
-const uuid = require("uuid"); 
 const Schema = mongoose.Schema
-///dah el model
+
 const memberSchema = new Schema({
 
    name: {
@@ -29,7 +28,7 @@ const memberSchema = new Schema({
       required: true
     },
     skills: {
-      type: [String],
+      type: String,
       required: true
   },
   interests: {
@@ -39,10 +38,10 @@ const memberSchema = new Schema({
   pastEvents: 
     [
       {
-          id:String,
+          
           name:String,
-          startDate: Date,
-          endDate: Date
+          startDate: String,
+          endDate: String
       }
   ],
   projectsCompleted:{
@@ -56,11 +55,7 @@ const memberSchema = new Schema({
   certificaesHeld:{
     type: String,
     required: true
-    },
-    id: {
-        type: String,
-        default: function genUID() { uuid.v4()}
-    },
+    }
 })
 module.exports = Member = mongoose.model('member', memberSchema)
 
