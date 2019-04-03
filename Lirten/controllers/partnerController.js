@@ -1,7 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
 var Partner = require('../models/partner');
+const Vacancyad = require('../models/Vacancyad');
+const Vacancyrequest = require('../models/VacancyAdRequest');
 const validator = require('../validations/partnerValidations')
+const vvalidator = require('../validations/vacancyadValidations')
+const vvvalidator = require('../validations/VacancyAdRequestValidations')
 
 exports.createPartner = async function (req,res){
     try {
@@ -59,3 +63,74 @@ exports.findPartner = async function(req,res){
            console.log(error)
        } 
 }
+
+exports.requestVacancyad = async function(req,res){
+    try {
+        const isValidated = vvvalidator.createValidation(req.body)
+        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        const newVacancyad = await Vacancyrequest.create(req.body)
+        res.json({msg:'Request was created successfully', data: newVacancyad})
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       } 
+}
+
+exports.createVacancyad = async function(req,res){
+    try {
+        const isValidated = vvalidator.createValidation(req.body)
+        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        const newVacancyad = await Vacancyad.create(req.body)
+        res.json({msg:'Vacancyad was created successfully', data: newVacancyad})
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       } 
+}
+
+exports.editVacancyad = async function(req,res){
+    try {
+        const mid = req.params.id
+        const vacancyad = await Vacancyad.findById(mid);
+        if(!vacancyad) return res.status(404).send({error: 'Vacancy ad does not exist'})
+        const isValidated = vvalidator.updateValidation(req.body)
+        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        const updatedVacancyad = await Vacancyad.findByIdAndUpdate(mid,req.body,function (err) {
+           if (err) return next(err);
+       });
+       const after= await Vacancyad.findById(mid)
+       res.json({msg: 'Vacancyad updated successfully', data: after});
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       }
+}
+
+exports.deleteVacancyad = async function(req,res){
+    try {
+        const id = req.params.id
+        const deletedVacancyad = await Vacancyad.findByIdAndRemove(id)
+        res.json({msg:'Vacancyad was deleted successfully', data: deletedVacancyad})
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       } 
+}
+
+exports.getOldvacancyads = async function(req,res){
+    const ownerid= req.params.id
+     const vacancyad = await Vacancyad.find({ownerid})
+     res.json({data: vacancyad})
+}
+
+exports.getMyvacancyad = async function(req,res){
+    const ownerid= req.params.id
+    const _id= req.params.iid
+    const vacancyad = await Vacancyad.find({_id,ownerid})
+    res.json({data: vacancyad})
+}
+
