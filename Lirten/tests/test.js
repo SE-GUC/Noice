@@ -29,9 +29,7 @@ test('update vacancy ad', async () => {
       projects: [{id:"String",name:"String",startDate: "12/12/1014",endDate: "12/03/2050"}],
       companyName: "Vodafone",
       companyLocation: "Mohandeseen",
-      field: "stupidggghh",
-      email: "mohammedibahim904@gmail.com",
-      password: "fdsjfkljdsflkasdjfsd"
+      field: "stupidggghh"
   }
     const user =  await funcs.createpartner(body)
     expect.assertions(1)
