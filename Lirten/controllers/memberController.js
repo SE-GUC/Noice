@@ -20,7 +20,7 @@ exports.updateMember= async function(req,res){
     try {
         const id = req.params.id
         const memberr = await Member.findById(id)
-        if(!memberr) return res.status(404).send({error: 'Notification does not exist'})
+        if(!memberr) return res.status(404).send({error: 'Member does not exist'})
         const isValidated = validator.updateValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
         var updatedMember = await Member.findOneAndUpdate(req.body)

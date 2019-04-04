@@ -1,10 +1,13 @@
-const Joi = require('joi')
+const BaseJoi = require('joi')
+const Extension = require('joi-date-extensions')
+const Joi = BaseJoi.extend(Extension)
 
 module.exports = {
     createValidation: request => {
         const createSchema = {
             NameOfPlace: Joi.string().min(3).max(500).required(),
             ownerName: Joi.string().min(3).max(500).required(),
+            date: Joi.date().format(['DD-MM-YYYY']),
             workingPlaceDepartments: Joi.array().items(Joi.object().keys({
                 nameOfDepartments: Joi.string().required(),
                 City: Joi.string().min(3).max(100).required(),
