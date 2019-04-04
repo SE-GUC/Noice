@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 const funcs = require('./fn');
 test('view all admins',async()=>{
     expect.assertions(1)
@@ -5,11 +9,11 @@ test('view all admins',async()=>{
     expect(response.data.data.length).toEqual(2)  
 })
 test('view admin by id',async()=>{
-    const id ="5ca4a15e92da5617b41b7a40"
-    expect.assertions(1)
+    const id ="5ca670bb2f32d169acc67047"
     const response =  await funcs.viewAdminById(id)
+    expect.assertions(1)
     //console.log(response.data.data)
-    expect(response.data.data[0].firstName).toBe("sharaf")  
+    expect(response.data.data.firstName).toBe("bala7a")  
 })
 /*test('Update an admin',async ()=>{
     const id ="5ca4a15e92da5617b41b7a40"

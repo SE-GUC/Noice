@@ -6,7 +6,7 @@ const admins =  await axios.get('http://localhost:3000/api/admins/')
 return admins
 },
 viewAdminById:async(id)=>{
-    const admins =  await axios.get('http://localhost:3000/api/admins/?id='+id)
+    const admins =  await axios.get(`http://localhost:3000/api/admins/${id}`)
     //console.log(admins.data.data)
     return admins
     
