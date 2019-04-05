@@ -4,6 +4,14 @@ const Schema = mongoose.Schema
  
 // Create the schema
 const EventSchema = new Schema({
+    Name: {
+        type:String,
+        required: true
+    },
+    Owner: {
+        type: String,
+        required :true
+    },
     Type: {
         type: String,
         required: true
@@ -12,16 +20,14 @@ const EventSchema = new Schema({
         type: String,
         required: true
     },
-    Participants:[
-        {
-            type:Number
-        }
-    ],
+    Participants: {
+            type: Number,
+            default: 0
+        },
     Date:[
         {
-            startDate: Date,
-            endDate: Date,
-            required: true
+            startDate:Date,
+            endDate:Date
     }      
     ]
 })
