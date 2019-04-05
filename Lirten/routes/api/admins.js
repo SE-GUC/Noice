@@ -13,6 +13,12 @@ router.get('/',async (req, res) =>{
     res.json({ data: admins })
 } )
 
+router.get('/:id',async (req, res) =>{
+    const aid = req.params.id
+    const admins = await Admin.findById(aid)
+    res.json({ data: admins })
+} )
+
 router.post('/create', async (req,res) => {
     try {
      const isValidated = validator.createValidation(req.body)
@@ -44,7 +50,7 @@ router.post('/create', async (req,res) => {
  })
  
 
- router.delete('/', async (req,res) => {
+ router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
      const deletedAdmin = await Admin.findByIdAndRemove(id)
