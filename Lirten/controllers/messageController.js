@@ -33,8 +33,8 @@ exports.deleteMessage = async function(req,res){
 }
 exports.findMessage = async function(req,res){
     try {
-        const id = req.params.id
-        const message = await Message.findById(id)
+        const mid = req.params.id
+        const message = await Message.findById(mid)
         if(!message) return res.status(404).send({error: 'Message does not exist'})
         res.json({msg: 'Message found successfully', data: message})
        }
