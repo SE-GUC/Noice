@@ -17,11 +17,11 @@ module.exports = {
                     isAvailable: Joi.boolean().required(),
                     capacity: Joi.number().min(0).max(3000).required(),
                 }))
-            }))
-        }
+            }))        }
 
         return Joi.validate(request, createSchema)
     },
+
     updateValidation: request => {
         const updateSchema = {
             NameOfPlace: Joi.string().min(3).max(500),
