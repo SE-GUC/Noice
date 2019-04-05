@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-const funcs = require('./fn');
+const funcs = require('./patnerfn');
 
 let partid=''
 test('Number of ad should be 1', async () => {
