@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const admin_controller = require('../../controllers/adminController')
-const event_controller = require('../../controllers/eventController')
-
 
 
 router.get('/',admin_controller.getAllAdmins)
