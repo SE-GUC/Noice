@@ -33,6 +33,10 @@ const VacancySchema = new Schema({
         jobReq: {
             type: String,
             required: true
+        },
+        applicants: {
+            type: Array,
+            required: true
         }
     }
 )

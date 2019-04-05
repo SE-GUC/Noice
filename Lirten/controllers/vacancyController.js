@@ -1,7 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const axios = require("axios")
 var vacancy= require('../models/vacancy')
 const validator = require('../validations/vacancyValidations')
+
+//var notification = require("../models/Notification")
 
 exports.getAllVacancies = async function(req,res){
     const vacancy= await Vacancy.find()
@@ -25,16 +28,102 @@ exports.updateVacancy = async function(req,res){
     try {
         const id = req.params.id
         const updateVacancy = await vacancy.findById(id)
+        
         if(!updateVacancy) return res.status(404).send({error: 'Vacancy does not exist'})
         const isValidated = validator.updateValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
         const upVacancy = await vacancy.updateOne(req.body)
-        res.json({msg: 'Vacancy updated successfully'})
+
+        var acceptedMember = SeeIfMemberIsAcceptedInBody(req.body)
+        if(!acceptedMember)
+        {
+             // If the update is to the vacancy itself, send a notification to everyone who applied
+             NotifyAllApplicantsThatVacancyUpdated(updateVacancy)
+        }
+        else{
+            // If the update is to accept a member, send a notification to that member only
+            SendNotificationToAcceptedMember(acceptedMember,updateVacancy.empID)
+        }
+
+        //if(Object.keys(req.body.applicants).includes({"accepted" : "true"}))
+         
+
+
+
+        res.json({msg: 'Vacancy updated successfully', data:updateVacancy.applicants})
+        
        }
        catch(error) {
            // We will be handling the error later
            console.log(error)
        }
+}
+
+function SeeIfMemberIsAcceptedInBody(reqbody)
+{
+    var applicants = reqbody.applicants
+    if(applicants == null) return;
+    for (var i = 0; i < applicants.length; i++) {
+        // if a member is updated in the body of the request to be accepted 
+        if(applicants[i].accepted === "true")
+        {
+            return applicants[i]
+        }   
+    } 
+}
+
+// Takes an accepted member and employer ID
+async function SendNotificationToAcceptedMember(acceptedMember, employerID)
+{
+    //console.log(acceptedMember.memberID +"      " + employerID )
+
+    var memberIDD = acceptedMember.memberID
+    var notification =  {
+        "From": employerID + "", // empID?
+        "To": memberIDD + "",
+        "Time": "1/2/2019",
+        "Type": "Vacancy",
+        "Title": "You have been accepted to our vacancy!"
+    }
+
+    try
+    {
+        // Send a notification to the accepted member (sends 1 notif)
+        await axios.post('http://localhost:3000/api/notifications/',notification)
+    }
+    catch(error)
+    { 
+        console.log(error)
+    }
+}
+
+async function NotifyAllApplicantsThatVacancyUpdated(vacancyy)
+{
+    var applicants = vacancyy.applicants
+    var employerIDD = vacancyy.empID
+    for (var i = 0; i < applicants.length; i++) {
+
+        var memberIDD = applicants[i].memberID
+        //create the notification
+        var notification =  {
+            "From": employerIDD + "", // empID?
+            "To": memberIDD + "",
+            "Time": "1/2/2019",
+            "Type": "Vacancy",
+            "Title": "A vacancy you've applied to has been updated"
+        }
+        try
+        {
+            // Post a notification for every applicant
+            await axios.post('http://localhost:3000/api/notifications/',notification)
+        }
+        catch(error)
+        { 
+            console.log(error)
+        }
+    } // end loop
+    // applicants.filter(member => member.accepted === "false") // finds all not accepted members
+    // applicants.find(member => member.accepted === "false") // finds only one
 }
 
 exports.deleteVacancy = async function(req,res){

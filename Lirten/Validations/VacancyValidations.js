@@ -11,6 +11,7 @@ module.exports = {
             time: Joi.string().min(3).max(500).required(),
             skillsReq: Joi.string().min(0).max(3000).required(),
             jobReq: Joi.string().min(0).max(3000).required(),
+            applicants: Joi.array()
           
 
         }
@@ -28,7 +29,7 @@ module.exports = {
             time: Joi.string().raw().min(3).max(500),
             skillsReq: Joi.string().min(0).max(3000),
             jobReq: Joi.string().min(0).max(3000),
-            
+            applicants: Joi.array()
 
         }
 
