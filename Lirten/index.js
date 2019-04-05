@@ -12,7 +12,6 @@ const requests = require('./routes/api/requests')
 const notifications = require('./routes/api/notifications')
 const vacancy = require('./routes/api/vacancy')
 const message = require('./routes/api/message')
-const events = require('./routes/api/events')
 
 const app = express()
 
@@ -31,15 +30,7 @@ app.use(express.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
     res.send(`<h1>Welcome to Lirten Hub</h1>
-    <a href="/api/members">members</a>
-    <a href="/api/location">location</a>
-    <a href="/api/calender">calender</a>
-    <a href="/api/partners">partners</a>
-    <a href="/api/requests">requests</a>
-    <a href="/api/notifications">notifications</a>
-    <a href="/api/events">events</a>
-    <a href="/api/vacancy">vacancy</a>
-    <a href="/api/message">message</a>
+    <a href="/api/admins">Admins</a>
 `);
 })
 
@@ -54,7 +45,6 @@ app.use('/api/requests',requests)
 app.use('/api/notifications', notifications)
 app.use('/api/vacancy', vacancy)
 app.use('/api/message', message)
-app.use('/api/events', events)
 
 
 // Handling 404

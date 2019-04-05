@@ -17,14 +17,16 @@ exports.createEvent = async function (req,res){
 exports.updateEvent = async function(req,res){
     try {
         const id = req.params.id
-        const event = await Event.findById(id)
+        const event = await Event.findOne({id})
         if(!event) return res.status(404).send({error: 'Event does not exist'})
         const isValidated = validator.updateValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        var updatedEvent = await Event.findByIdAndUpdate(req.body)
-        res.json({msg: 'Event is updated successfully', data: updatedEvent})
+        var updatedEvent = await Event.updateOne(req.body)
+        updatedEvent = await Event.findOne(req.body)
+        res.json({msg: 'Event updated successfully',data: updatedEvent})
        }
        catch(error) {
+           // We will be handling the error later
            console.log(error)
        }
 } 
@@ -35,21 +37,25 @@ exports.getAllEvents = async function(req,res){
 exports.deleteEvent = async function(req,res){
     try {
         const id = req.params.id
+        const event = await Event.findOne({id})
+        if(!event) return res.status(404).send({error: 'Event does not exist'})
         const deletedEvent = await Event.findOneAndDelete(id)
         res.json({msg:'Event was deleted successfully', data: deletedEvent})
        }
        catch(error) {
+           // We will be handling the error later
            console.log(error)
        } 
 }
 exports.findEvent = async function(req,res){
     try {
         const id = req.params.id
-        const event = await Event.findById(id)
+        const event = await Event.findOne({id})
         if(!event) return res.status(404).send({error: 'Event does not exist'})
-        res.json({msg: 'Event found successfully', data: event})
+        res.json({msg: 'Event found successfully', data: Event})
        }
        catch(error) {
+           // We will be handling the error later
            console.log(error)
        } 
 }
