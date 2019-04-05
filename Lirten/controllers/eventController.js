@@ -19,15 +19,15 @@ exports.updateEvent = async function(req,res){
         const id = req.params.id
         const event = await Event.findById(id)
         if(!event) return res.status(404).send({error: 'Event does not exist'})
-        const isValidated = validator.updateValidation(req.body)
-        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        var updatedEvent = await Event.findByIdAndUpdate(req.body)
-        res.json({msg: 'Event is updated successfully', data: updatedEvent})
-       }
-       catch(error) {
-           console.log(error)
-       }
-} 
+        
+        const updatedEvent = await Event.findByIdAndUpdate(id,req.body,function (err) {
+            if (err) return next(err);
+            res.json({msg: 'Event updated successfully'});
+        });
+        }
+        catch(error) {
+            console.log(error)
+        } } 
 exports.getAllEvents = async function(req,res){
     const events = await Event.find()
     res.json({data: events})
