@@ -3,7 +3,7 @@
  */
 const funcs = require('./fn');
 
-
+let partid=''
 test('Number of ad should be 1', async () => {
   const id="5c93e8b88c10dc71806b8132"
   const idd="5c9d533817bb2542d4c87621"
@@ -22,6 +22,7 @@ test('update vacancy ad', async () => {
 })
 
   test('Post my informations as a partner', async () =>{
+    expect.assertions(1)
     const body={
       partners: [{id:"ytguyhk"},{id:"hghjiyv"}],
       events: [{name:"stupid lawyer",id:"2354",startDate:"12/12/2012",endDate:"02/12/2022"}],
@@ -32,9 +33,29 @@ test('update vacancy ad', async () => {
       field: "stupidggghh"
   }
     const user =  await funcs.createpartner(body)
-    expect.assertions(1)
-    expect(user.data.data.field).toEqual("stupidggghh")
+    const user1 = await funcs.viewPartnerid(user.data.data._id)
+    partid=user.data.data._id
+    expect(user.data.data._id).toEqual(user1.data.data._id)
   })
+
+  test('view partner', async () => {
+    const response =  await funcs.viewPartnerid(partid)
+    expect(response.data.data._id).toEqual(partid)
+  })
+
+  test('update partner', async () => {
+    const body={
+      companyName: "Orange"
+    }
+    const response =  await funcs.updatePartner(partid,body)
+    expect(response.data.data.companyName).toEqual("Orange")
+  })
+
+  test('delete partner', async () => {
+    const user = await funcs.viewPartnerid(partid)
+    const user2 =  await funcs.deletePartner(partid)
+    expect(user.data.data._id).toEqual(user2.data.data._id)
+});
 
   test('Post request as a partner', async () =>{
     const body={
