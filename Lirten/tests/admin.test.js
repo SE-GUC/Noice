@@ -1,4 +1,4 @@
-const funcs = require('./fn');
+const funcs = require('./adminsfn');
 
 test('view all admins',async()=>{
     expect.assertions(1)
