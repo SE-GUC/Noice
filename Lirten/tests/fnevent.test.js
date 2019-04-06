@@ -4,42 +4,41 @@ const funcs = require('./fnevent');
 test('view all events',async()=>{
     expect.assertions(1)
     const response =  await funcs.viewAllEvents()
-    expect(response.data.data.length).toEqual(6)  
+    expect(response.data.data.length).toEqual(11)  
 },10000)
 
 
 
 
 test('view event by id',async()=>{
-    id= "5ca7d7601e24263070bda6ce"
+    id= "5ca8f53b48c3ef1cbce258d4"
     const response =  await funcs.viewEventById(id)
     expect.assertions(1)
     console.log(response.data.data)
-    expect(response.data.data.Name).toBe("Updated1")  
+    expect(response.data.data.Name).toBe("create testing")  
 })
 
 
 test('Update an Event',async ()=>{
-    id= "5ca7d7601e24263070bda6ce"
+    id= "5ca8ff5548c3ef1cbce258d7"
     const body={
         Name:"Updated1",
         Owner:"hamada updated",
-        Type:"el Updated",
-        Participants : 500,
+        
     }
     expect.assertions(1)
     const response = await funcs.updateEventById(id,body)
-    console.log(response.data.data)
+    console.log("test return"+response.data.data)
     expect(response.data.data.Name).toBe(body.Name)
 
 },10000)
 
 
 test('Delete an event',async()=>{
-    id= "5ca7d74b1e24263070bda6cd"
+    id= "5ca9005f48c3ef1cbce258da"
     expect.assertions(1)
     const response = await funcs.deleteEvent(id)
-    expect(response.data.data.Name).toBe("event")
+    expect(response.data.data.Name).toBe("Updated1")
 },10000)
 
 

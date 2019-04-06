@@ -9,7 +9,7 @@ module.exports = {
             Type: Joi.string().min(3).max(500).required(),
             Location: Joi.string().min(3).max(100).required(),
             startDate: Joi.string().required(),
-            endDate: Joi.string(),
+            endDate: Joi.string()
             
         }
         return Joi.validate(request, createSchema)

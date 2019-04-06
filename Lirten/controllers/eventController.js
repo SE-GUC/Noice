@@ -19,11 +19,9 @@ exports.updateEvent = async function(req,res){
         const id = req.params.id
         const event = await Event.findById(id)
         if(!event) return res.status(404).send({error: 'Event does not exist'})
-        
-        const updatedEvent = await Event.findByIdAndUpdate(id,req.body,function (err) {
-            if (err) return next(err);
-            res.json({msg: 'Event updated successfully'});
-        });
+        var updatedEvent = await Event.findByIdAndUpdate(id,req.body)
+        updatedEvent = await Event.findById(id)
+        res.json({msg:'Event was updated successfully', data: updatedEvent})
         }
         catch(error) {
             console.log(error)

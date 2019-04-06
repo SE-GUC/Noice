@@ -24,8 +24,9 @@ deleteEvent : async (id)=>{
  return event
 },
 updateEventById: async(id,body) =>{
-   const event = await axios.put(`http://localhost:3000/api/events/${id}`,body)
-   console.log(event.data.data)
+   console.log("i am cold")
+    const event = await axios.put(`http://localhost:3000/api/events/${id}`,body)
+   console.log("data is"+event.data.data)
    return event
 }
 
