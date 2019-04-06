@@ -2,24 +2,24 @@ const axios = require('axios');
 
 const functions = {
 	    viewMessage: async () => {
-        const books = await axios.get('http://localhost:3000/api/message/')
-        return books
+        const messages = await axios.get('http://localhost:3000/api/message/')
+        return messages
         },
 
         viewMessageid: async (id) => {
-                const books = await axios.get(`http://localhost:3000/api/message/${id}`)
-                return books
+                const messages = await axios.get(`http://localhost:3000/api/message/${id}`)
+                return messages
                 },
 
         deleteMessage: async (id) => {
-                const books = await axios.delete(`http://localhost:3000/api/message/${id}`)
-                return books
+                const messages = await axios.delete(`http://localhost:3000/api/message/${id}`)
+                return messages
                 },
         
         createMessage:async (req) => {
                 
-                const partners = await axios.post("http://localhost:3000/api/message",req)
-                return partners
+                const messages = await axios.post("http://localhost:3000/api/message",req)
+                return messages
 
         }
         
