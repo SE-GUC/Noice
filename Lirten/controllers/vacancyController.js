@@ -117,7 +117,7 @@ async function NotifyAllApplicantsThatVacancyUpdated(vacancyy)
             // Post a notification for every applicant
             await axios.post('http://localhost:3000/api/notifications/',notification)
         }
-        catch(error)
+catch(error)
         { 
             console.log(error)
         }
@@ -149,3 +149,59 @@ exports.findVacancy = async function(req,res){
            console.log(error)
        } 
 }
+
+//handling applications
+exports.viewAllApplicants = async(req,res)=>{
+    try {
+        const id = req.params.id
+        const Vacancyy = await vacancy.findById(id)
+        if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
+        var query = await vacancy.find({
+            _id:id
+        }).select('applicants')
+        res.json({msg: 'application successfully', data: query})
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       } 
+}
+
+
+exports.viewNumberOfApplicants = async function(req,res){
+    try {
+        const id = req.params.id
+        const Vacancyy = await vacancy.findById(id)
+        if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
+        console.log('im here '+Vacancyy.applicants.length)
+        res.json({msg: 'no of applicants is', data: Vacancyy.applicants.length})
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       } 
+}
+exports.apply= async (req,res)=>{
+    try {
+        const id = req.params.id
+        const body = req.body
+        var Vacancyy = await vacancy.findById(id)
+        if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
+        console.log('im here '+Vacancyy.applicants.length)
+        Vacancyy.applicants.push(body)
+        console.log('now im pushed '+Vacancyy.applicants.length)
+        console.log(Vacancyy.applicants)
+        const updateBody={
+         "applicants":Vacancyy.applicants
+        }
+        const placeholder = await vacancy.findByIdAndUpdate(id,updateBody)
+        console.log('after update'+placeholder)
+        Vacancyy = await vacancy.findById(id)
+        res.json({msg: 'we applied to you', data: Vacancyy})
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       } 
+}
+

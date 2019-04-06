@@ -3,15 +3,12 @@ const Joi = require('joi')
 module.exports = {
     createValidation: request => {
         const createSchema = {
-            careerLvl: Joi.string().min(3).max(500).required(),
-            jobDesc: Joi.string().min(3).max(100).required(),
-            jobTyp: Joi.string().min(3).max(100).required(),
-            educLvl: Joi.string().min(0).max(3000).required(),
-            empID: Joi.number().min(3).max(500).required(),
+            careerLevel: Joi.string().min(3).max(500).required(),
+            jobDescription: Joi.string().min(3).max(100).required(),
+            jobType: Joi.string().min(3).max(100).required(),
+            educationLevel: Joi.string().min(0).max(3000).required(),
             time: Joi.string().min(3).max(500).required(),
-            skillsReq: Joi.string().min(0).max(3000).required(),
-            jobReq: Joi.string().min(0).max(3000).required(),
-            applicants: Joi.array()
+            skillsRequired: Joi.string().min(0).max(3000).required(),
           
 
         }
