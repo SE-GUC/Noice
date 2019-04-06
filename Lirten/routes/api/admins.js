@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
+
 const Admin = require('../../models/Admin')
 const validator = require('../../validations/adminValidations')
+const locationInAdminsController = require('../../controllers/locationControllers')
+
 
 
 
@@ -49,7 +52,6 @@ router.post('/create', async (req,res) => {
        } 
  })
  
-
  router.delete('/:id', async (req,res) => {
     try {
      const id = req.params.id
@@ -62,5 +64,10 @@ router.post('/create', async (req,res) => {
     }  
  })
 
+router.get('/viewLocation/:id',locationInAdminsController.findLocation)
+
+router.put('/updateLocation/:id',locationInAdminsController.updateLocation)
+
+router.delete('/deleteLocation/:id',locationInAdminsController.deleteLocation)
 
 module.exports = router
