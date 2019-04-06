@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-const funcs = require('./fnmessage');
+const funcs = require('./messageFn')
 const body2={
     senderID: "321",
     receiverID: "123",
