@@ -1,8 +1,10 @@
 const axios = require('axios');
+
 const functions={
+
 viewAllEvents: async() =>{
 const events =  await axios.get('http://localhost:3000/api/events/')
-//console.log(events.data.data)
+console.log(events.data.data)
 return events
 },
 viewEventById:async(id)=>{
@@ -13,7 +15,7 @@ viewEventById:async(id)=>{
     
 },
 createEvent: async(body)=>{
-    const event = await axios.post('http://localhost:3000/api/events/create',body)
+    const event = await axios.post('http://localhost:3000/api/events/',body)
     console.log('event info is'+event.data.data)  
     return event
 },

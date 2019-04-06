@@ -24,12 +24,14 @@ const EventSchema = new Schema({
             type: Number,
             default: 0
         },
-    Date:[
-        {
-            startDate:Date,
-            endDate:Date
+    startDate: {
+            type: String,
+            required: true
+        },
+     endDate:{
+         type: String,
     }      
-    ]
+    
 })
 
 

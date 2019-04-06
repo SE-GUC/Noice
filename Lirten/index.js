@@ -1,8 +1,9 @@
+    
 const express = require('express')
-
+const cors = require('cors')
 const mongoose = require('mongoose');
 
-
+const events = require('./routes/api/events')
 const location = require('./routes/api/location')
 const calender = require('./routes/api/calender')
 const members=require('./routes/api/members')
@@ -12,7 +13,6 @@ const requests = require('./routes/api/requests')
 const notifications = require('./routes/api/notifications')
 const vacancy = require('./routes/api/vacancy')
 const message = require('./routes/api/message')
-const events = require('./routes/api/events')
 
 const app = express()
 
@@ -28,9 +28,10 @@ mongoose
 // Init middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-
+app.use(cors())
 app.get('/', (req, res) => {
     res.send(`<h1>Welcome to Lirten Hub</h1>
+    <a href="/api/admins">Admins</a>
     <a href="/api/members">members</a>
     <a href="/api/location">location</a>
     <a href="/api/calender">calender</a>
@@ -45,6 +46,7 @@ app.get('/', (req, res) => {
 
 // Direct routes to appropriate files 
 
+app.use('/api/events',events)
 app.use('/api/member',members)
 app.use('/api/location', location)
 app.use('/api/calender', calender)
@@ -54,7 +56,6 @@ app.use('/api/requests',requests)
 app.use('/api/notifications', notifications)
 app.use('/api/vacancy', vacancy)
 app.use('/api/message', message)
-app.use('/api/events', events)
 
 
 // Handling 404
