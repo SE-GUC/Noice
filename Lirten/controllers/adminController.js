@@ -17,18 +17,20 @@ exports.createAdmin = async function (req,res){
 exports.updateAdmin = async function(req,res){
     try {
         const id = req.params.id
-        const admin = await Admin.findById(id)
-        if(!admin) return res.status(404).send({error: 'Admin does not exist'})
+        const admin = await Admin.findById(id);
+        if(!admin) return res.status(404).send({error: 'admin does not exist'})
         const isValidated = validator.updateValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        var updatedAdmin = await Admin.findOneAndUpdate(req.body)
-        res.json({msg: 'Admin is updated successfully', data: updatedAdmin})
+
+        const updatedAdmin = await Admin.findByIdAndUpdate(id,req.body,function (err) {
+           if (err) return next(err);
+           res.json({msg: 'Admin updated successfully'});
+       });
        }
        catch(error) {
            // We will be handling the error later
            console.log(error)
-       }
-} 
+       } } 
 exports.getAllAdmins = async function(req,res){
     const admins = await Admin.find()
     res.json({data: admins})

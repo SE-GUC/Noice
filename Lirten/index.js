@@ -1,5 +1,5 @@
 const express = require('express')
-
+const cors = require('cors')
 const mongoose = require('mongoose');
 
 
@@ -27,7 +27,7 @@ mongoose
 // Init middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-
+app.use(cors())
 app.get('/', (req, res) => {
     res.send(`<h1>Welcome to Lirten Hub</h1>
     <a href="/api/admins">Admins</a>
