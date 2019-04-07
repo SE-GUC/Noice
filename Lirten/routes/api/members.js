@@ -8,14 +8,16 @@ const event_controller = require('../../controllers/eventController')
 //router.get('/:date', memberController.findLocationWithDate)
 
 router.get('/', memberController.getAllMember)
-
 router.post('/', memberController.createMember)
-
 router.put('/:id', memberController.updateMember)
-
 router.delete('/:id', memberController.deleteMember)
-
 router.get('/:id',memberController.findMember)
+
+//event controls
+router.get('/event/',event_controller.getAllEvents)
+router.post('/event/',event_controller.createEvent)
+router.put('/event/:id', event_controller.updateEvent)
+router.get('/event/:id',event_controller.findEvent)
 
 
 module.exports = router

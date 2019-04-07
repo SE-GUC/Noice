@@ -12,9 +12,14 @@ router.post('/',location_controller.createLocation)
 router.put('/:id', location_controller.updateLocation)
 
 router.delete('/:id',location_controller.deleteLocation)
-
 router.get('/:id',location_controller.findLocation)
 
+
+//event controls
+router.get('/event/',event_controller.getAllEvents)
+router.post('/event/',event_controller.createEvent)
+router.put('/event/:id', event_controller.updateEvent)
+router.get('/event/:id',event_controller.findEvent)
 
 
 
