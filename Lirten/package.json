@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index",
-    "test": "jest"
+    "index": "nodemon index",
+    "test": "jest",
+    "partnerapp": "npm start --prefix partnerapp",
+    "partnerapp-install": "npm install --prefix partnerapp",
+    "dev": "concurrently \"npm run index\" \"npm run partnerapp\""
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "jest-cli": "^24.5.0",
