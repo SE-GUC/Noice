@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "Introduction to node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client-install": "npm install --prefix client",
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "Team Noice",
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "expres": "0.0.5",
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "mongodb": "^3.2.1",
+    "mongoose": "^5.4.20",
+    "react": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "uuid": "^3.3.2"
+  }
+}
