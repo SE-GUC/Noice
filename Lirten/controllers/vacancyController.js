@@ -11,6 +11,13 @@ exports.getAllVacancies = async function(req,res){
     res.json({data: vacancy})
 }
 
+exports.getAllFinalVacancies = async function(req,res){
+    const vacancy= await Vacancy.find({
+        status : true
+    })
+    res.json({data: vacancy})
+}
+
 exports.createVacancy = async function(req,res){
     try {
         const isValidated = validator.createValidation(req.body)
