@@ -4,7 +4,7 @@ const vacancyController = require('../../controllers/vacancyController')
 
 //cruds
 router.get('/',vacancyController.getAllVacancies)
-router.get('//',vacancyController.getAllFinalVacancies)
+router.get('/final/1',vacancyController.getAllFinalVacancies)
 router.post('/',vacancyController.createVacancy)
 router.put('/:id', vacancyController.updateVacancy)
 router.delete('/:id',vacancyController.deleteVacancy)
