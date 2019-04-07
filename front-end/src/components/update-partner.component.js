@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-export default class EditTodo extends Component {
+export default class UpdatePartner extends Component {
 
     constructor(props) {
         super(props);
@@ -41,11 +41,11 @@ export default class EditTodo extends Component {
     onSubmit(e) {
         e.preventDefault();
         const obj = {
-            CompanyName: this.state.CompanyName,
-            CompanyLocation: this.state.CompanyLocation,
-            Field: this.state.Field,
+            companyName: this.state.CompanyName,
+            companyLocation: this.state.CompanyLocation,
+            field: this.state.Field,
         };
-        axios.put('http://localhost:3000/api/partners/5c969b56dfebd43274389a1b', obj)
+        axios.put('http://localhost:3000/api/partners/5c93e8b88c10dc71806b8132', obj)
             .then(res => console.log(res.data));
 
     }
