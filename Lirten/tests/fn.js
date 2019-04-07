@@ -48,6 +48,15 @@ const functions = {
     viewMemberByPartner : async () =>{
         const members = await axios.get('http://localhost:3000/api/admins/member/')
         return members
+    },
+    viewLocationByMember : async () =>{
+        const members = await axios.get('http://localhost:3000/api/member/location/')
+        return members
+    },
+    //view members through location
+    viewMemberByLocation : async () =>{
+        const members = await axios.get('http://localhost:3000/api/location/member/')
+        return members
     }
 }
 

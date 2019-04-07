@@ -7,7 +7,7 @@ module.exports = {
         const createSchema = {
             NameOfPlace: Joi.string().min(3).max(500).required(),
             ownerName: Joi.string().min(3).max(500).required(),
-            date: Joi.date().format(['DD-MM-YYYY']),
+            date: Joi.date().format(['DD-MM-YYYY']).required(),
             workingPlaceDepartments: Joi.array().items(Joi.object().keys({
                 nameOfDepartments: Joi.string().required(),
                 City: Joi.string().min(3).max(100).required(),
@@ -29,6 +29,7 @@ module.exports = {
         const updateSchema = {
             NameOfPlace: Joi.string().min(3).max(500),
             ownerName: Joi.string().min(3).max(500),
+            date: Joi.date().format(['DD-MM-YYYY']),
             workingPlaceDepartments: Joi.array().items(Joi.object().keys({
                 nameOfDepartments: Joi.string(),
                 City: Joi.string().min(3).max(100),

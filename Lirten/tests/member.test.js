@@ -6,7 +6,7 @@ test('number of members should be 3', async () =>{
     const response = await funcs.viewMember()
     expect(response.data.data.length).not.toBe(0)
 })
-*
+
 //first create a member where the name is adam and put id in 'id' variable
 test('member name should be adam1', async () =>{
     const id = "5ca78c75a71109224486f86b"
@@ -136,3 +136,18 @@ test('number of members should be 3', async () =>{
     const response = await funcs.viewMemberByPartner()
     expect(response.data.data.length).not.toBe(0)
 })
+/*
+///////////////////////////view locations///////////////////////
+test('number of members should be 3', async () =>{
+    expect.assertions(1)
+    const response = await funcs.viewLocationByMember()
+    expect(response.data.data.length).not.toBe(0)
+})
+
+/////////////////////////view members by location////////////////////
+test('number of locations should be 3', async () =>{
+    expect.assertions(1)
+    const response = await funcs.viewMemberByLocation()
+    expect(response.data.data.length).not.toBe(0)
+})
+*/
