@@ -1,5 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { create } from "domain";
+import { updateLocation } from "../../controllers/locationControllers";
+import createLocation from './componentsLocation/create.component';
+import updateLocation from './componentsLocation/update.component';
+import viewLocation from './componentsLocation/view.component';
 
 function Admins() {
   return <h2>Admins</h2>;
@@ -10,10 +15,31 @@ function Members() {
 }
 
 function Location() {
-  return <h2>Location</h2>;
+  <Router>
+  <div>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/location/create">Create</Link>
+        </li>
+        <li>
+          <Link to="/location/update/:id">Update</Link>
+        </li>
+        <li>
+          <Link to="/location/view">View</Link>
+        </li>
+      </ul>
+    </nav>
+
+    <Route path="/location/create"  component={createLocation} />
+    <Route path="/location/update/:id"  component={updateLocation} />
+    <Route path="/location/view"  component={viewLocation} />
+
+  </div>
+</Router>;
 }
 function Partners() {
-  return <h2>Ptners</h2>;
+  return <h2>Partners</h2>;
 }
 
 function AppRouter() {
@@ -45,5 +71,7 @@ function AppRouter() {
     </Router>
   );
 }
+
+
 
 export default AppRouter;
