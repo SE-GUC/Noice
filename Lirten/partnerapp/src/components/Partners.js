@@ -20,6 +20,7 @@ class Partners extends React.Component {
     return this.state.partners.map( (partner) => {
       return (
         <ul>
+          id: {partner._id} |
           age: {partner.age} |
           name: {partner.name} |
           Company Name: {partner.companyName}
