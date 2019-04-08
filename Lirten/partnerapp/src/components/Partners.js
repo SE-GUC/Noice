@@ -1,22 +1,32 @@
 import React from 'react';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+
 class Partners extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      partners:[],
-      loading:true
-    };
+      partners:[]
+    }
   }
 
   componentDidMount(){
-    fetch(`http://localhost:5000/api/partners/`).then(res =>{
-      console.log(res);
-      this.setState({partners:res.data.data});
-    });
+    axios.get('http://localhost:5000/api/partners')
+     .then(res => this.setState({partners:res.data.data})
+     )
   }
   render() {
-    return <ul>{this.state.partners.map(partner => <li>{partner.name}</li>)}
-    </ul>;
+    const partners = this.state.partners;
+    return this.state.partners.map( (partner) => {
+      return (
+        <ul>
+          age: {partner.age} |
+          name: {partner.name} |
+          Company Name: {partner.companyName}
+
+        </ul>
+      )
+    })
   }
 }
 
