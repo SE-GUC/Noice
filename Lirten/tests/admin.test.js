@@ -1,6 +1,6 @@
 const funcs = require('./adminsfn');
 
-test('view all admins',async()=>{
+/*test('view all admins',async()=>{
     expect.assertions(1)
     const response =  await funcs.viewAllAdmins()
     expect(response.data.data.length).toEqual(1)  
@@ -33,10 +33,10 @@ test('Delete an admin',async()=>{
     const response = await funcs.deleteAdmin(id)
     expect(response.data.data.firstName).toBe("updated")
 },10000)
-
+*/
 test('create admin',async () =>{
     const body={
-        firstName:"create testing",
+        firstName:"create react testing",
         middleName:"mid",
         lastName:"lastName",
         age:22

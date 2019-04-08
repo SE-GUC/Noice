@@ -2,11 +2,14 @@
   "name": "express-test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index",
-    "test": "jest"
+    "client-install": "npm install --prefix client",
+    "start": "node server",
+    "server": "nodemon server",
+    "test": "jest",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "joi": "^14.3.1",

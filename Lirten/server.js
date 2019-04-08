@@ -1,6 +1,10 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const app = express()
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 
 const location = require('./routes/api/location')
@@ -13,7 +17,7 @@ const notifications = require('./routes/api/notifications')
 const vacancy = require('./routes/api/vacancy')
 const message = require('./routes/api/message')
 
-const app = express()
+
 
 // DB Config
 const db = require('./config/keys').mongoURI
@@ -52,5 +56,5 @@ app.use((req, res) => {
     res.status(404).send({err: 'We can not find what you are looking for'});
  })
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`Server up and running on port ${port}`))

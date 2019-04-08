@@ -16,8 +16,7 @@ const adminSchema = new Schema({
         required: true
     },
     age: {
-        type: Number, 
-        required: true
+        type: Number
     },
     education:{
         type:[String]
