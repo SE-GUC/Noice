@@ -31,7 +31,7 @@ const VacancySchema = new Schema({
         },
         applicants: {
             type: Array,
-            default: [{}]
+            default: []
         },
         status: {
             type: Boolean,

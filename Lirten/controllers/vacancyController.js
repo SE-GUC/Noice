@@ -158,6 +158,7 @@ exports.findVacancy = async function(req,res){
 }
 
 //handling applications
+//finds the required vacancy and selects the applicants attribute which is an array of ids of people who applied to this job
 exports.viewAllApplicants = async(req,res)=>{
     try {
         const id = req.params.id
@@ -169,12 +170,12 @@ exports.viewAllApplicants = async(req,res)=>{
         res.json({msg: 'application successfully', data: query})
        }
        catch(error) {
-           // We will be handling the error later
            console.log(error)
        } 
 }
 
 
+//returns the length of the attribute applicants of a vacancy
 exports.viewNumberOfApplicants = async function(req,res){
     try {
         const id = req.params.id
@@ -184,10 +185,11 @@ exports.viewNumberOfApplicants = async function(req,res){
         res.json({msg: 'no of applicants is', data: Vacancyy.applicants.length})
        }
        catch(error) {
-           // We will be handling the error later
            console.log(error)
        } 
 }
+//applies to a vacancy by getting the applicants attributes and putting an object body with the id in it
+// then updating the given vacancy with the new applicants attribute
 exports.apply= async (req,res)=>{
     try {
         const id = req.params.id
@@ -207,8 +209,40 @@ exports.apply= async (req,res)=>{
         res.json({msg: 'we applied to you', data: Vacancyy})
        }
        catch(error) {
-           // We will be handling the error later
            console.log(error)
        } 
 }
-
+//canceling an application by finding the vacancy by id looping through the list of applicants and deleting the id of the user
+exports.cancelApplication= async (req,res)=>{
+    try {
+        // declaring inputs
+        const Vacancyid = req.params.id
+        const Userid = req.body.id
+        var Vacancyy = await vacancy.findById(Vacancyid)
+        //we do not find what you are looking for, keep scrolling  
+        if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
+        for(i=0;i<Vacancyy.applicants.length;i++){
+            console.log(Vacancyy.applicants[i])
+            if(Vacancyy.applicants[i].id==Userid){
+               console.log('found it in position '+i)
+               console.log(Vacancyy.applicants) 
+               Vacancyy.applicants.splice(i,1)
+                break
+            }
+         //checks if you you arent in the applicants list and returns an error message
+            if(i== (Vacancyy.applicants.length-1)){
+            res.status(404).send({error: "You haven't applied to this vacancy"})}
+        }
+        console.log(Vacancyy.applicants)
+        const updateBody={
+         "applicants":Vacancyy.applicants
+        }
+        const placeholder = await vacancy.findByIdAndUpdate(Vacancyid,updateBody)
+        console.log('after update'+placeholder)
+        Vacancyy = await vacancy.findById(Vacancyid)
+        res.json({msg: 'Application cancelled', data: Vacancyy})
+       }
+       catch(error) {
+           console.log(error)
+       } 
+}
