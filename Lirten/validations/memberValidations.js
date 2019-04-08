@@ -21,7 +21,7 @@ module.exports = {
             )),
             projectsCompleted: Joi.string().min(1).max(5000).required(),
             reviewsReceived: Joi.string().min(1).max(5000).required(),
-            certificatesHeld: Joi.string().min(1).max(5000).required(),
+            certificatesHeld: Joi.string().min(1).max(5000).required()
         }
 
         return Joi.validate(request, createSchema)
@@ -47,7 +47,7 @@ module.exports = {
             )),
             projectsCompleted: Joi.string().min(1).max(5000),
             reviewsReceived: Joi.string().min(1).max(5000),
-            certificatesHeld: Joi.string().min(1).max(5000),
+            certificatesHeld: Joi.string().min(1).max(5000)
         }
 
         return Joi.validate(request, updateSchema)
