@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-export default class EditTodo extends Component {
+// changes visible when you reload the page
+export default class PartnerDelete extends Component {
 
     constructor(props) {
         super(props);
