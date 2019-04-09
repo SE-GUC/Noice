@@ -73,7 +73,7 @@ function SeeIfMemberIsAcceptedInBody(reqbody)
         }   
     } 
 }
-
+/*
 // Takes an accepted member and employer ID
 async function SendNotificationToAcceptedMember(acceptedMember, employerID)
 {
@@ -127,11 +127,11 @@ catch(error)
     // applicants.filter(member => member.accepted === "false") // finds all not accepted members
     // applicants.find(member => member.accepted === "false") // finds only one
 }
-
+*/
 exports.deleteVacancy = async function(req,res){
     try {
         const id = req.params.id
-        const deletedVacancy = await vacancy.findByIdAndDelete(id)
+        const deletedVacancy = await Vacancy.findByIdAndDelete(id)
         res.json({msg:'Vacancy was deleted successfully', data: deletedVacancy})
        }
        catch(error) {
@@ -142,7 +142,7 @@ exports.deleteVacancy = async function(req,res){
 exports.findVacancy = async function(req,res){
     try {
         const id = req.params.id
-        const Vacancyy = await vacancy.findById(id)
+        const Vacancyy = await Vacancy.findById(id)
         if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
         res.json({msg: 'Vacancy found successfully', data: Vacancyy})
        }
@@ -157,9 +157,9 @@ exports.findVacancy = async function(req,res){
 exports.viewAllApplicants = async(req,res)=>{
     try {
         const id = req.params.id
-        const Vacancyy = await vacancy.findById(id)
+        const Vacancyy = await Vacancy.findById(id)
         if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
-        var query = await vacancy.find({
+        var query = await Vacancy.find({
             _id:id
         }).select('applicants')
         res.json({msg: 'application successfully', data: query})
@@ -174,7 +174,7 @@ exports.viewAllApplicants = async(req,res)=>{
 exports.viewNumberOfApplicants = async function(req,res){
     try {
         const id = req.params.id
-        const Vacancyy = await vacancy.findById(id)
+        const Vacancyy = await Vacancy.findById(id)
         if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
         console.log('im here '+Vacancyy.applicants.length)
         res.json({msg: 'no of applicants is', data: Vacancyy.applicants.length})
@@ -189,7 +189,7 @@ exports.apply= async (req,res)=>{
     try {
         const id = req.params.id
         const body = req.body
-        var Vacancyy = await vacancy.findById(id)
+        var Vacancyy = await Vacancy.findById(id)
         if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
         console.log('im here '+Vacancyy.applicants.length)
         Vacancyy.applicants.push(body)
@@ -198,9 +198,9 @@ exports.apply= async (req,res)=>{
         const updateBody={
          "applicants":Vacancyy.applicants
         }
-        const placeholder = await vacancy.findByIdAndUpdate(id,updateBody)
+        const placeholder = await Vacancy.findByIdAndUpdate(id,updateBody)
         console.log('after update'+placeholder)
-        Vacancyy = await vacancy.findById(id)
+        Vacancyy = await Vacancy.findById(id)
         res.json({msg: 'we applied to you', data: Vacancyy})
        }
        catch(error) {
@@ -213,7 +213,7 @@ exports.cancelApplication= async (req,res)=>{
         // declaring inputs
         const Vacancyid = req.params.id
         const Userid = req.body.id
-        var Vacancyy = await vacancy.findById(Vacancyid)
+        var Vacancyy = await Vacancy.findById(Vacancyid)
         //we do not find what you are looking for, keep scrolling  
         if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
         for(i=0;i<Vacancyy.applicants.length;i++){
@@ -232,9 +232,9 @@ exports.cancelApplication= async (req,res)=>{
         const updateBody={
          "applicants":Vacancyy.applicants
         }
-        const placeholder = await vacancy.findByIdAndUpdate(Vacancyid,updateBody)
+        const placeholder = await Vacancy.findByIdAndUpdate(Vacancyid,updateBody)
         console.log('after update'+placeholder)
-        Vacancyy = await vacancy.findById(Vacancyid)
+        Vacancyy = await Vacancy.findById(Vacancyid)
         res.json({msg: 'Application cancelled', data: Vacancyy})
        }
        catch(error) {
@@ -242,4 +242,6 @@ exports.cancelApplication= async (req,res)=>{
        } 
 }
 
-
+exports.closeVacancy = async (req,res)=>{
+    res.json({msg:"we closed the vacancy",data:Vacancy.findByIdAndUpdate(id,Vacancy.findByIdAndUpdate(req.params.id,body={close:true}))})
+}

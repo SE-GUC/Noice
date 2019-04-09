@@ -10,10 +10,6 @@ const VacancySchema = new Schema({
             type: String,
             required: true
         },
-        jobType: {
-            type: String,
-            required: true
-        },
         educationLevel: {
             type: String,
             required: true
@@ -21,10 +17,10 @@ const VacancySchema = new Schema({
         partnerId: {
             type: String,
         },
-        time: {
-            type: String,
-            required: true
-        },
+            time : {
+                 type : Date, default: Date.now 
+                },
+        
         skillsRequired: {
             type: String,
             required: true
