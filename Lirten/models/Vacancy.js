@@ -36,6 +36,10 @@ const VacancySchema = new Schema({
         status: {
             type: Boolean,
             default: false
+        },
+        closed:{
+            type:Boolean,
+            default:false
         }
     }
 )

@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const axios = require("axios")
-var vacancy= require('../models/vacancy')
+var Vacancy= require('../models/vacancy')
 const validator = require('../validations/vacancyValidations')
 
 //var notification = require("../models/Notification")
@@ -22,7 +22,7 @@ exports.createVacancy = async function(req,res){
     try {
         const isValidated = validator.createValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        const newVacancy = await vacancy.create(req.body)
+        const newVacancy = await Vacancy.create(req.body)
         res.json({msg:'Vacancy was created successfully', data: newVacancy})
        }
        catch(error) {
@@ -34,12 +34,11 @@ exports.createVacancy = async function(req,res){
 exports.updateVacancy = async function(req,res){
     try {
         const id = req.params.id
-        const updateVacancy = await vacancy.findById(id)
-        
+        const updateVacancy = await Vacancy.findById(id)
         if(!updateVacancy) return res.status(404).send({error: 'Vacancy does not exist'})
         const isValidated = validator.updateValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        const upVacancy = await vacancy.updateOne(req.body)
+        const upVacancy = await Vacancy.updateOne(req.body)
 
         var acceptedMember = SeeIfMemberIsAcceptedInBody(req.body)
         if(!acceptedMember)
@@ -53,10 +52,6 @@ exports.updateVacancy = async function(req,res){
         }
 
         //if(Object.keys(req.body.applicants).includes({"accepted" : "true"}))
-         
-
-
-
         res.json({msg: 'Vacancy updated successfully', data:updateVacancy.applicants})
         
        }
@@ -246,3 +241,5 @@ exports.cancelApplication= async (req,res)=>{
            console.log(error)
        } 
 }
+
+
