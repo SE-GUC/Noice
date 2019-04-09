@@ -1,4 +1,6 @@
-const Joi = require('joi')
+const BaseJoi = require('joi')
+const dateExt = require('joi-date-extensions')
+const Joi = BaseJoi.extend(dateExt)
 
 module.exports = {
     createValidation: request => {

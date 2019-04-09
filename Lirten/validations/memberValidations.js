@@ -1,4 +1,6 @@
-const Joi = require('joi')
+const BaseJoi = require('joi')
+const dateExt = require('joi-date-extensions')
+const Joi = BaseJoi.extend(dateExt)
 
 module.exports = {
     createValidation: request => {
@@ -15,8 +17,8 @@ module.exports = {
                 {
                     id:Joi.string().min(1).max(5000).required(),
                     name:Joi.string().min(1).max(5000).required(),
-                    startDate: Joi.string().min(1).max(5000).required(),
-                    endDate: Joi.string().min(1).max(5000).required()
+                    startDate: Joi.date().format('DD-MM-YYYY hh:mm').required(),
+                    endDate: Joi.date().format('DD-MM-YYYY hh:mm').required()
                 }
             )),
             projectsCompleted: Joi.string().min(1).max(5000).required(),
@@ -41,8 +43,8 @@ module.exports = {
                 {
                     id:Joi.string().min(1).max(5000),
                     name:Joi.string().min(1).max(5000),
-                    startDate: Joi.string().min(1).max(5000),
-                    endDate: Joi.string().min(1).max(5000)
+                    startDate: Joi.date().format('DD-MM-YYYY hh:mm'),
+                    endDate: Joi.date().format('DD-MM-YYYY hh:mm')
                 }
             )),
             projectsCompleted: Joi.string().min(1).max(5000),

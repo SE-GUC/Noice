@@ -28,8 +28,11 @@ exports.updateVacancy = async function(req,res){
         if(!updateVacancy) return res.status(404).send({error: 'Vacancy does not exist'})
         const isValidated = validator.updateValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        const upVacancy = await vacancy.updateOne(req.body)
-        res.json({msg: 'Vacancy updated successfully'})
+        vacancy.findOneAndUpdate({'_id':req.params.id},req.body,async function(err,doc){
+            if (err) return res.status(500).json({Msg: 'Error has happened while updatig the vacc', details: err });
+            const vacancy = await Vacancy.findById(doc._id)
+            return res.json({msg: 'Vacancy updated successfully',data: vacancy});
+        })
        }
        catch(error) {
            // We will be handling the error later

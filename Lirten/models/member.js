@@ -40,8 +40,8 @@ const memberSchema = new Schema({
       {
           
           name:String,
-          startDate: String,
-          endDate: String
+          startDate: Date,
+          endDate: Date
       }
   ],
   projectsCompleted:{

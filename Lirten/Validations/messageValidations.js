@@ -1,4 +1,6 @@
-const Joi = require('joi')
+const BaseJoi = require('joi')
+const dateExt = require('joi-date-extensions')
+const Joi = BaseJoi.extend(dateExt)
 
 module.exports = {
     createValidation: message => {
@@ -7,7 +9,7 @@ module.exports = {
             receiverID: Joi.string().min(3).max(50).required(),
             subject: Joi.string().min(3).max(50).required(),
             content: Joi.string().min(0).max(3000).required(),
-            date: Joi.string().max(11).required(),
+            date: Joi.date().format('DD-MM-YYYY hh:mm').required(),
             
         }
 
@@ -20,7 +22,7 @@ module.exports = {
             receiverID: Joi.string().min(3).max(50),
             subject: Joi.string().min(3).max(50),
             content: Joi.string().min(0).max(3000),
-            date: Joi.string().max(10),
+            date: Joi.date().format('DD-MM-YYYY hh:mm').max(10),
             
         }
 

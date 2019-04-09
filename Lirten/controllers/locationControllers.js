@@ -21,7 +21,7 @@ exports.createLocation = async function (req,res){
     try {
         const id = req.params.id
         const locationId = await location.findById(id)
-        if(!locationId) return res.status(404).send({error: 'Location does not exist'})
+        if(!locationId) return res.status(404).send({error: 'Location does not exist',data: locationId})
         res.json({msg: 'Location Found', data: locationId })
        }
        catch(error) {

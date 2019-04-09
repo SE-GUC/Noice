@@ -1,6 +1,6 @@
-const Joi = require('joi')
-
-
+const BaseJoi = require('joi')
+const dateExt = require('joi-date-extensions')
+const Joi = BaseJoi.extend(dateExt)
 module.exports = {
     createValidation: request => {
         const createSchema = {
@@ -16,16 +16,16 @@ module.exports = {
                 {
                     id: Joi.string().required(),
                     name: Joi.string().required(),
-                    startDate: Joi.date().required(),
-                    endDate: Joi.date().required()
+                    startDate: Joi.date().format('DD-MM-YYYY hh:mm').required(),
+                    endDate: Joi.date().format('DD-MM-YYYY hh:mm').required()
                 }
             )),
             projects: Joi.array().items(Joi.object().keys(
                 {
                     id: Joi.string().required(),
                     name: Joi.string().required(),
-                    startDate: Joi.date().required(),
-                    endDate: Joi.date().required()
+                    startDate: Joi.date().format('DD-MM-YYYY hh:mm').required(),
+                    endDate: Joi.date().format('DD-MM-YYYY hh:mm').required()
                 }
             )),
             vacancies: Joi.array().items(Joi.object().keys(
@@ -51,16 +51,16 @@ module.exports = {
                 {
                     id: Joi.string(),
                     name: Joi.string(),
-                    startDate: Joi.date(),
-                    endDate: Joi.date()
+                    startDate: Joi.date().format('DD-MM-YYYY hh:mm'),
+                    endDate: Joi.date().format('DD-MM-YYYY hh:mm')
                 }
             )),
             projects: Joi.array().items(Joi.object().keys(
                 {
                     id: Joi.string(),
                     name: Joi.string(),
-                    startDate: Joi.date(),
-                    endDate: Joi.date()
+                    startDate: Joi.date().format('DD-MM-YYYY hh:mm'),
+                    endDate: Joi.date().format('DD-MM-YYYY hh:mm')
                 }
             )),
             vacancies: Joi.array().items(Joi.object().keys(
@@ -70,6 +70,5 @@ module.exports = {
             )),
         }
         return Joi.validate(request, updateSchema)
-    }, 
-
+    },
 }

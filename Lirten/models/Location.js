@@ -15,8 +15,8 @@ const LocationSchema = new Schema({
             nameOfDepartments: String,
             City: String,
             Region: String,
-            startTime: String,
-            endTime: String,
+            startTime: Date,
+            endTime: Date,
             rate: Number,
             isDepartmentAvailable: [{
                 nameOfSubdepartment: String,
@@ -28,4 +28,4 @@ const LocationSchema = new Schema({
    
 })
 
-module.exports = User = mongoose.model('Location', LocationSchema)
+module.exports = Location = mongoose.model('Location', LocationSchema)

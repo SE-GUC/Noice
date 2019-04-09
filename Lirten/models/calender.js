@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const CalenderSchema = new Schema({
     Date: {
-        type: String,
+        type: Date,
         required: true
     },
     timings:{

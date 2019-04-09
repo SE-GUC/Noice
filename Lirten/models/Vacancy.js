@@ -19,12 +19,12 @@ const VacancySchema = new Schema({
             required: true
         },
         empID: {
-            type: Number,
+            type: String,
             required: true
         },
         time: {
             type: Date,
-            required: true
+            default: Date.now()
         },
         skillsReq: {
             type: String,
@@ -33,6 +33,30 @@ const VacancySchema = new Schema({
         jobReq: {
             type: String,
             required: true
+        },
+        proposals:{
+            type:[{
+                bid:{
+                    type:Number,
+                    required:true
+                },
+                duration:{
+                    type:String,
+                    required:true
+                },
+                coverLetter:{
+                    type:String,
+                    required:true
+                },
+                attachments:[{
+                    type:String,
+                    required:false
+                }],
+                memberId:{
+                    type:String,
+                    required:true
+                }
+            }]
         }
     }
 )
