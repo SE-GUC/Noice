@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 var Member = require('../models/member');
-const validator = require('../validations/memberValidations')
+const validator = require('../Validations/memberValidations')
 
 exports.createMember = async function (req,res){
     try {

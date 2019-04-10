@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 var vacancy= require('../models/vacancy')
-const validator = require('../validations/vacancyValidations')
+const validator = require('../Validations/vacancyValidations')
 
 exports.getAllVacancies = async function(req,res){
     const vacancy= await Vacancy.find()
