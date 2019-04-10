@@ -2,38 +2,46 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const VacancySchema = new Schema({
-        careerLvl: {
+        careerLevel: {
             type: String,
             required: true
         },
-        jobDesc: {
+        jobDescription: {
             type: String,
             required: true
         },
-        jobTyp: {
+        educationLevel: {
             type: String,
             required: true
         },
-        educLvl: {
+        partnerId: {
+            type: String,
+        },
+            time : {
+                 type : Date, default: Date.now 
+                },
+        
+        skillsRequired: {
             type: String,
             required: true
         },
-        empID: {
-            type: Number,
-            required: true
+        applicants: {
+            type: Array,
+            default: []
         },
-        time: {
-            type: Date,
-            required: true
+        status: {
+            type: Boolean,
+            default: false
         },
-        skillsReq: {
-            type: String,
-            required: true
+        closed:{
+            type:Boolean,
+            default:false
         },
-        jobReq: {
-            type: String,
-            required: true
+        tags:{
+            type: Array,
+            default: []
         }
     }
 )
 module.exports = Vacancy = mongoose.model('Vacancy', VacancySchema)
+
