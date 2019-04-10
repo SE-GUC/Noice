@@ -7,8 +7,8 @@ module.exports = {
             jobDescription: Joi.string().min(3).max(100).required(),
             educationLevel: Joi.string().min(0).max(3000).required(),
             skillsRequired: Joi.string().min(0).max(3000).required(),
-            applicants: Joi.array(),
-            tags: Joi.array(),
+            partnerId: Joi.string().min(0).max(25),
+            tags: Joi.array()
 
         }
 

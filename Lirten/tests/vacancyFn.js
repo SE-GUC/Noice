@@ -29,7 +29,34 @@ const functions = {
     deleteVacancy: async (id) => {
         const vacancy = await axios.delete(`http://localhost:3000/api/vacancy/${id}`)
         return vacancy
-    }
+    },
+    
+    
+    
+    //application on a vacancy
+    applyOnVacancy: async(id,body)=>{
+    const vacancy = await axios.put(`http://localhost:3000/api/vacancy/apply/${id}`,body)
+    return vacancy
+    },  
+    viewApplicants: async(id)=>{
+        const vacancy = await axios.get(`http://localhost:3000/api/vacancy/apply/viewAllApplicants/${id}`)
+        return vacancy
+         
+    },
+    viewNumberOfApplicants: async(id)=>{
+        const vacancy = await axios.get(`http://localhost:3000/api/vacancy/apply/viewNumberOfApplicants/${id}`)
+        return vacancy
+        
+    },
+    cancelMyApplication: async(id,body)=>{
+        const vacancy = await axios.put(`http://localhost:3000/api/vacancy/apply/closeVacancy/${id}`,body)
+        return vacancy
+        
+    },
+    closeVacancy: async(id)=>{
+        const vacancy = await axios.put(`http://localhost:3000/api/vacancy/apply/closeVacancy/${id}`)
+        return vacancy
+    },
 };
      
                 

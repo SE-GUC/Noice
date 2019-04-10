@@ -55,7 +55,16 @@ const memberSchema = new Schema({
   certificaesHeld:{
     type: String,
     required: true
-    }
+    },
+    vacancies: 
+    [
+      {
+          
+          name:String,
+          id:String
+        }
+  ],
 })
+
 module.exports = Member = mongoose.model('member', memberSchema)
 
