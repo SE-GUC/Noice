@@ -44,4 +44,3 @@ const VacancySchema = new Schema({
     }
 )
 module.exports = Vacancy = mongoose.model('Vacancy', VacancySchema)
-
