@@ -246,10 +246,12 @@ exports.closeVacancy = async (req,res)=>{
     res.json({msg:"we closed the vacancy",data:Vacancy.findByIdAndUpdate(id,Vacancy.findByIdAndUpdate(req.params.id,body={close:true}))})
 }
 
+
 // Search format in POST body: { "attribute" : "attributeyouwantHERE" , "value" : "valueyouwantHERE"}
 exports.search = async function(req,res){
     const bodyAttribute = req.body.attribute
     const bodyValue = req.body.value
+
 
     if(bodyAttribute === "careerLevel")
     {
@@ -257,10 +259,53 @@ exports.search = async function(req,res){
         careerLevel : bodyValue
         })
     }
-    else if(bodyAttribute === "jobType")
+    else if(bodyAttribute === "jobDescription")
     {
         var returnVacancy = await Vacancy.find({
-        jobType : bodyValue
+        jobDescription : bodyValue
+        })
+    }
+    else if(bodyAttribute === "educationLevel")
+    {
+        var returnVacancy = await Vacancy.find({
+        educationLevel : bodyValue
+        })
+    }
+    else if(bodyAttribute === "partnerId")
+    {
+        var returnVacancy = await Vacancy.find({
+        partnerId : bodyValue
+        })
+    }
+    else if(bodyAttribute === "skillsRequired")
+    {
+        var returnVacancy = await Vacancy.find({
+        skillsRequired : bodyValue
+        })
+    }
+    else if(bodyAttribute === "applicants")  // Can search for vacancies with applicants by memberID
+    {
+        // Different because body attribute is a complex array
+        var returnVacancy = await Vacancy.find({
+        $or : [ {applicants : { memberID : bodyValue , accepted : "true"}} , {applicants : { memberID : bodyValue , accepted : "false"}} ]
+        })
+    }
+    else if(bodyAttribute === "status")
+    {
+        var returnVacancy = await Vacancy.find({
+        status : bodyValue
+        })
+    }
+    else if(bodyAttribute === "closed")
+    {
+        var returnVacancy = await Vacancy.find({
+        closed : bodyValue
+        })
+    }
+    else if(bodyAttribute === "tags")
+    {
+        var returnVacancy = await Vacancy.find({
+        tags : bodyValue
         })
     }
 
