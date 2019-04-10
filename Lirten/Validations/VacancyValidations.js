@@ -7,7 +7,7 @@ module.exports = {
             jobDescription: Joi.string().min(3).max(100).required(),
             educationLevel: Joi.string().min(0).max(3000).required(),
             skillsRequired: Joi.string().min(0).max(3000).required(),
-          
+            tags: Joi.array(),
 
         }
 
@@ -20,7 +20,7 @@ module.exports = {
             jobDescription: Joi.string().min(3).max(100),
             educationLevel: Joi.string().min(0).max(3000),
             skillsRequired: Joi.string().min(0).max(3000),
-           
+            tags: Joi.array(),
         }
 
         return Joi.validate(request, updateSchema)

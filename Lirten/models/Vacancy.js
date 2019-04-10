@@ -36,6 +36,10 @@ const VacancySchema = new Schema({
         closed:{
             type:Boolean,
             default:false
+        },
+        tags:{
+            type: Array,
+            default: []
         }
     }
 )

@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const vacancyController = require('../../controllers/vacancyController')
 
+// search
+// router.post('/search',vacancyController.search)
 //cruds
 router.get('/',vacancyController.getAllVacancies)
 router.get('/final/1',vacancyController.getAllFinalVacancies)
