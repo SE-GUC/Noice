@@ -29,7 +29,7 @@ const memberSchema = new Schema({
     },
     skills: {
       type: String,
-      required: true
+      
   },
   interests: {
       type: String,
@@ -38,7 +38,6 @@ const memberSchema = new Schema({
   pastEvents: 
     [
       {
-          
           name:String,
           startDate: String,
           endDate: String
@@ -48,14 +47,18 @@ const memberSchema = new Schema({
     type: String,
     required: true
   },
-  reviewsReceived: {
-    type: String,
-    required: true
-  },
+  
   certificaesHeld:{
     type: String,
     required: true
-    }
+    },
+   vacancyApplications:
+     [
+         {id: String}
+      
+     ]
+
+   
 })
 module.exports = Member = mongoose.model('member', memberSchema)
 
