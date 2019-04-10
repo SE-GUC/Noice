@@ -246,20 +246,23 @@ exports.closeVacancy = async (req,res)=>{
     res.json({msg:"we closed the vacancy",data:Vacancy.findByIdAndUpdate(id,Vacancy.findByIdAndUpdate(req.params.id,body={close:true}))})
 }
 
-// exports.search = async function(req,res){
-//     const bodyAttribute = Vacancy.jobType//req.body.attribute
-//     const bodyValue = "JOBO TYPO" //req.body.value
+// Search format in POST body: { "attribute" : "attributeyouwantHERE" , "value" : "valueyouwantHERE"}
+exports.search = async function(req,res){
+    const bodyAttribute = req.body.attribute
+    const bodyValue = req.body.value
 
-   
-//     // Vacancy.createIndexes( { jobType: "text", jobDescription: "text" } )
-//     // var returnVacancy = await Vacancy.find( { $text: { $search: "JOBO TYPO" } } )
+    if(bodyAttribute === "careerLevel")
+    {
+        var returnVacancy = await Vacancy.find({
+        careerLevel : bodyValue
+        })
+    }
+    else if(bodyAttribute === "jobType")
+    {
+        var returnVacancy = await Vacancy.find({
+        jobType : bodyValue
+        })
+    }
 
-//     if(bodyAttribute === Vacancy.jobType)
-//     {
-//         var returnVacancy = await Vacancy.find({
-//         jobType : bodyValue
-//         })
-//     }
-
-//     res.json({data:returnVacancy})
-// }
+    res.json({data:returnVacancy})
+}
