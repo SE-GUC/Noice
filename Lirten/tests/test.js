@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 const funcs = require('./patnerfn');
-
+let requestpart=''
 let partid=''
 test('Number of ad should be 1', async () => {
   const id="5c93e8b88c10dc71806b8132"
@@ -69,9 +69,24 @@ test('update vacancy ad', async () => {
       jobReq: "jnn,jn,nj"
   }
     const user =  await funcs.createrequest(body)
+    requestpart= user.data.data._id
     expect.assertions(1)
     expect(user.data.data.jobDesc).toBe("vcvbmd,cnm")
   })
+
+  test('update request', async () => {
+    const body={
+      jobTyp: "wala 7aga"
+    }
+    const response =  await funcs.updaterequest(requestpart,body)
+    expect(response.data.data.jobTyp).toEqual("wala 7aga")
+  })
+
+  test('delete request', async () => {
+    const user = await funcs.viewRequest(requestpart)
+    const user2 =  await funcs.deleterequest(requestpart)
+    expect(user.data.data._id).toEqual(user2.data.data._id)
+})
 
   test('Post ads as a partner', async () =>{
     const body={

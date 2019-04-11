@@ -24,8 +24,12 @@ const functions = {
                 const books = await axios.delete(`http://localhost:5000/api/partners/${id}`)
                 return books
                 },
+        deleterequest: async (id) => {
+                const books = await axios.delete(`http://localhost:5000/api//deleterequest/${id}`)
+                return books
+                },
         viewRequest:async (id) => {
-                const books = await axios.get(`http://localhost:5000/api/vacancyAdRequest/${id}`)
+                const books = await axios.get(`http://localhost:5000/api/partners/getstatus/${id}`)
                 return books
         },
         viewVacancyad:async (id) => {
@@ -53,6 +57,12 @@ const functions = {
         createrequest:async (req) => {
                 
                 const partners = await axios.post("http://localhost:5000/api/partners/requestvacancyad",req)
+                return partners
+
+        },
+        updaterequest:async (id,req) => {
+                
+                const partners = await axios.put(`http://localhost:5000/api/partners/updaterequest/${id}`,req)
                 return partners
 
         },
