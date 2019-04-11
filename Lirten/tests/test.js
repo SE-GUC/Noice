@@ -83,9 +83,8 @@ test('update vacancy ad', async () => {
   })
 
   test('delete request', async () => {
-    const user = await funcs.viewRequest(requestpart)
     const user2 =  await funcs.deleterequest(requestpart)
-    expect(user.data.data._id).toEqual(user2.data.data._id)
+    expect(user2.data.data.jobTyp).toEqual("wala 7aga")
 })
 
   test('Post ads as a partner', async () =>{

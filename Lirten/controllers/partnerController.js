@@ -38,6 +38,10 @@ exports.getAllPartners = async function(req,res){
     const partners = await Partner.find()
     res.json({data: partners})
 }
+exports.getAllrequests = async function(req,res){
+    const partners = await Vacancyrequest.find()
+    res.json({data: partners})
+}
 exports.getstatus = async function(req,res){
     const id = req.params.id
     const partners = await Vacancyrequest.findById(id)

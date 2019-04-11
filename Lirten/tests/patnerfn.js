@@ -25,7 +25,7 @@ const functions = {
                 return books
                 },
         deleterequest: async (id) => {
-                const books = await axios.delete(`http://localhost:5000/api//deleterequest/${id}`)
+                const books = await axios.delete(`http://localhost:5000/api/deleterequest/${id}`)
                 return books
                 },
         viewRequest:async (id) => {
@@ -67,7 +67,7 @@ const functions = {
 
         },
         editVacancyad:async (id,req) => {
-                const books = await axios.put(`http://localhost:5000/api/partners//editvacancyad/${id}`,req)
+                const books = await axios.put(`http://localhost:5000/api/partners/editvacancyad/${id}`,req)
                 return books
         }
                 

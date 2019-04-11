@@ -6,6 +6,8 @@ const partner_controller = require('../../controllers/partnerController')
 
 router.get('/',partner_controller.getAllPartners)
 
+router.get('/requests',partner_controller.getAllrequests)
+
 router.post('/',partner_controller.createPartner)
 
 router.put('/:id', partner_controller.updatePartner)
@@ -26,7 +28,7 @@ router.post('/createvacancyad', partner_controller.createVacancyad)
 
 router.put('/editvacancyad/:id', partner_controller.editVacancyad)
 
-router.delete('/deletevacancyad/:id', partner_controller.deleteVacancyad)
+router.delete('/deletevacancyad/:id', partner_controller.deleterequest)
 
 router.get('/:id/viewads', partner_controller.getOldvacancyads)
 
