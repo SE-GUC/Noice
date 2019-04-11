@@ -28,8 +28,12 @@ updateEventById: async(id,body) =>{
     const event = await axios.put(`http://localhost:3000/api/events/${id}`,body)
    console.log("data is"+event.data.data)
    return event
-}
+},
 
+searchEvent:async (req) => {
+    const event = await axios.post('http://localhost:3000/api/events/search',req)
+    return event
+},
 
 };
 module.exports = functions;

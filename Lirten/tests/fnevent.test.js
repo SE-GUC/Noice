@@ -46,9 +46,9 @@ test('Delete an event',async()=>{
 test('create event',async () =>{
     const body={
         Name:"create testing",
-        Owner:"mid",
+        Owner:"mid", // if you change this, change it in the search function too
         Type:"lastName",
-        Location:"alby",
+        Location:"alby", // if you change this, change it in the search function too
         startDate:"ahmed"
     }
     expect.assertions(1)
@@ -58,7 +58,17 @@ test('create event',async () =>{
 
 })
 
+// Depends on the create Event
+test('Search for a Event', async()=>{
 
+    const body={
+       "attribute" : "Owner" ,
+       "value" : "mid" // if you change the create Event body, reflect the change here
+    }
+    const response = await funcs.searchEvent(body)
+    expect(response.data.data[0].Location).toEqual("alby")
+  
+  })
 
     
 
