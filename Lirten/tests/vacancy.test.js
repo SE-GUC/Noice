@@ -2,6 +2,7 @@ const funcs = require('./vacancyFn');
 mongoose = require("mongoose");
 var id =''
 
+// IF YOU CHANGE the jobDescription or tags in the body, reflect them in the search test under this
 test('create vacancy',async()=>{
   const body={
     careerLevel:"create testing",
@@ -15,6 +16,18 @@ expect.assertions(1)
 const response = await funcs.createVacancy(body)
 id= response.data.data._id;;
 expect(response.data.data.careerLevel).toEqual("create testing")
+})
+
+// Depends on the create vacancy
+test('Search for a vacancy', async()=>{
+
+  const body={
+     "attribute" : "tags" ,
+     "value" : "tag1" // if you change the create vacancy tags, reflect the change here
+  }
+  const response = await funcs.searchVacancy(body)
+  expect(response.data.data[0].jobDescription).toEqual("teset")
+
 })
 
 
