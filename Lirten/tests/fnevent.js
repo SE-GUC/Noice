@@ -35,5 +35,13 @@ searchEvent:async (req) => {
     return event
 },
 
+/*
+viewAllEvents: async() =>{
+    const events =  await axios.get('http://localhost:5000/api/members/event')
+    console.log(events.data.data)
+    return events
+    },
+*/
+
 };
 module.exports = functions;

@@ -10,6 +10,7 @@ export default class Create extends Component {
         this.onChangeLocation = this.onChangeLocation.bind(this);
         this.onChangestartDate = this.onChangestartDate.bind(this);
         this.onChangeendDate = this.onChangeendDate.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
   
         this.state = {
@@ -19,6 +20,7 @@ export default class Create extends Component {
           Location:'',
           startDate:'',
           endDate:'',
+          Description:'',
         }
     }
     onChangeName(e) {
@@ -54,7 +56,12 @@ export default class Create extends Component {
             endDate: e.target.value,
         });
       }
-    
+      onChangeDescription(e) {
+        this.setState({
+          Description: e.target.value,
+        });
+      }
+
     async onSubmit(e) {
      
       e.preventDefault();
@@ -64,7 +71,8 @@ export default class Create extends Component {
         Type:this.state.Type,
         Location: this.state.Location,
         startDate:this.state.startDate,
-        endDate:this.state.endDate
+        endDate:this.state.endDate,
+        Description:this.state.Description
     }
       console.log(this.object)
       await axios.post('http://localhost:5000/api/events/',body)
@@ -76,6 +84,7 @@ export default class Create extends Component {
             Location:'',
             startDate:'',
             endDate:'',
+            Description:'',
       })
       console.log(this.state.Name)
     }
@@ -89,7 +98,7 @@ export default class Create extends Component {
                         <label>EVent Name:  </label>
                         <input type="text" 
                         className="form-control"
-                        value={this.state.first_name}
+                        value={this.state.Name}
                         onChange={this.onChangeName}
                         />
                     </div>
@@ -97,28 +106,28 @@ export default class Create extends Component {
                         <label>Event Owner: </label>
                         <input  type="text" 
                         className="form-control"
-                        value={this.state.middle_name}
+                        value={this.state.Owner}
                         onChange={this.onChangeOwner}/>
                     </div>
                     <div className="form-group">
                         <label>Event Type(Course/Workshop/Event): </label>
                         <input  type="text" 
                         className="form-control"
-                        value={this.state.last_name}
+                        value={this.state.Type}
                         onChange={this.onChangeType}/>
                     </div>
                     <div className="form-group">
                         <label>Location: </label>
                         <input  type="text" 
                         className="form-control"
-                        value={this.state.age}
+                        value={this.state.Location}
                         onChange={this.onChangeLocation}/>
                     </div>
                     <div className="form-group">
                         <label>startDate:  </label>
                         <input type="text" 
                         className="form-control"
-                        value={this.state.first_name}
+                        value={this.state.startDate}
                         onChange={this.onChangestartDate}
                         />
                     </div>
@@ -126,8 +135,16 @@ export default class Create extends Component {
                         <label>endDate:  </label>
                         <input type="text" 
                         className="form-control"
-                        value={this.state.first_name}
+                        value={this.state.endDate}
                         onChange={this.onChangeendDate}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Description:  </label>
+                        <input type="text" 
+                        className="form-control"
+                        value={this.state.Description}
+                        onChange={this.onChangeDescription}
                         />
                     </div>
                     

@@ -70,6 +70,14 @@ test('Search for a Event', async()=>{
   
   })
 
+
+  /*
+  test('view all events',async()=>{
+    expect.assertions(1)
+    const response =  await funcs.viewAllEvents()
+    expect(response.data.data.length).toEqual(23)  
+},10000)
+*/
     
 
 

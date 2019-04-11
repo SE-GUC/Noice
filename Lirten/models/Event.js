@@ -34,7 +34,11 @@ const EventSchema = new Schema({
      tags:{
         type: Array,
         default: []
-    }   
+    },
+    Description:{
+            type: String,
+            required: true
+    }  
     
 })
 

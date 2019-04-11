@@ -10,7 +10,8 @@ module.exports = {
             Location: Joi.string().min(3).max(100).required(),
             startDate: Joi.string().required(),
             endDate: Joi.string(),
-            tags: Joi.array()
+            tags: Joi.array(),
+            Description: Joi.string().min(5).required(),
             
         }
         return Joi.validate(request, createSchema)
@@ -25,8 +26,8 @@ module.exports = {
             Participants: Joi.number().min(0),
             startDate: Joi.string(),
             endDate: Joi.string(),
-            tags: Joi.array()
-            
+            tags: Joi.array(),
+            Description: Joi.string().min(5),
         }
         return Joi.validate(request, updateSchema)
     }, 
