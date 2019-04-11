@@ -30,7 +30,11 @@ const EventSchema = new Schema({
         },
      endDate:{
          type: String,
-    }      
+    },
+     tags:{
+        type: Array,
+        default: []
+    }   
     
 })
 

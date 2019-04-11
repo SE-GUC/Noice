@@ -51,3 +51,59 @@ exports.findEvent = async function(req,res){
            console.log(error)
        } 
 }
+
+exports.search = async function(req,res){
+    const bodyAttribute = req.body.attribute
+    const bodyValue = req.body.value
+
+
+    if(bodyAttribute === "Name")
+    {
+        var searchedEvent = await Event.find({
+        Name : bodyValue
+        })
+    }
+    else if(bodyAttribute === "Owner")
+    {
+        var searchedEvent = await Event.find({
+        Owner : bodyValue
+        })
+    }
+    else if(bodyAttribute === "Type")
+    {
+        var searchedEvent = await Event.find({
+        Type : bodyValue
+        })
+    }
+    else if(bodyAttribute === "Location")
+    {
+        var searchedEvent = await Event.find({
+        Location : bodyValue
+        })
+    }
+    else if(bodyAttribute === "Participants")
+    {
+        var searchedEvent = await Event.find({
+        Participants : bodyValue
+        })
+    }
+    else if(bodyAttribute === "startDate")
+    {
+        var searchedEvent = await Event.find({
+        startDate : bodyValue
+        })
+    }
+    else if(bodyAttribute === "endDate")
+    {
+        var searchedEvent = await Event.find({
+            endDate : bodyValue
+        })
+    }
+    else if(bodyAttribute === "tags")
+    {
+        var searchedEvent = await Event.find({
+        tags : bodyValue
+        })
+    }
+    res.json({data:searchedEvent})
+}
