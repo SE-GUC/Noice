@@ -13,11 +13,6 @@ test('Create a new location', async () =>{
             startTime: "09:00",
             endTime: "15:00",
             rate: 4.4,
-            isDepartmentAvailable: [{
-                nameOfSubdepartment: "Room1",
-                isAvailable: true,
-                capacity: 120
-            }]
         }]
   }
     const user =  await funcs.createLocation(body)
