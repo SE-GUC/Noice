@@ -2,9 +2,10 @@
  * @jest-environment node
  */
 
-const funcs = require('./fn')
+const funcs = require('./membersfn')
 
-let xid='';
+let xid_1='';
+let xid_2='';
 
 
 //creates member and tests
@@ -32,7 +33,7 @@ test('member should be created', async () =>{
     }
     expect.assertions(1)
     const response = await funcs.createMember(body)
-    xid=response.data.data._id
+    xid_1=response.data.data._id
     expect(response.data.data.reviewsReceived).toBe("some")
 })
 
@@ -54,7 +55,7 @@ test('number of members should be 0', async () =>{
 
 //first create a member where the name is adam and put id in 'id' variable
 test('member name should be adam1', async () =>{
-    const id = xid
+    const id = xid_1
     expect.assertions(1)
     const response = await funcs.viewMemberId(id)
     expect(response.data.data.name).toBe("adam1")
@@ -62,7 +63,7 @@ test('member name should be adam1', async () =>{
 
 //to test first create member with certificatesheld = lol then place id in id variable
 test('member certificatesheld should be lol', async () =>{
-    const id =xid
+    const id = xid_1
     const body = {
         certificatesHeld : "lol"
     }
@@ -71,15 +72,12 @@ test('member certificatesheld should be lol', async () =>{
     expect(response.data.data.certificatesHeld).toBe("lol")
 })
 
-//to test create a member then place id in id variable then check in postmnan to see if deleted
-test('member should be deleted', async () =>{
-    const id = xid
-    expect.assertions(1)
-    const response = await funcs.deleteMember(id)
-    expect(response.data.data.name).toBe("adam1")
-})
 
-
+test('member should be deleted', async () => {
+    const user =  await funcs.viewMemberId(xid_1)
+    const user2 =  await funcs.deleteMember(xid_1)
+    expect(user.data.data._id).toEqual(user2.data.data._id)
+});
 
 //////////////////////////////admin tests/////////////////////////////////
 
@@ -108,7 +106,7 @@ test('member should be created', async () =>{
     }
     expect.assertions(1)
     const response = await funcs.createMemberByAdmin(body)
-    xid=response.data.data._id
+    xid_2=response.data.data._id
     expect(response.data.data.reviewsReceived).toBe("some")
 })
 
@@ -122,7 +120,7 @@ test('number of members should not be 0', async () =>{
 //first create a member where the name is adam1 and put id in 'id' variable
 test('member name should be adam1', async () =>{
     expect.assertions(1)
-    const id = xid
+    const id = xid_2
     const response = await funcs.viewMemberIdByAdmin(id)
     expect(response.data.data.name).toBe("adam1")
 })
@@ -130,22 +128,21 @@ test('member name should be adam1', async () =>{
 //to test first create member with certificatesheld = lol then place id in id variable
 test('member certificatesheld should be lol', async () =>{
     expect.assertions(1)
-    const id = xid
+    const id = xid_2
     const body = {
         certificatesHeld : "lol"
     }
     const response = await funcs.updateMemberByAdmin(id,body)
-    expect(response.data.data.certificatesHeld).toBe("lol")
+    const response2 = await funcs.updateMemberByAdmin(id,body)
+    expect(response2.data.data.certificatesHeld).toBe("lol")
 })
 
 
-//to test create a member then place id in id variable then check in postmnan to see if deleted
-test('member should be deleted', async () =>{
-    const id = xid
-    expect.assertions(1)
-    const response = await funcs.deleteMemberByAdmin(id)
-    expect(response.data.data.name).toBe("adam1")
-})
+test('member should be deleted', async () => {
+    const user =  await funcs.viewMemberId(xid_2)
+    const user2 =  await funcs.deleteMember(xid_2)
+    expect(user.data.data._id).toEqual(user2.data.data._id)
+});
 
 
 /*
