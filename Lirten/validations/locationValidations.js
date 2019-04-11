@@ -1,47 +1,35 @@
-const BaseJoi = require('joi')
-const dateExt = require('joi-date-extensions')
-const Joi = BaseJoi.extend(dateExt)
-
+const Joi = require('joi')
 
 module.exports = {
     createValidation: request => {
         const createSchema = {
             NameOfPlace: Joi.string().min(3).max(500).required(),
-            ownerName: Joi.string().min(3).max(500).required(),
-            workingPlaceDepartments: Joi.array().items(Joi.object().keys({
-                nameOfDepartments: Joi.string().required(),
-                City: Joi.string().min(3).max(100).required(),
-                Region: Joi.string().min(3).max(100).required(),
-                startTime: Joi.date().format('DD-MM-YYYY hh:mm').required(),
-                endTime: Joi.date().format('DD-MM-YYYY hh:mm').required(),
-                rate: Joi.number().min(0).max(5).required(),
-                isDepartmentAvailable: Joi.array().items(Joi.object().keys({
-                    nameOfSubdepartment: Joi.string().required(),
-                    isAvailable: Joi.boolean().required(),
-                    capacity: Joi.number().min(0).max(3000).required(),
-                }))
-            }))
+            City: Joi.string().min(3).max(100).required(),
+            Region: Joi.string().min(3).max(100).required(),
+            Capacity: Joi.number().min(0).max(3000).required(),
+            startingHours: Joi.string().min(3).max(500).required(),
+            endingHours: Joi.string().min(3).max(500).required(),
+            rate: Joi.number().min(0).max(3000).required(),
+            numberOfWorkingDepartments: Joi.number().min(0).max(3000).required(),
+            workingPlaceDepartments: Joi.array().required(),
+            tags: Joi.array(),
         }
 
         return Joi.validate(request, createSchema)
     },
+
     updateValidation: request => {
         const updateSchema = {
-            NameOfPlace: Joi.string().min(3).max(500),
-            ownerName: Joi.string().min(3).max(500),
-            workingPlaceDepartments: Joi.array().items(Joi.object().keys({
-                nameOfDepartments: Joi.string(),
-                City: Joi.string().min(3).max(100),
-                Region: Joi.string().min(3).max(100),
-                startTime: Joi.date().format('DD-MM-YYYY hh:mm'),
-                endTime: Joi.date().format('DD-MM-YYYY hh:mm'),
-                rate: Joi.number().min(0).max(5),
-                isDepartmentAvailable: Joi.array().items(Joi.object().keys({
-                    nameOfSubdepartment: Joi.string(),
-                    isAvailable: Joi.boolean(),
-                    capacity: Joi.number().min(0).max(3000),
-                }))
-            }))
+            NameOfPlace: Joi.string().min(3).max(500).required(),
+            City: Joi.string().min(3).max(100).required(),
+            Region: Joi.string().min(3).max(100).required(),
+            Capacity: Joi.number().min(0).max(3000).required(),
+            startingHours: Joi.string().min(3).max(500).required(),
+            endingHours: Joi.string().min(3).max(500).required(),
+            rate: Joi.number().min(0).max(3000).required(),
+            numberOfWorkingDepartments: Joi.number().min(0).max(3000).required(),
+            workingPlaceDepartments: Joi.array().required(),
+            tags: Joi.array(),
         }
 
         return Joi.validate(request, updateSchema)

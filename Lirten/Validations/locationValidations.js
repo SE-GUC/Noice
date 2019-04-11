@@ -12,6 +12,7 @@ module.exports = {
             rate: Joi.number().min(0).max(3000).required(),
             numberOfWorkingDepartments: Joi.number().min(0).max(3000).required(),
             workingPlaceDepartments: Joi.array().required(),
+            tags: Joi.array(),
         }
 
         return Joi.validate(request, createSchema)
@@ -28,6 +29,7 @@ module.exports = {
             rate: Joi.number().min(0).max(3000).required(),
             numberOfWorkingDepartments: Joi.number().min(0).max(3000).required(),
             workingPlaceDepartments: Joi.array().required(),
+            tags: Joi.array(),
         }
 
         return Joi.validate(request, updateSchema)
