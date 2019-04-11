@@ -18,6 +18,6 @@ router.get('/event/',event_controller.getAllEvents)
 router.post('/event/',event_controller.createEvent)
 router.put('/event/:id', event_controller.updateEvent)
 router.get('/event/:id',event_controller.findEvent)
-
+router.delete('/event/:id',event_controller.deleteEvent)
 
 module.exports = router
