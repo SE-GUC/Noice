@@ -4,6 +4,9 @@ const router = express.Router()
 const event_controller = require('../../controllers/eventController')
 
 
+// search
+router.post('/search',event_controller.search)
+
 router.get('/',event_controller.getAllEvents)
 
 // Create a Event
