@@ -38,6 +38,11 @@ exports.getAllPartners = async function(req,res){
     const partners = await Partner.find()
     res.json({data: partners})
 }
+exports.getstatus = async function(req,res){
+    const id = req.params.id
+    const partners = await Vacancyrequest.findById(id)
+    res.json({data: partners})
+}
 exports.deletePartner = async function(req,res){
     try {
         const id = req.params.id
@@ -109,11 +114,42 @@ exports.editVacancyad = async function(req,res){
        }
 }
 
+exports.updatestatus = async function(req,res){
+    try {
+        const mid = req.params.id
+        const vacancyad = await Vacancyrequest.findById(mid);
+        if(!vacancyad) return res.status(404).send({error: 'Vacancy ad request does not exist'})
+        const isValidated = vvvalidator.updateValidation(req.body)
+        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        const updatedVacancyad = await Vacancyrequest.findByIdAndUpdate(mid,req.body,function (err) {
+           if (err) return next(err);
+       });
+       const after= await Vacancyrequest.findById(mid)
+       res.json({msg: 'Vacancyad updated successfully', data: after});
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       }
+}
+
 exports.deleteVacancyad = async function(req,res){
     try {
         const id = req.params.id
         const deletedVacancyad = await Vacancyad.findByIdAndRemove(id)
         res.json({msg:'Vacancyad was deleted successfully', data: deletedVacancyad})
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       } 
+}
+
+exports.deleterequest = async function(req,res){
+    try {
+        const id = req.params.id
+        const deletedVacancyad = await Vacancyrequest.findByIdAndRemove(id)
+        res.json({msg:'Vacancyrequest was deleted successfully', data: deletedVacancyad})
        }
        catch(error) {
            // We will be handling the error later
