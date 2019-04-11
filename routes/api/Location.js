@@ -14,4 +14,4 @@ router.delete('/:id',location_controller.deleteLocation)
 router.get('/:id',location_controller.findLocation)
 
 
- module.exports = router
+module.exports = router

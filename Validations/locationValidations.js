@@ -12,11 +12,6 @@ module.exports = {
                 startTime: Joi.string().required(),
                 endTime: Joi.string().required(),
                 rate: Joi.number().min(0).max(5).required(),
-                isDepartmentAvailable: Joi.array().items(Joi.object().keys({
-                    nameOfSubdepartment: Joi.string().required(),
-                    isAvailable: Joi.boolean().required(),
-                    capacity: Joi.number().min(0).max(3000).required(),
-                }))
             }))
         }
 
@@ -33,11 +28,6 @@ module.exports = {
                 startTime: Joi.string(),
                 endTime: Joi.string(),
                 rate: Joi.number().min(0).max(5),
-                isDepartmentAvailable: Joi.array().items(Joi.object().keys({
-                    nameOfSubdepartment: Joi.string(),
-                    isAvailable: Joi.boolean(),
-                    capacity: Joi.number().min(0).max(3000),
-                }))
             }))
         }
 

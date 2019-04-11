@@ -64,3 +64,22 @@ exports.deleteLocation = async function(req,res){
            console.log(error)
        }  
     }
+
+exports.viewLocationRoom = async function(req,res){
+    try {
+        const id = req.params.id
+        const locationId= await location.findById(id)
+        var query = await location.find({
+            _id:id,
+
+        }).select('workingPlaceDepartments.isDepartmentAvailable')
+        
+        
+        if(!locationId) return res.status(404).send({error: 'Location does not exist'})
+        res.json({msg: 'Location Found', data: query })
+       }
+       catch(error) {
+        // We will be handling the error later
+           console.log(error)
+       }
+}
