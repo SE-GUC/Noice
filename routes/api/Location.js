@@ -12,7 +12,6 @@ router.delete('/:id',location_controller.deleteLocation)
 
 router.get('/:id',location_controller.findLocation)
 
-router.get('/get_location/:id',location_controller.findLocation)
 
 
 
