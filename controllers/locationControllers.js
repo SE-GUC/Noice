@@ -64,3 +64,4 @@ exports.deleteLocation = async function(req,res){
            console.log(error)
        }  
     }
+
