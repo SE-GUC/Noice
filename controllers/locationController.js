@@ -1,12 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
-var location = require('../models/location');
-const validator = require('../Validations/locationValidations')
+var location = require('../models/Users');
+const validator = require('../Validations/usersValidations')
 
 // Create a new Location
 exports.createLocation = async function (req,res){   
      try {
-     const isValidated = validator.createValidation(req.body)
+     const isValidated = validator.createLocationValidation(req.body)
      if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
      const newLocation = await location.create(req.body)
      res.json({msg:'Co-Working Space was created successfully', data: newLocation})
@@ -32,7 +32,9 @@ exports.createLocation = async function (req,res){
 
 //Get all Locations
 exports.getAllLocations = async function(req,res){
-    const location2 = await location.find()
+    const location2 = await location.find({
+        typeOfUser:"Co-working Space Owner"
+    })
     res.json({data: location2})
 }
 
@@ -42,9 +44,9 @@ exports.updateLocation = async function(req,res){
         const id = req.params.id
         const Location = await location.findById(id)
         if(!Location) return res.status(404).send({error: 'Location does not exist'})
-        const isValidated = validator.updateValidation(req.body)
+        const isValidated = validator.updateLocationValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        var updatedLocation = await location.findOneAndUpdate(req.body)
+        var updatedLocation = await location.findByIdAndUpdate(id,req.body)
         res.json({msg: 'Location is updated successfully', data: updatedLocation})
        }
        catch(error) {

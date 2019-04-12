@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 const Admin = require('../../models/Admin')
 const validator = require('../../validations/adminValidations')
-const locationInAdminsController = require('../../controllers/locationControllers')
+const locationInAdminsController = require('../../controllers/locationController')
 
 router.get('/',admin_controller.getAllAdmins)
 
