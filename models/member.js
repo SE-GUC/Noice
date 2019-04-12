@@ -6,7 +6,7 @@ const memberSchema = new Schema({
    name: {
         type: String,
         required: true
-   },
+    },
     age: {
         type: Number,
         required: true
@@ -52,10 +52,19 @@ const memberSchema = new Schema({
     type: String,
     required: true
   },
-  certificatesHeld:{
+  certificaesHeld:{
     type: String,
     required: true
-  }
+    },
+    vacancies: 
+    [
+      {
+          
+          name:String,
+          id:String
+        }
+  ],
 })
+
 module.exports = Member = mongoose.model('member', memberSchema)
 

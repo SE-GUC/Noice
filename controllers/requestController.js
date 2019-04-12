@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 var request = require('../models/request');
-const validator = require('../Validations/requestValidations')
+const validator = require('../validations/requestValidations')
 
 exports.createRequest = async function (req,res){
     try {
