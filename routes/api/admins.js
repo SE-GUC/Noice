@@ -9,6 +9,8 @@ const locationInAdminsController = require('../../controllers/locationController
 
 router.get('/',admin_controller.getAllAdmins)
 
+router.post('/',admin_controller.createAdmin)
+	
 router.put('/:id', admin_controller.updateAdmin)
 
 router.delete('/:id',admin_controller.deleteAdmin)
