@@ -1,12 +1,19 @@
 const express = require('express')
 const router = express.Router()
+const admin_controller = require('../../controllers/adminController')
 const mongoose = require('mongoose')
 
 const Admin = require('../../models/Admin')
 const validator = require('../../validations/adminValidations')
 const locationInAdminsController = require('../../controllers/locationControllers')
 
+router.get('/',admin_controller.getAllAdmins)
 
+router.put('/:id', admin_controller.updateAdmin)
+
+router.delete('/:id',admin_controller.deleteAdmin)
+
+router.get('/:id',admin_controller.findAdmin)
 
 router.get('/viewLocation/:id',locationInAdminsController.findLocation)
 
