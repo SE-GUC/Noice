@@ -43,4 +43,4 @@ const VacancySchema = new Schema({
         }
     }
 )
-module.exports = Vacancy = mongoose.model('Vacancy', VacancySchema)
+//module.exports = Vacancy = mongoose.model('Vacancy', VacancySchema)
