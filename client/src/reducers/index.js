@@ -3,10 +3,10 @@
 //think of them as happy accidents just like this course
 import {combineReducers} from 'redux';
 import createAdminReducer from './adminReducer'
-import postReducer from './homeReducer'
+import homeReducer from './homeReducer'
 //add your reducers here please use camelcale 
 //ffs use camelcase
 export default combineReducers({
     createAdmin : createAdminReducer,
-    posts : postReducer
+    home : homeReducer
 });

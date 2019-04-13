@@ -7,9 +7,6 @@ import {connect} from 'react-redux';
 import{getVacancies} from '../actions/homeActionsFolder/homeActions'
 
 
-
-
-
 class Home extends Component {
 
 //a life cycle method that runs once when you first run this component
@@ -18,7 +15,7 @@ class Home extends Component {
 }
 //a must have life cycle method that runs each time you render a component
   render() {  
-    const eventItem =  this.props.vacancies.map(vacancy =>(
+    const vacancyItem =  this.props.vacancies.map(vacancy =>(
       <div Key={vacancy.id}>
       <h3>{vacancy.careerLevel}</h3>
       <p> {vacancy.description}</p>
@@ -27,8 +24,8 @@ class Home extends Component {
     return (
       <div>
         <h1>Welcome Home</h1>
-        <h2>our latest Events</h2>
-        {eventItem}
+        <h2>our latest Vacancies</h2>
+        {vacancyItem}
       </div>
     )
   }
@@ -41,7 +38,7 @@ Home.propTypes={
 
 
 const mapStateToProps = state =>({
-  home: state.home.vacancies
+  home: state.home.items
 })
 
-export default connect(mapStateToProps, { getVacancies })(Home);
+export default connect(mapStateToProps, {getVacancies})(Home)
