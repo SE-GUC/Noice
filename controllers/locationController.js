@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
+
 var location = require('../models/Users');
 const validator = require('../Validations/usersValidations')
+
 
 // Create a new Location
 exports.createLocation = async function (req,res){   

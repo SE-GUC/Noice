@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
+
 var Partner = require('../models/Users');
 const validator = require('../Validations/usersValidations')
+
 
 exports.createPartner = async function (req,res){
     try {
