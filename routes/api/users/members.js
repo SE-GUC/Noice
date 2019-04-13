@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const memberController = require('../../controllers/memberController')
+const locationInMemberController = require('../../../controllers/locationController')
+//const roomController = require('../../../controllers/roomController')
+const memberController = require('../../../controllers/memberController')
 
 //router.get('/:date', memberController.findLocationWithDate)
 
@@ -14,5 +16,8 @@ router.put('/:id', memberController.updateMember)
 router.delete('/:id', memberController.deleteMember)
 
 router.get('/:id',memberController.findMember)
+
+router.get('/getLocations/1',locationInMemberController.getAllLocations)
+
 
 module.exports = router
