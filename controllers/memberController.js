@@ -40,7 +40,7 @@ exports.getAllMember= async function(req,res){
 exports.deleteMember = async function(req,res){
     try {
         const id = req.params.id
-        const deletedMember = await Member.findOneAndDelete(id)
+        const deletedMember = await Member.findByIdAndDelete(id)
         res.json({msg:'Member was deleted successfully', data: deletedMember})
        }
        catch(error) {
