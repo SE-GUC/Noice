@@ -38,7 +38,11 @@ const EventSchema = new Schema({
     Description:{
             type: String,
             required: true
-    }  
+    },
+    joinedMembers:{
+        type: Array,
+        default: []
+    }
     
 })
 

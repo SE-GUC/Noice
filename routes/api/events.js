@@ -21,6 +21,10 @@ router.delete('/:id',event_controller.deleteEvent)
 //Find a Event by ID
 router.get('/:id',event_controller.findEvent)
 
+/*Join event
+router.put('/joinEvent/:id',event_controller.joinEvent)
+*/
+
 
 
 module.exports = router

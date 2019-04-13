@@ -55,6 +55,10 @@ const memberSchema = new Schema({
   certificaesHeld:{
     type: String,
     required: true
+    },
+    joinedEvents:{
+        type: Array,
+        default: []
     }
 })
 module.exports = Member = mongoose.model('member', memberSchema)

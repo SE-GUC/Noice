@@ -1,7 +1,24 @@
 const funcs = require('./fnevent');
+const mongoose = require('mongoose');
 let gid = ''
+// DB Config
+const db = require('./config/keys').mongoURI
+mongoose
+    .connect(db)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err))
+
+
+
+
+
 jest.setTimeout(200000);
 
+beforeAll(async () => {
+    await mongoose.connection.dropDatabase()
+  })
+  
+ 
 test('create event',async () =>{
     const body={
         Name:"create testing",

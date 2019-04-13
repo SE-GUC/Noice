@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 var Event = require('../models/Event');
+var Member = require('../models/member');
 const validator = require('../validations/EventValidations')
 
 exports.createEvent = async function (req,res){
@@ -16,6 +17,8 @@ exports.createEvent = async function (req,res){
 }
 exports.updateEvent = async function(req,res){
     try {
+        const isValidated = validator.updateValidation(req.body)
+        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
         const id = req.params.id
         const event = await Event.findById(id)
         if(!event) return res.status(404).send({error: 'Event does not exist'})
@@ -51,6 +54,76 @@ exports.findEvent = async function(req,res){
            console.log(error)
        } 
 }
+
+/*Join event
+exports.joinEvent = async (req,res)=>{
+    try{ 
+     const userId = req.body.userId
+     const eventId = req.params.id
+     console.log('id is '+userId+'event id is' +eventId)
+     const event = await Event.findById(eventId) 
+     if(!event) return res.status(404).send({error: 'Event does not exist'})
+     var member= await Member.findById(userId)
+     if(event.joinedMembers.includes(userId)) return res.status(400).send({error: 'member already joined the events'})
+     console.log('length is'+member.joinedEvents.length)
+     if(member.joinedEvents.includes(eventId)) return res.status(400).send({error: 'member already joined the event'})
+     event.joinedMembers.push(userId)
+     member.joinedEvents.push(eventId)
+     const updateBody={
+     joinedMembers: event.joinedMembers
+     }
+     const updateBody2={
+     joinedEvents: member.joinedEvents
+     }
+     await Event.findByIdAndUpdate(eventId,updateBody)
+     await member.findByIdAndUpdate(userId,updateBody2)
+     returningObject = await Event.findById(eventId) 
+     res.json({msg:"YAAAY WE JOINED THE EVENT",data:returningObject})
+ }
+ catch(error){
+     console.log(error)
+ }
+     }
+    */
+
+//join events
+
+/*
+exports.joinEvent = async function(req,res){
+    try {
+        userID= req.body.id
+        eventID = req.params.id
+
+        var event = await Event.findById(eventID)
+        var user = await Member.findById(userID)
+
+       user = await user.joinedEvents.push(eventID)
+       event = await event.joinedMembers.push(userID)
+
+        var eventBody = {
+            joinedMembers : event.joinedMembers
+        }
+        var userBody = {
+            joinedEvents : user.joinedEvents
+        }
+
+        await Event.findByIdAndUpdate(eventID, eventBody)
+        await Member.findByIdAndUpdate(userID, userBody)
+        
+        event = Event.findById(eventID)
+
+        res.json({msg:'please work', data:event })
+
+
+
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}
+*/
+    
 
 exports.search = async function(req,res){
     const bodyAttribute = req.body.attribute
