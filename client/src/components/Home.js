@@ -18,7 +18,6 @@ class Home extends Component {
 }
 //a must have life cycle method that runs each time you render a component
   render() {  
-    console.log(this.props)
     const eventItem =  this.props.vacancies.map(vacancy =>(
       <div Key={vacancy.id}>
       <h3>{vacancy.careerLevel}</h3>
@@ -45,4 +44,4 @@ const mapStateToProps = state =>({
   home: state.home.vacancies
 })
 
-export default connect(mapStateToProps, {getVacancies})(Home)
+export default connect(mapStateToProps, { getVacancies })(Home);
