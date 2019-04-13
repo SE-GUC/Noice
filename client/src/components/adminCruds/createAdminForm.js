@@ -1,47 +1,14 @@
-import React, { Component } from 'react'
+// importing react and connect
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {axiosPosts} from '../../actions/adminActionsFolder/adminActions';
+//requiring axios
 const axios = require('axios');
 //class 3ady ya3ni 
-class createAdminForm extends Component {
+class CreateAdminForm extends Component {
   //contructor with the attribute of the crud you want
-  constructor(props){
-    super(props)
-    this.state = {
-      firstName:'',
-      middleName:'',
-      lastName:'',
-      age:''
-    };
-    //bind the methods with the entity
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-  //on change set the state with the target value from any event(e)
-   onChange(e){
-     this.setState({[e.target.name]: e.target.value});
-   }
-   //what happens when you click the submit button
-   async onSubmit(e){
-   //prevents submitting empty values
-    e.preventDefault();
-   //the body you will send
-    const body={
-    firstName:this.state.firstName,
-      middleName:this.state.middleName ,
-      lastName:this.state.lastName,
-      age:this.state.age,
-      education:this.state.education
-   }
-   //send an axios request
-   await axios.post('http://localhost:5000/api/admins/create',body)
-   .then(res => console.log(res.data));
-   //reset the inputs to empty 
-   this.setState({
-     firstName:' ',
-     middleName:' ',
-     lastName:' ',
-     age:'',
-             })
-  }
+  
+  
   //the life cycle method you need
   render() {
     return (
@@ -75,4 +42,4 @@ class createAdminForm extends Component {
 
 
 
-export default createAdminForm
+export default connect(null, {axiosPosts})(CreateAdminForm);
