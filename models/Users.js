@@ -83,6 +83,10 @@ const userSchema = new Schema({
     NameOfPlace: {
         type: String,
     },
+    ownerName: {
+        type: String,
+        required: true
+    },
     workingPlaceDepartments: [
         {
             nameOfDepartments: String,
@@ -90,7 +94,12 @@ const userSchema = new Schema({
             Region: String,
             startTime: String,
             endTime: String,
-            rate: Number
+            rate: Number,
+            isDepartmentAvailable: [{
+                nameOfSubdepartment: String,
+                isAvailable: Boolean,
+                capacity: Number,
+            }]
         }
     ],
     skills: {
