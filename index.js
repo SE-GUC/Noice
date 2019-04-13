@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 
 
 
+<<<<<<< HEAD:index.js
 const location = require('./routes/api/users/location')
+=======
+const location = require('./routes/api/location')
+>>>>>>> vacancy:index.js
 const calender = require('./routes/api/calender')
 const members=require('./routes/api/users/members')
 const users=require('./routes/api/users')
