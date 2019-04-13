@@ -21,4 +21,8 @@ router.delete('/deleteProp/:memberId',memberController.deleteProp)
 
 router.delete('/delete_room_res/:id',roomController.deleteRoomResReq)
 
+// room filter
+router.post('/searchroom',roomController.search)
+
+
 module.exports = router

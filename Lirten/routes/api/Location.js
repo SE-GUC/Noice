@@ -33,5 +33,6 @@ router.get('/get_room_res/:id',roomController.getRoomRes)
 
 router.post('/update_room_res/:id',roomController.updateRoomRes)
 
-router.post('/search',roomController.search)
+// room filter
+router.post('/searchroom',roomController.search)
  module.exports = router
