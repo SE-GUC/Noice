@@ -14,7 +14,8 @@ router.put('/:id', location_controller.updateLocation)
 router.delete('/:id',location_controller.deleteLocation)
 router.get('/:id',location_controller.findLocation)
 
-
+//event filter
+router.post('/searchEvent',event_controller.search)
 //event controls
 router.get('/event/',event_controller.getAllEvents)
 router.post('/event/',event_controller.createEvent)

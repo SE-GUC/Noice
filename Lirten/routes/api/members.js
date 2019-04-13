@@ -5,6 +5,7 @@ const memberController = require('../../controllers/memberController')
 const event_controller = require('../../controllers/eventController')
 
 
+
 //router.get('/:date', memberController.findLocationWithDate)
 
 router.get('/', memberController.getAllMember)
@@ -13,6 +14,8 @@ router.put('/:id', memberController.updateMember)
 router.delete('/:id', memberController.deleteMember)
 router.get('/:id',memberController.findMember)
 
+//event filter
+router.post('/searchEvent',event_controller.search)
 //event controls
 router.get('/event/',event_controller.getAllEvents)
 router.post('/event/',event_controller.createEvent)

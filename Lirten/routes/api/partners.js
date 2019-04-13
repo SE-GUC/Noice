@@ -12,7 +12,8 @@ router.put('/:id', partner_controller.updatePartner)
 router.delete('/:id',partner_controller.deletePartner)
 router.get('/:id',partner_controller.findPartner)
 
-
+//event filter
+router.post('/searchEvent',event_controller.search)
 //event controls
 router.get('/event/',event_controller.getAllEvents)
 router.post('/event/',event_controller.createEvent)
