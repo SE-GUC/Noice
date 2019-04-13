@@ -1,12 +1,11 @@
 //import your actions type
-import {AXIOS_POST,AXIOS_GET} from '../actions/adminActionsFolder/adminTypes';
-
+import {CREATE_ADMIN} from '../actions/adminActionsFolder/adminTypes';
 //intialize the state from the db
 const initialState={
 //items is the initial entries in the db
-items:[],
+admins:[],
 //we store here the response we get from making a new admin
-item:{}
+admin:{}
 };
 
 //reducers get the current state and an action
@@ -15,11 +14,11 @@ item:{}
 export default function(state = initialState,action){
 //the types of actions are defined in our adminTypes folder
   switch(action.type){
-    case AXIOS_POST:
+    case CREATE_ADMIN:
     return{
       ...state,
       //adds the new item in the current state
-      items: action.payload
+      admin: action.payload
     }
     //our default returns the current state this is a place holder for now
     default: return state;

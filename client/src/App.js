@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {Provider} from 'react-redux'
 import Home from './components/Home'
 //add the rest of the admin cruds here
@@ -11,7 +11,7 @@ import store from './store.js'
 //add other cruds here
 
 
-//bootstrap components
+//bootstrap components 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -44,7 +44,7 @@ class App extends Component {
        {/*add filter link here*/}
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <button type="button" class="btn btn-outline-info">Search</button>
+          <button type="button" className="btn btn-outline-info">Search</button>
         </Form>
            </Navbar.Collapse>
            </Navbar><br/>

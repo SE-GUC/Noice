@@ -1,21 +1,25 @@
-import React, { Component } from 'react'
-const axios = require('axios');
- class Home extends Component {
-  constructor(props){
-  super(props)
-  this.state={
-    vacancies:[]
-  }
-}
-  
-  
-  async componentWillMount(){
-    await axios.get('http://localhost:3000/api/vacancy/')
-    .then(data => this.setState({vacancies:data}))
-  }
+import React, { Component } from 'react';
+//defining smth like the scheme
+import PropTypes from 'prop-types'
+//connects the components with the store
+import {connect} from 'react-redux';
+//import the actions that on your component
+import{getVacancies} from '../actions/homeActionsFolder/homeActions'
 
+
+
+
+
+class Home extends Component {
+
+//a life cycle method that runs once when you first run this component
+  componentWillMount(){
+  this.props.getVacancies();
+}
+//a must have life cycle method that runs each time you render a component
   render() {  
-    const eventItem =  this.state.events.map(vacancy =>(
+    console.log(this.props)
+    const eventItem =  this.props.vacancies.map(vacancy =>(
       <div Key={vacancy.id}>
       <h3>{vacancy.careerLevel}</h3>
       <p> {vacancy.description}</p>
@@ -30,5 +34,15 @@ const axios = require('axios');
     )
   }
 }
+//defining the prop types that are passed to this component
+Home.propTypes={
+  getVacancies : PropTypes.func.isRequired,
+  home: PropTypes.array.isRequired
+  }
 
-export default Home
+
+const mapStateToProps = state =>({
+  home: state.home.vacancies
+})
+
+export default connect(mapStateToProps, {getVacancies})(Home)
