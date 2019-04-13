@@ -44,7 +44,7 @@ const functions={
         return locations
     },    
     membersViewAllLocations: async() =>{
-        const locations =  await axios.get('http://localhost:3000/api/users/member/memberGetLocations/1')
+        const locations =  await axios.get('http://localhost:3000/api/users/member/getLocations/1/')
         return locations
     },
     membersViewLocationRooms:async(id)=>{
@@ -81,7 +81,7 @@ const functions={
         return locations
     },
     partnersViewAllLocations: async() =>{
-        const locations =  await axios.get('http://localhost:3000/api/users/partners/viewLocation/1')
+        const locations =  await axios.get('http://localhost:3000/api/users/partners/partnerLocation/1')
         return locations
     },
     }

@@ -2,21 +2,32 @@ const funcs = require('./locationAxios');
 
 let ic=''
 let ic1 =''
-let icRoom =''
 let icMember =''
+let icRoom =''
 
 test('Create a new location', async () =>{
     const body={
-        NameOfPlace:"Costa",
-        ownerName:"Coca",
-        workingPlaceDepartments: [{
-            nameOfDepartments: "Sherouk City",
-            City: "Cairo",
-            Region: "Madinty",
-            startTime: "09:00",
-            endTime: "15:00",
-            rate: 4.4,
-        }]
+      email: "kareemkimo39@gmail.com",
+      password: "whyusfqavvdodis",
+      firstName: "Kareem",
+      middleName: "Esam Eldin",
+      lastName: "Elshafey",
+      birthDate: "17-10-1998",
+      gender: "male",
+      address: "starbuqdvqqvcks",
+      phoneNumber: "01223526878",
+      typeOfUser: "Co-working Space Owner",
+      NameOfPlace: "Costa",
+      workingPlaceDepartments: [
+          {
+              nameOfDepartments: "Sherouk City",
+              City: "Cairo",
+              Region: "Madinty",
+              startTime: "09:00",
+              endTime: "15:00",
+              rate: 4.4,
+          }
+      ],
   }
     const user =  await funcs.createLocation(body)
     const user2 =  await funcs.viewLocationById(user.data.data._id)
@@ -26,12 +37,16 @@ test('Create a new location', async () =>{
 
   test('Create a new member', async () =>{
     const body={
-      name: "kareem elshafey",
-      age: 20,
+      email: "kskamr@gmail.com",
+      password: "whyusfqavvdodis",
+      firstName: "Kareem",
+      middleName: "Mohamed",
+      lastName: "Ayman",
+      birthDate: "17-10-1998",
       gender: "male",
-      address: "Tagamoaa El Khamis",
-      email: "kskakskda@gmail.com",
-      phoneNumber: "01020302934",
+      address: "starbuqdvqqvcks",
+      phoneNumber: "01223526878",
+      typeOfUser: "Member",
       skills: "Programming",
       interests:"Tech news",
       pastEvents: [{
@@ -41,7 +56,7 @@ test('Create a new location', async () =>{
       }],
       projectsCompleted: "Noice",
       reviewsReceived: "none",
-      certificaesHeld: "Met Engineering",
+      certificatesHeld: "Met Engineering",
   }
     const user =  await funcs.createMember(body)
     const user2 =  await funcs.viewMemberById(user.data.data._id)
@@ -49,25 +64,36 @@ test('Create a new location', async () =>{
     icMember=user.data.data._id;
   });
 
-  test('update location', async () => {
+   test('update location', async () => {
     const body={
-        NameOfPlace:"Costa",
-        ownerName:"Coca Cola",
-        workingPlaceDepartments: [{
-            nameOfDepartments: "Nasr City",
-            City: "Nasr City",
-            Region: "Abbas El32ad",
-            startTime: "09:00",
-            endTime: "15:00",
-            rate: 4.5
-        }]
+      email: "kareemkimo39@gmail.com",
+      password: "whyusfqavvdodis",
+      firstName: "Andrew",
+      middleName: "Ashraf",
+      lastName: "Zaky",
+      birthDate: "17-10-1998",
+      gender: "male",
+      address: "starbuqdvqqvcks",
+      phoneNumber: "01223526878",
+      typeOfUser: "Co-working Space Owner",
+      NameOfPlace: "Costa",
+      workingPlaceDepartments: [
+          {
+              nameOfDepartments: "Sherouk City",
+              City: "Cairo",
+              Region: "Madinty",
+              startTime: "09:00",
+              endTime: "15:00",
+              rate: 4.4,
+          }
+      ],
   }
     const response = await funcs.updateLocation(ic,body)
     const response2 = await funcs.updateLocation(ic,body)
-    expect(response2.data.data.ownerName).toBe("Coca Cola")
+    expect(response2.data.data.firstName).toBe("Andrew")
 });
 
-  test('Create a new room', async () =>{
+ /* test('Create a new room', async () =>{
     const body={
         capacity:120,
         isAvailable:true,
@@ -83,7 +109,7 @@ test('Create a new location', async () =>{
     const user2 =  await funcs.viewRoomById(user.data.data._id)
     expect(user.data.data._id).toEqual(user2.data.data._id)
     icRoom=user.data.data._id;
-  });
+  }); */
 
   test('First Location member should see is Costa', async () => {
     const response =  await funcs.membersViewAllLocations()
@@ -114,16 +140,27 @@ test('Create a new location', async () =>{
 
   test('Create a new location for admin to update/delete', async () =>{
         const body={
-            NameOfPlace:"costaCoffee",
-            ownerName:"Coca",
-            workingPlaceDepartments: [{
-                nameOfDepartments: "Sherouk City",
-                City: "Cairo",
-                Region: "Madinty",
-                startTime: "09:00",
-                endTime: "15:00",
-                rate: 4.4,
-            }]
+          email: "mohamed@gmail.com",
+          password: "whyusfqavvdodis",
+          firstName: "Mohamed",
+          middleName: "Salah Eldin",
+          lastName: "Ali",
+          birthDate: "15-10-1998",
+          gender: "male",
+          address: "starbuqdvqqvcks",
+          phoneNumber: "01223526878",
+          typeOfUser: "Co-working Space Owner",
+          NameOfPlace: "Coffee Shop",
+          workingPlaceDepartments: [
+              {
+                  nameOfDepartments: "Sherouk City",
+                  City: "Cairo",
+                  Region: "Madinty",
+                  startTime: "09:00",
+                  endTime: "15:00",
+                  rate: 4.4,
+              }
+          ],
       }
         const user =  await funcs.createLocation(body)
         const user2 =  await funcs.viewLocationById(user.data.data._id)
@@ -133,20 +170,31 @@ test('Create a new location', async () =>{
 
   test('as an admin update location', async () => {
         const body={
-            NameOfPlace:"Costa",
-            ownerName:"Pepsi",
-            workingPlaceDepartments: [{
-                nameOfDepartments: "Nasr City",
-                City: "Nasr City",
-                Region: "Abbas El32ad",
-                startTime: "09:00",
-                endTime: "15:00",
-                rate: 4.5
-            }]
+          email: "mohamed@gmail.com",
+          password: "whyusfqavvdodis",
+          firstName: "Mohamed",
+          middleName: "Salah Eldin",
+          lastName: "Ali",
+          birthDate: "15-10-1998",
+          gender: "male",
+          address: "El Rehab",
+          phoneNumber: "01223526878",
+          typeOfUser: "Co-working Space Owner",
+          NameOfPlace: "Coffee Shop",
+          workingPlaceDepartments: [
+              {
+                  nameOfDepartments: "Sherouk City",
+                  City: "Cairo",
+                  Region: "Madinty",
+                  startTime: "09:00",
+                  endTime: "15:00",
+                  rate: 4.4,
+              }
+          ],
       }
         const response = await funcs.adminUpdateLocation(ic1,body)
         const response2 = await funcs.adminUpdateLocation(ic1,body)
-        expect(response2.data.data.ownerName).toBe("Pepsi")
+        expect(response2.data.data.address).toBe("El Rehab")
     });
   
   test('as an admin delete location', async () => {
@@ -154,6 +202,7 @@ test('Create a new location', async () =>{
         const user2 =  await funcs.adminDeleteLocation(ic1)
         expect(user.data.data._id).toEqual(user2.data.data._id)
     });
+    
 
   
 
