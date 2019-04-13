@@ -29,7 +29,7 @@ class App extends Component {
           <div className="App">
              {/*dont touch this*/ }
              <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
-             <Navbar.Brand href="#home">LirtenHub</Navbar.Brand>
+             <Navbar.Brand href="/">LirtenHub</Navbar.Brand>
              <Navbar.Toggle aria-controls="basic-navbar-nav" />
              <Navbar.Collapse id="basic-navbar-nav">
              <Nav className="lirten">
