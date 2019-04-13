@@ -4,10 +4,15 @@ const mongoose = require('mongoose');
 
 
 
+<<<<<<< HEAD:index.js
+const location = require('./routes/api/users/location')
+=======
 const location = require('./routes/api/location')
+>>>>>>> vacancy:index.js
 const calender = require('./routes/api/calender')
-const members=require('./routes/api/members')
-const partners = require('./routes/api/partners')
+const members=require('./routes/api/users/members')
+const users=require('./routes/api/users')
+const partners = require('./routes/api/users/partners')
 const admins = require ('./routes/api/admins')
 const requests = require('./routes/api/requests')
 const notifications = require('./routes/api/notifications')
@@ -38,10 +43,11 @@ app.get('/', (req, res) => {
 
 // Direct routes to appropriate files 
 
-app.use('/api/member',members)
-app.use('/api/location', location)
+app.use('/api/users',users)
+app.use('/api/users/member',members)
+app.use('/api/users/location', location)
 app.use('/api/calender', calender)
-app.use('/api/partners', partners)
+app.use('/api/users/partners', partners)
 app.use('/api/admins',admins)
 app.use('/api/requests',requests)
 app.use('/api/notifications', notifications)
