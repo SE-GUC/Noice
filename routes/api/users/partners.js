@@ -16,4 +16,6 @@ router.get('/:id',partner_controller.findPartner)
 
 router.get('/partnerLocation/1',locationInPartnersController.getAllLocations)
 
+router.get('/partnerGetLocation/:id',locationInPartnersController.findLocation)
+
 module.exports = router
