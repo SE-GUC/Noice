@@ -1,3 +1,7 @@
+
+const express = require('express')
+const mongoose = require('mongoose')
+const axios = require("axios")
 var Vacancy= require('../models/vacancy')
 const validator = require('../validations/vacancyValidations')
 
@@ -243,7 +247,8 @@ exports.closeVacancy = async (req,res)=>{
     res.json({msg:"we closed the vacancy",data:Vacancy.findByIdAndUpdate(id,Vacancy.findByIdAndUpdate(req.params.id,body={close:true}))})
 }
 
-//Filters
+
+
 // Search format in POST body: { "attribute" : "attributeyouwantHERE" , "value" : "valueyouwantHERE"}
 exports.search = async function(req,res){
     const bodyAttribute = req.body.attribute

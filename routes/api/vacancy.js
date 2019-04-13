@@ -19,3 +19,5 @@ router.get('/apply/viewNumberOfApplicants/:id',vacancyController.viewNumberOfApp
 router.get('/apply/viewAllApplicants/:id',vacancyController.viewAllApplicants)
 
 module.exports = router
+
+
