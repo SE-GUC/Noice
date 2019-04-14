@@ -14,6 +14,7 @@ import store from './store.js'
 // filters
 import VacancyFilter from './components/filters/VacancySearch'
 import RoomFilter from './components/filters/RoomSearch'
+
 //bootstrap components 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
@@ -44,6 +45,7 @@ class App extends Component {
              <Nav.Link className="adminCreateLink" href={'/adminCreate'}>CreateAdmin</Nav.Link>
              <Nav.Link className="filterVacancyLink" href={'/filterVacancy'}>FilterVacancies</Nav.Link>
              <Nav.Link className="filterRoomLink" href={'/filterRoom'}>FilterRooms</Nav.Link>
+             <Nav.Link className="adminCreateLink" href={'/adminCreate'}>createAdmin</Nav.Link>
             </Nav>
       
        {/*add filter link here*/}

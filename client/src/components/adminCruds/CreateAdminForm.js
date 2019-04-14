@@ -12,7 +12,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 //requiring axios
-const axios = require('axios');
+//const axios = require('axios');
+
 
 
 
