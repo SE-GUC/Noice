@@ -1,10 +1,9 @@
 
-
 const express = require('express')
 const mongoose = require('mongoose')
 const axios = require("axios")
 
-var Vacancy= require('../models/vacancy')
+var Vacancy= require('../models/Vacancy')
 const validator = require('../validations/vacancyValidations')
 
 //var notification = require("../models/Notification")
