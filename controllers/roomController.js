@@ -486,3 +486,35 @@ function compareStartDates (startDate1,startDate2){
     console.log({Date1:d1.getTime(),Date2:d3.getTime(),Result: bool})
     return bool
 }
+
+exports.search = async function(req,res){
+    const bodyAttribute = req.body.attribute
+    const bodyValue = req.body.value
+
+
+    if(bodyAttribute === "capacity")
+    {
+        var searchedRoom = await room.find({
+            capacity : bodyValue
+        })
+    }
+    else if(bodyAttribute === "isAvailable")
+    {
+        var searchedRoom = await room.find({
+            isAvailable : bodyValue
+        })
+    }
+    else if(bodyAttribute === "locationId")
+    {
+        var searchedRoom = await room.find({
+            locationId : bodyValue
+        })
+    }
+    else if(bodyAttribute === "tags")
+    {
+        var searchedRoom = await room.find({
+            tags : bodyValue
+        })
+    }
+    res.json({data:searchedRoom})
+}

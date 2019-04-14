@@ -38,7 +38,8 @@ router.post('/reject_req_res/:id',roomController.rejectRoomRes)
 
 router.post('/update_room_res/:id',roomController.updateRoomRes)
 
-
+// Filtering for rooms
+router.post('/search',roomController.search)
 
 
 module.exports = router
