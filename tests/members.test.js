@@ -11,30 +11,34 @@ let xid_2='';
 //creates member and tests
 test('member should be created', async () =>{
     const body = {
-            name: "adam1",
-            age: 22,
+            email: "kskamr@gmail.com",
+            password: "whyusfqavvdodis",
+            firstName: "dude1",
+            middleName: "Mohamed",
+            lastName: "Ayman",
+            birthDate: "17-10-1998",
             gender: "male",
-            address: "312",
-            email: "meme",
-            phoneNumber: "123456",
-            skills: "none",
-            interests: "lil",
+            address: "starbuqdvqqvcks",
+            phoneNumber: "01223526878",
+            typeOfUser: "Member",
+            skills: "Programming",
+            interests: "Tech news",
             pastEvents: [
                 {
-                    id: "5",
-                    name: "smth",
-                    startDate: "never",
-                    endDate: "never"
+                    
+                    name: "MCM",
+                    startDate: "10/10/10",
+                    endDate: "10/10/11"
                 }
             ],
-            projectsCompleted: "none",
-            reviewsReceived: "some",
-            certificatesHeld: "lol"
-    }
+            projectsCompleted: "Noice",
+            reviewsReceived: "none",
+            certificatesHeld: "Met Engineering"
+        }
     expect.assertions(1)
     const response = await funcs.createMember(body)
     xid_1=response.data.data._id
-    expect(response.data.data.reviewsReceived).toBe("some")
+    expect(response.data.data.firstName).toBe("dude1")
 })
 
 //to test this first create 3 members
@@ -46,7 +50,7 @@ test('number of members should be more than 1', async () =>{
 
 //////////////////////////partner stuff/////////////////////////
 //view member through partner
-test('number of members should be 0', async () =>{
+test('number of members should not be 0', async () =>{
     expect.assertions(1)
     const response = await funcs.viewMemberByPartner()
     expect(response.data.data.length).not.toBe(0)
@@ -54,11 +58,11 @@ test('number of members should be 0', async () =>{
  ////////////////////end of partner stuff//////////////////////
 
 //first create a member where the name is adam and put id in 'id' variable
-test('member name should be adam1', async () =>{
+test('member name should be dude1', async () =>{
     const id = xid_1
     expect.assertions(1)
     const response = await funcs.viewMemberId(id)
-    expect(response.data.data.name).toBe("adam1")
+    expect(response.data.data.firstName).toBe("dude1")
 })
 
 //to test first create member with certificatesheld = lol then place id in id variable
@@ -84,30 +88,34 @@ test('member should be deleted', async () => {
 //creates member and tests
 test('member should be created', async () =>{
     const body = {
-            name: "adam1",
-            age: 22,
-            gender: "male",
-            address: "312",
-            email: "meme",
-            phoneNumber: "123456",
-            skills: "none",
-            interests: "lil",
-            pastEvents: [
-                {
-                    id: "5",
-                    name: "smth",
-                    startDate: "never",
-                    endDate: "never"
-                }
-            ],
-            projectsCompleted: "none",
-            reviewsReceived: "some",
-            certificatesHeld: "lol"
+        email: "kskamr@gmail.com",
+        password: "whyusfqavvdodis",
+        firstName: "dude1",
+        middleName: "Mohamed",
+        lastName: "Ayman",
+        birthDate: "17-10-1998",
+        gender: "male",
+        address: "starbuqdvqqvcks",
+        phoneNumber: "01223526878",
+        typeOfUser: "Member",
+        skills: "Programming",
+        interests: "Tech news",
+        pastEvents: [
+            {
+                
+                name: "MCM",
+                startDate: "10/10/10",
+                endDate: "10/10/11"
+            }
+        ],
+        projectsCompleted: "Noice",
+        reviewsReceived: "none",
+        certificatesHeld: "Met Engineering"
     }
     expect.assertions(1)
     const response = await funcs.createMemberByAdmin(body)
     xid_2=response.data.data._id
-    expect(response.data.data.reviewsReceived).toBe("some")
+    expect(response.data.data.firstName).toBe("dude1")
 })
 
 //to test this first create 3 members
@@ -118,11 +126,11 @@ test('number of members should not be 0', async () =>{
 })
 
 //first create a member where the name is adam1 and put id in 'id' variable
-test('member name should be adam1', async () =>{
+test('member name should be dude1', async () =>{
     expect.assertions(1)
     const id = xid_2
     const response = await funcs.viewMemberIdByAdmin(id)
-    expect(response.data.data.name).toBe("adam1")
+    expect(response.data.data.firstName).toBe("dude1")
 })
 
 //to test first create member with certificatesheld = lol then place id in id variable

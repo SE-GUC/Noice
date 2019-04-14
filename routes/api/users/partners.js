@@ -2,7 +2,11 @@ const express = require('express')
 const router = express.Router()
 const partner_controller = require('../../../controllers/partnerController')
 const locationInPartnersController = require('../../../controllers/locationController')
+const memberController = require('../../../controllers/memberController')
 
+router.get('/member/', memberController.getAllMember)
+
+router.get('/member/:id',memberController.findMember)
 
 router.get('/',partner_controller.getAllPartners)
 
