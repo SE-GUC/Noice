@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 
 const admin_controller = require('../../controllers/adminController')
 const locationInAdminsController = require('../../controllers/locationController')
+const roomController = require('../../controllers/roomController')
 
 //Admins controllers
 router.get('/',admin_controller.getAllAdmins)
@@ -22,5 +23,8 @@ router.get('/viewLocation/:id',locationInAdminsController.findLocation)
 router.put('/updateLocation/:id',locationInAdminsController.updateLocation)
 
 router.delete('/deleteLocation/:id',locationInAdminsController.deleteLocation)
+
+// room filter
+router.post('/searchroom',roomController.search)
 
 module.exports = router

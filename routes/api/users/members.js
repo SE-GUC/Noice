@@ -3,6 +3,7 @@ const router = express.Router();
 
 const locationInMemberController = require('../../../controllers/locationController')
 const memberController = require('../../../controllers/memberController')
+const roomController = require('../../../controllers/roomController')
 
 //router.get('/:date', memberController.findLocationWithDate)
 
@@ -34,5 +35,8 @@ router.get('/get_room/:id',roomController.findRoom)
 
 //I want to view the rooms that I reserved
 router.get('/get_room_res/:id',roomController.getRoomRes) */
+
+// room filter
+router.post('/searchroom',roomController.search)
 
 module.exports = router
