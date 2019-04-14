@@ -8,9 +8,9 @@ router.get('/',location_controller.getAllLocations)
 
 router.post('/',location_controller.createLocation)
 
-router.put('/', location_controller.updateLocation)
+router.put('/:id', location_controller.updateLocation)
 
-router.delete('/',location_controller.deleteLocation)
+router.delete('/:id',location_controller.deleteLocation)
 
 router.get('/get_location/:id',location_controller.findLocation)
 
