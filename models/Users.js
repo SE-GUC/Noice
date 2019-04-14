@@ -83,10 +83,6 @@ const userSchema = new Schema({
     NameOfPlace: {
         type: String,
     },
-    ownerName: {
-        type: String,
-        required: true
-    },
     workingPlaceDepartments: [
         {
             nameOfDepartments: String,
