@@ -21,7 +21,7 @@ router.get('/:id',memberController.findMember)
 router.get('/getLocations/1',locationInMemberController.getAllLocations)
 
 //get a location profile
-router.get('/getLocation/:id',locationInPartnersController.findLocation)
+router.get('/getLocation/:id',locationInMemberController.findLocation)
 
 //get all rooms for the location
 router.get('/get_rooms_for_loc/:id',roomController.getRoomsForLoc)
