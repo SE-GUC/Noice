@@ -18,4 +18,15 @@ router.get('/partnerLocation/1',locationInPartnersController.getAllLocations)
 
 router.get('/partnerGetLocation/:id',locationInPartnersController.findLocation)
 
+router.get('/viewallvacancy',partner_controller.getAllvacancy)
+
+router.get('/viewmyvacancy/:id/:iid',partner_controller.getMyvacancy)
+
+router.get('/viewoldvacancy/:id',partner_controller.getOldvacancy)
+
+router.post('/createvacancy',partner_controller.createVacancy)
+
+router.put('/updatevacancy/:id',partner_controller.editVacancy)
+
+router.delete('/deletevacancy/:id',partner_controller.deleteVacancy)
 module.exports = router
