@@ -38,7 +38,7 @@ class App extends Component {
              <Nav.Link className="homeLink" href={'/home'}>Home</Nav.Link>
              <Nav.Link className="vacancyLink" href={'/vacancy'}>Vacancy</Nav.Link>
              <Nav.Link className="eventLink" href={'/event'}>Events</Nav.Link>
-             <Nav.Link className="adminCreateLink" href={'/adminCreate'}>createAdmin</Nav.Link>
+             <Nav.Link className="adminCreateLink" href={'/adminCreate'}>CreateAdmin</Nav.Link>
             </Nav>
       
        {/*add filter link here*/}
