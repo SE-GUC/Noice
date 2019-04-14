@@ -15,7 +15,8 @@ module.exports = {
                     endDate: Joi.date().required().format('DD-MM-YYYY hh:mm'),
                     reserverId: Joi.string().required()
                 }
-            ))
+            )),
+            tags: Joi.array(),
         }
 
         return Joi.validate(request, createSchema)
@@ -33,7 +34,8 @@ module.exports = {
                     endDate: Joi.date().required().format('DD-MM-YYYY hh:mm'),
                     reserverId: Joi.string().required()
                 }
-            ))
+            )),
+            tags: Joi.array(),
         }
 
         return Joi.validate(request, createSchema)
