@@ -4,6 +4,7 @@ const router = express.Router();
 const locationInMemberController = require('../../../controllers/locationController')
 const memberController = require('../../../controllers/memberController')
 const vacancyController = require('../../../controllers/vacancyController')
+const roomController = require('../../../controllers/roomController')
 
 //view all locations
 router.get('/location/',locationInMemberController.getAllLocations)
@@ -11,8 +12,6 @@ router.get('/location/',locationInMemberController.getAllLocations)
 router.get('/location/:date',locationInMemberController.findLocationDate)
 //get all vacancies
 router.get('/vacancy/',vacancyController.getAllVacancies)
-//request a larger location when needed
-//router.post('/request',requestController.createRequest)
 
 router.get('/', memberController.getAllMember)
 
@@ -42,5 +41,8 @@ router.get('/get_room/:id',roomController.findRoom)
 
 //I want to view the rooms that I reserved
 router.get('/get_room_res/:id',roomController.getRoomRes) */
+
+// room filter
+router.post('/searchroom',roomController.search)
 
 module.exports = router
