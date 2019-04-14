@@ -147,6 +147,7 @@ test('member certificatesheld should be lol', async () =>{
 
 
 test('member should be deleted', async () => {
+    jest.setTimeout(50000);
     const user =  await funcs.viewMemberId(xid_2)
     const user2 =  await funcs.deleteMember(xid_2)
     expect(user.data.data._id).toEqual(user2.data.data._id)
