@@ -1,0 +1,12 @@
+import {SEARCH_VACANCY} from './vacancyFilterTypes'
+
+const axios = require('axios');
+
+export const searchVacancy = (body) => async dispatch =>{
+    await axios.post('http://localhost:5000/api/vacancy/search', body)
+    .then(data => dispatch({
+        type: SEARCH_VACANCY,
+        payload: data
+    }));
+
+}

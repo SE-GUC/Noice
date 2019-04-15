@@ -1,7 +1,7 @@
 import {GETVACANCY} from '../actions/homeActionsFolder/homeTypes'
 
 const initialState={
-    items:[]
+    vacancies:[]
 }
 
 export default function(state = initialState,action){
@@ -12,7 +12,7 @@ export default function(state = initialState,action){
         return{
           ...state,
           //adds the new item in the current state
-          items: action.payload
+          vacancies: action.payload
         }
         //our default returns the current state this is a place holder for now
         default: return state;

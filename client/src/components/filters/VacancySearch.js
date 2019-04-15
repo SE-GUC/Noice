@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+//open a connection with the store
+import {connect} from 'react-redux';
+//import prop types which validates the inputs to this components
+import PropTypes from 'prop-types';
+//import actions on this component
+import {searchVacancy} from '../../actions/vacancyFilterActionsFolder/vacancyFilterActions';
+
+
+// import axios from 'axios';
 import Select from 'react-select'
 
-export default class VacancySearch extends Component {
+class VacancySearch extends Component {
 
     constructor(props) {
         super(props);
@@ -46,7 +54,7 @@ export default class VacancySearch extends Component {
     }
 
     
-    onSubmit(e) { // CHANGE THIS
+    async onSubmit(e) { // CHANGE THIS
         e.preventDefault();
         // console.log("You pressed submit")
         const body = {
@@ -54,14 +62,13 @@ export default class VacancySearch extends Component {
             value : this.state.value
         }
 
-        axios.post('http://localhost:5000/api/vacancy/search', body)
-        .then(res => this.setState({foundVacancies : res.data.data}))
-        
-        // console.log("Found: " + JSON.stringify(this.state.foundVacancies))
+        this.props.searchVacancy(body)
 
-        // axios.post('http://localhost:5000/api/vacancy/search', body) // TODO if getting error check this
-        //     .then(res => this.setState({retreivedSearch:res.data.data})// console.log(res.data));
-
+        this.setState({
+            attribute: '',
+            value: '',
+            foundVacancies: []
+        })
        
     }
 
@@ -145,3 +152,11 @@ const options = [
     { label: "Closed", value: "closed" },
     { label: "Tags", value: "tags" },
   ]
+
+
+
+  VacancySearch.propTypes ={
+    searchVacancy: PropTypes.func.isRequired
+  };
+
+  export default connect(null,{searchVacancy})(VacancySearch);

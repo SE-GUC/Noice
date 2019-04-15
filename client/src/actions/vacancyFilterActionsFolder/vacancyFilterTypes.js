@@ -1,0 +1,1 @@
+export const SEARCH_VACANCY ='SEARCH_VACANCY';

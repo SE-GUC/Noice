@@ -6,6 +6,10 @@ import {connect} from 'react-redux';
 //import the actions that on your component
 import{getVacancies} from '../actions/homeActionsFolder/homeActions'
 
+//import from bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 class Home extends Component {
 
@@ -15,10 +19,21 @@ class Home extends Component {
 }
 //a must have life cycle method that runs each time you render a component
   render() {  
-    const vacancyItem =  this.props.vacancies.map(vacancy =>(
+    console.log("home.props is " + this.props.home);
+    const vacancyItem =  this.props.home.map(vacancy =>(
       <div Key={vacancy.id}>
-      <h3>{vacancy.careerLevel}</h3>
-      <p> {vacancy.description}</p>
+      <Card style={{ width: '18rem' }}>
+    <Card.Img variant="top" src="holder.js/100px180" />
+    <Card.Body>
+      <Card.Title>{vacancy.jobDescription}</Card.Title>
+      <Card.Text>
+        {
+          vacancy.skillsRequired
+        }
+      </Card.Text>
+      <Button variant="primary">View vacancy by id </Button>
+    </Card.Body>
+  </Card>;
       </div>
     ))
     return (
@@ -38,7 +53,7 @@ Home.propTypes={
 
 
 const mapStateToProps = state =>({
-  home: state.home.items
+  home: state.home.vacancies
 })
 
 export default connect(mapStateToProps, {getVacancies})(Home)
