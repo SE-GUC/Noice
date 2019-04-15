@@ -11,6 +11,10 @@ import store from './store.js'
 //add other cruds here
 
 
+// filters
+import VacancyFilter from './components/filters/VacancySearch'
+import RoomFilter from './components/filters/RoomSearch'
+
 //bootstrap components 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
@@ -38,6 +42,9 @@ class App extends Component {
              <Nav.Link className="homeLink" href={'/home'}>Home</Nav.Link>
              <Nav.Link className="vacancyLink" href={'/vacancy'}>Vacancy</Nav.Link>
              <Nav.Link className="eventLink" href={'/event'}>Events</Nav.Link>
+             <Nav.Link className="adminCreateLink" href={'/adminCreate'}>CreateAdmin</Nav.Link>
+             <Nav.Link className="filterVacancyLink" href={'/filterVacancy'}>FilterVacancies</Nav.Link>
+             <Nav.Link className="filterRoomLink" href={'/filterRoom'}>FilterRooms</Nav.Link>
              <Nav.Link className="adminCreateLink" href={'/adminCreate'}>createAdmin</Nav.Link>
             </Nav>
       
@@ -51,6 +58,8 @@ class App extends Component {
 
           {/* add a route for you here */}
               <Switch>
+                <Route exact path='/filterVacancy' component={ VacancyFilter  } />
+                <Route exact path='/filterRoom' component={ RoomFilter  } />
                 <Route exact path='/adminCreate' component={ CreateAdminForm  } />
                 <Route exact path='/home' component={ Home  } />
               

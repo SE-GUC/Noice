@@ -33,7 +33,10 @@ const RoomSchema = new Schema({
                 required:true
             }
         }],
-        
+        tags:{
+            type: Array,
+            default: []
+        }
    
 }
 })

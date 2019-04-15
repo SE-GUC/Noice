@@ -289,8 +289,9 @@ exports.search = async function(req,res){
     {
         // Different because body attribute is a complex array
         var returnVacancy = await Vacancy.find({
-        $or : [ {applicants : { memberID : bodyValue , accepted : "true"}} , {applicants : { memberID : bodyValue , accepted : "false"}} ]
-        })
+        $or : [ {applicants : { memberID : bodyValue , accepted : "true"}} , 
+        {applicants : { memberID : bodyValue , accepted : "false"}}, 
+        {applicants : bodyValue}]})
     }
     else if(bodyAttribute === "status")
     {

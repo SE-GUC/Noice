@@ -2,7 +2,12 @@ const express = require('express')
 const router = express.Router()
 const partner_controller = require('../../../controllers/partnerController')
 const locationInPartnersController = require('../../../controllers/locationController')
+const roomController = require('../../../controllers/roomController')
+const memberController = require('../../../controllers/memberController')
 
+router.get('/member/', memberController.getAllMember)
+
+router.get('/member/:id',memberController.findMember)
 
 router.get('/',partner_controller.getAllPartners)
 
@@ -29,4 +34,8 @@ router.post('/createvacancy',partner_controller.createVacancy)
 router.put('/updatevacancy/:id',partner_controller.editVacancy)
 
 router.delete('/deletevacancy/:id',partner_controller.deleteVacancy)
+
+// room filter
+router.post('/searchroom',roomController.search)
+
 module.exports = router

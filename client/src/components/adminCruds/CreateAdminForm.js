@@ -16,6 +16,7 @@ import Col from 'react-bootstrap/Col';
 
 
 
+
 //class 3ady ya3ni 
 class CreateAdminForm extends Component {
   //contructor with the attribute of the crud you want
