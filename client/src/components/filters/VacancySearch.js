@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 //import actions on this component
 import {searchVacancy} from '../../actions/vacancyFilterActionsFolder/vacancyFilterActions';
 
-
 // import axios from 'axios';
 import Select from 'react-select'
 
@@ -23,19 +22,19 @@ class VacancySearch extends Component {
         this.state = { 
             attribute: '',
             value: '',
-            foundVacancies: []
-            // foundVacancies: [{data: {
-            //     careerLevel: '',
-            //     jobDescription: '',
-            //     educationLevel: '',
-            //     partnerId: '',
-            //     skillsRequired: '',
-            //     applicants: '',
-            //     status: '',
-            //     closed: '',
-            //     tags: '',
+            //foundVacancies: []
+            foundVacancies: [{data: {
+                careerLevel: '',
+                jobDescription: '',
+                educationLevel: '',
+                partnerId: '',
+                skillsRequired: '',
+                applicants: '',
+                status: '',
+                closed: '',
+                tags: '',
 
-            // }}]
+            }}]
         }
     }
 
@@ -61,13 +60,25 @@ class VacancySearch extends Component {
             attribute : this.state.attribute,
             value : this.state.value
         }
-
+        
         this.props.searchVacancy(body)
 
         this.setState({
             attribute: '',
             value: '',
-            foundVacancies: []
+            //foundVacancies: []
+            foundVacancies: [{data: {
+                careerLevel: '',
+                jobDescription: '',
+                educationLevel: '',
+                partnerId: '',
+                skillsRequired: '',
+                applicants: '',
+                status: '',
+                closed: '',
+                tags: '',
+
+            }}]
         })
        
     }
@@ -80,38 +91,24 @@ class VacancySearch extends Component {
 
                     <div className="form-group">
                         <label>Filter by: </label>
-                     <Select
-                        options={ options }
-                        onChange= {(value) => {this.onChangeAttribute(value)}}
+                     <Select options={ options }  onChange= {(value) => {this.onChangeAttribute(value)}}
                         />
                     </div>
 
 
                     <div className="form-group">
                         <label>Enter value: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.ID}
-                                onChange={this.onChangeValue}
-                                />
+                        <input  type="text" className="form-control" value={this.state.ID} onChange={this.onChangeValue}/>
                     </div>
                     
-             
-                    
                         <br/>
-                        <div className="form-group">
-                            <input type="submit" value="Search" className="btn btn-primary" />
-                        </div>
+
+                    <div className="form-group">
+                        <input type="submit" value="Search" className="btn btn-primary" />
+                    </div>
                 </form>
                 
-                {/* {this.state.retreivedSearch.map( searched => {
-                return ( // can start putting model values here
-                    <ul>
-                    {searched.ooo}
-                    </ul>
-                )})} */}
-
-               {this.state.foundVacancies.map(foundVacancy =>{
+               {this.props.vacancay.map(foundVacancy =>{
                 
                 return(
                     <div>
@@ -156,7 +153,12 @@ const options = [
 
 
   VacancySearch.propTypes ={
-    searchVacancy: PropTypes.func.isRequired
+    searchVacancy: PropTypes.func.isRequired,
+    vacancay: PropTypes.array.isRequired
   };
 
-  export default connect(null,{searchVacancy})(VacancySearch);
+  const mapStateToProps = state =>({
+    vacancay: state.vacancay.vacancies
+  })
+
+  export default connect(mapStateToProps,{searchVacancy})(VacancySearch);
