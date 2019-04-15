@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import Home from './components/Home'
 //add the rest of the admin cruds here
 import CreateAdminForm from './components/adminCruds/CreateAdminForm'
-
+import ViewAdmins from './components/adminCruds/ViewAdmins'
 //importing the store
 import store from './store.js'
 //add other cruds here
@@ -17,6 +17,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
+import UpdateAdmin from './components/adminCruds/UpdateAdmin';
 
 
 class App extends Component {
@@ -39,6 +40,9 @@ class App extends Component {
              <Nav.Link className="vacancyLink" href={'/vacancy'}>Vacancy</Nav.Link>
              <Nav.Link className="eventLink" href={'/event'}>Events</Nav.Link>
              <Nav.Link className="adminCreateLink" href={'/adminCreate'}>CreateAdmin</Nav.Link>
+             <Nav.Link className="viewAdminCreateLink" href={'/viewAdmins'}>ViewAdmins</Nav.Link>
+             <Nav.Link className="updateAdminCreateLink" href={'/updateAdmin'}>Update Admin</Nav.Link>
+             
             </Nav>
       
        {/*add filter link here*/}
@@ -53,7 +57,10 @@ class App extends Component {
               <Switch>
                 <Route exact path='/adminCreate' component={ CreateAdminForm  } />
                 <Route exact path='/home' component={ Home  } />
-              
+                <Route exact path='/viewAdmins' component={ ViewAdmins  }
+                 />
+                  <Route exact path='/updateAdmin' component={ UpdateAdmin  }
+                 />
                </Switch>
           </div>
                </Router>

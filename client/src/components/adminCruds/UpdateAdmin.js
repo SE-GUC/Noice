@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 //import prop types which validates the inputs to this components
 import PropTypes from 'prop-types';
 //import actions on this component
-import {createAdmin} from '../../actions/adminActionsFolder/adminActions';
+import {updateAdmin} from '../../actions/adminActionsFolder/adminActions';
 //import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
@@ -15,7 +15,7 @@ import Col from 'react-bootstrap/Col';
 
 
 //class 3ady ya3ni 
-class CreateAdminForm extends Component {
+class UpdateAdmin extends Component {
   //contructor with the attribute of the crud you want
    constructor(props){
     super(props)
@@ -46,7 +46,7 @@ class CreateAdminForm extends Component {
       education:this.state.education
    }
    //send an axios request
-   this.props.createAdmin(body)
+   this.props.updateAdmin(body)
 
 
    //reset the inputs to empty 
@@ -63,41 +63,28 @@ class CreateAdminForm extends Component {
     return (
       <div>
      <Form onSubmit={this.onSubmit}>
-  <Form.Row>
-    <Form.Group as={Col} controlId="formGridEmail">
-      <Form.Label>Email</Form.Label>
-      <Form.Control type="email" onChange ={this.onChange} placeholder="Enter email" />
-    </Form.Group>
-
-    <Form.Group as={Col} controlId="formGridPassword">
-      <Form.Label>Password</Form.Label>
-      <Form.Control placeholder="Password" onChange ={this.onChange} />
-    </Form.Group>
-  </Form.Row>
-  <Form.Row>
     <Form.Group as={Col} controlId="formFirstName">
       <Form.Label>First Name</Form.Label>
-      <Form.Control placeholder="first name"  type ="text" name="firstName" onChange = {this.onChange} value={this.state.firstName}/>
+      <Form.Control placeholder="first name"  type ="text" name="firstName" onChange = {this.onChange} value={(this.props.admin)?(this.props.admin.firstName):"First Name"}/>
     </Form.Group>
 
     <Form.Group as={Col} controlId="formMiddleName">
       <Form.Label>middle Name</Form.Label>
-      <Form.Control placeholder ="middle name" type ="text" name="middleName" onChange = {this.onChange} value={this.state.middleName}>
+      <Form.Control placeholder ="middle name" type ="text" name="middleName" onChange = {this.onChange} value={(this.props.admin)?(this.props.admin.middleName):"Middle Name"}>
       </Form.Control>
     </Form.Group>
 
     <Form.Group as={Col} controlId="formLastName">
       <Form.Label>last name</Form.Label>
-      <Form.Control placeholder ="last name" type ="text" name="lastName" onChange = {this.onChange} value={this.state.lastName}/>
+      <Form.Control placeholder ="last name" type ="text" name="lastName" onChange = {this.onChange} value={(this.props.admin)?(this.props.admin.lastName):"Last Name"}/>
     </Form.Group>
-  </Form.Row>
   <Form.Group as={Col} controlId="formGridAge">
       <Form.Label>Age</Form.Label>
-      <Form.Control placeholder = "age" type ="number" name="age" onChange = {this.onChange} value={this.state.age}/>
+      <Form.Control placeholder = "age" type ="number" name="age" onChange = {this.onChange} value={(this.props.admin)?(this.props.admin.age):"Age"}/>
     </Form.Group>
   
   <Button variant="primary" type="submit">
-    Create admin
+    Update admin
   </Button>
 </Form>;
       </div>
@@ -105,17 +92,16 @@ class CreateAdminForm extends Component {
   }
 }
 
-CreateAdminForm.propTypes ={
+UpdateAdmin.propTypes ={
   createAdmin: PropTypes.func.isRequired
 };
 
 const map = (state) =>{
   return{
-    admin: state.admin
-
+    admin: state.updatedAdmin
   }
 }
 
 
 //exports the component to god knows where
-export default connect(map,{createAdmin})(CreateAdminForm);
+export default connect(map,{updateAdmin})(UpdateAdmin);
