@@ -2,44 +2,37 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const VacancySchema = new Schema({
-        careerLevel: {
+        careerLvl: {
             type: String,
             required: true
         },
-        jobDescription: {
+        jobDesc: {
             type: String,
             required: true
         },
-        educationLevel: {
+        jobTyp: {
             type: String,
             required: true
         },
-        partnerId: {
-            type: String,
-        },
-            time : {
-                 type : Date, default: Date.now 
-                },
-        
-        skillsRequired: {
+        educLvl: {
             type: String,
             required: true
         },
-        applicants: {
-            type: Array,
-            default: []
+        empID: {
+            type: Number,
+            required: true
         },
-        status: {
-            type: Boolean,
-            default: false
+        time: {
+            type: Date,
+            required: true
         },
-        closed:{
-            type:Boolean,
-            default:false
+        skillsReq: {
+            type: String,
+            required: true
         },
-        tags:{
-            type: Array,
-            default: []
+        jobReq: {
+            type: String,
+            required: true
         }
     }
 )

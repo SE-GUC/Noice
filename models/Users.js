@@ -90,12 +90,7 @@ const userSchema = new Schema({
             Region: String,
             startTime: String,
             endTime: String,
-            rate: Number,
-            isDepartmentAvailable: [{
-                nameOfSubdepartment: String,
-                isAvailable: Boolean,
-                capacity: Number,
-            }]
+            rate: Number
         }
     ],
     skills: {
