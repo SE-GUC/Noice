@@ -93,6 +93,7 @@ test('Create a new location', async () =>{
     expect(response2.data.data.firstName).toBe("Andrew")
 });
 
+// IF YOU CHANGE the capacity or locationId in the body, reflect them in the search test under this
  /* test('Create a new room', async () =>{
     const body={
         capacity:120,
@@ -110,6 +111,19 @@ test('Create a new location', async () =>{
     expect(user.data.data._id).toEqual(user2.data.data._id)
     icRoom=user.data.data._id;
   }); */
+
+
+  /* // Depends on the create room
+  test('Search for a room', async()=>{
+
+    const body={
+      "attribute" : "capacity" ,
+      "value" : "120" // if you change the create room attributes/values, reflect the change here
+    }
+    const response = await funcs.searchRoom(body)
+    expect(response.data.data[0].locationId).toEqual("ic") // if you change the create room attributes/values, reflect the change here
+
+  })*/
 
   test('First Location member should see is Costa', async () => {
     const response =  await funcs.membersViewAllLocations()
