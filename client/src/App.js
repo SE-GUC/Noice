@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import Home from './components/Home'
 //add the rest of the admin cruds here
 import CreateAdminForm from './components/adminCruds/CreateAdminForm'
-
+import CreateUsersForm from './components/usersCruds/CreateUsersForm'
 //importing the store
 import store from './store.js'
 //add other cruds here
@@ -17,7 +17,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
-
+import Button from 'react-bootstrap/Button';
 
 class App extends Component {
 
@@ -47,12 +47,16 @@ class App extends Component {
           <button type="button" className="btn btn-outline-info">Search</button>
         </Form>
            </Navbar.Collapse>
+           <button type="button" className="btn btn-outline-info">
+           <Nav.Link  className="usersCreateLink" href={'/usersCreate'}>Sign up</Nav.Link>
+           </button>
            </Navbar><br/>
-
+   
           {/* add a route for you here */}
               <Switch>
                 <Route exact path='/adminCreate' component={ CreateAdminForm  } />
                 <Route exact path='/home' component={ Home  } />
+                <Route exact path='/usersCreate' component={ CreateUsersForm  } />
               
                </Switch>
           </div>
