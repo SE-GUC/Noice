@@ -109,15 +109,15 @@ export default class VacancySearch extends Component {
                 return(
                     <div>
                     <strong>ID:</strong> <pre>{foundVacancy._id}</pre>
-                    <pre>Career Level: {foundVacancy.careerLevel}</pre>
-                    <pre>Job Description: {foundVacancy.jobDescription}</pre>
-                    <pre>Education Level: {foundVacancy.educationLevel}</pre>
-                    <pre>Partner ID: {foundVacancy.partnerId}</pre>
-                    <pre>Skills Required: {foundVacancy.skillsRequired}</pre>
-                    <pre>Applicants: {JSON.stringify(foundVacancy.applicants, null, 4)}</pre>
-                    <pre>Status: {JSON.stringify(foundVacancy.status)}</pre>
-                    <pre>Closed: {JSON.stringify(foundVacancy.closed)}</pre>
-                    <pre>Tags: {JSON.stringify(foundVacancy.tags)}</pre>
+                    <strong>Career Level:</strong><pre> {foundVacancy.careerLevel}</pre>
+                    <strong>Job Description:</strong> <pre>{foundVacancy.jobDescription}</pre>
+                    <strong>Education Level:</strong> <pre>{foundVacancy.educationLevel}</pre>
+                    <strong>Partner ID:</strong><pre> {foundVacancy.partnerId}</pre>
+                    <strong>Skills Required:</strong><pre> {foundVacancy.skillsRequired}</pre>
+                    <strong>Applicants:</strong> <pre>{JSON.stringify(foundVacancy.applicants, null, 4)}</pre>
+                    <strong>Status:</strong><pre> {JSON.stringify(foundVacancy.status)}</pre>
+                    <strong>Closed:</strong><pre> {JSON.stringify(foundVacancy.closed)}</pre>
+                    <strong>Tags:</strong><pre> {JSON.stringify(foundVacancy.tags)}</pre>
 
                     <hr />
                     </div>

@@ -84,12 +84,12 @@ export default class Event extends Component {
                 
                 return(
                     <div>
-                    <pre>ID: {foundRoom._id}</pre>
-                    <pre>Capacity: {foundRoom.capacity}</pre>
-                    <pre>Is Available: {JSON.stringify(foundRoom.isAvailable)}</pre>
-                    <pre>Location ID: {foundRoom.locationId}</pre>
-                    <pre>Reservations: {JSON.stringify(foundRoom.reservations, null, 4)}</pre>
-                    <pre>Tags: {JSON.stringify(foundRoom.tags)}</pre>
+                    <strong>ID:</strong> <pre> {foundRoom._id}</pre>
+                    <strong>Capacity: </strong> <pre>{foundRoom.capacity}</pre>
+                    <strong>Is Available: </strong> <pre>{JSON.stringify(foundRoom.isAvailable)}</pre>
+                    <strong>Location ID: </strong> <pre>{foundRoom.locationId}</pre>
+                    <strong>Reservations: </strong> <pre>{JSON.stringify(foundRoom.reservations, null, 4)}</pre>
+                    <strong>Tags: </strong> <pre>{JSON.stringify(foundRoom.tags)}</pre>
 
                     <hr />
                     </div>

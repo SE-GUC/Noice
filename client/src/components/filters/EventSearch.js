@@ -89,16 +89,16 @@ export default class Event extends Component {
                 
                 return(
                     <div>
-                    <pre>Name: {foundEvent.Name}</pre>
-                    <pre>Owner: {foundEvent.Owner}</pre>
-                    <pre>Type: {foundEvent.Type}</pre>
-                    <pre>Location: {foundEvent.Location}</pre>
-                    <pre>Participants: {foundEvent.Participants}</pre>
-                    <pre>Start Date: {JSON.stringify(foundEvent.startDate)}</pre>
-                    <pre>End Date: {JSON.stringify(foundEvent.endDate)}</pre>
-                    <pre>Tags: {JSON.stringify(foundEvent.tags)}</pre>
-                    <pre>Description: {foundEvent.Description}</pre>
-                    <pre>Joined Members: {JSON.stringify(foundEvent.joinedMembers)}</pre>
+                    <strong>Name: </strong> <pre> {foundEvent.Name}</pre>
+                    <strong>Owner: </strong> <pre>{foundEvent.Owner}</pre>
+                    <strong>Type: </strong> <pre>{foundEvent.Type}</pre>
+                    <strong>Location: </strong> <pre>{foundEvent.Location}</pre>
+                    <strong>Participants: </strong> <pre>{foundEvent.Participants}</pre>
+                    <strong>Start Date: </strong> <pre>{JSON.stringify(foundEvent.startDate)}</pre>
+                    <strong>End Date: </strong> <pre>{JSON.stringify(foundEvent.endDate)}</pre>
+                    <strong>Tags: </strong> <pre>{JSON.stringify(foundEvent.tags)}</pre>
+                    <strong>Description: </strong> <pre>{foundEvent.Description}</pre>
+                    <strong>Joined Members: </strong> <pre>{JSON.stringify(foundEvent.joinedMembers)}</pre>
 
                     <hr />
                     </div>
