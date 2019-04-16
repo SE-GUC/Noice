@@ -24,6 +24,9 @@ router.put('/updateLocation/:id',locationInAdminsController.updateLocation)
 
 router.delete('/deleteLocation/:id',locationInAdminsController.deleteLocation)
 
+router.get('/rooms/view_room/:id',roomController.findRoom)
+
+router.delete
 // room filter
 router.post('/searchroom',roomController.search)
 

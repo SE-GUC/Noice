@@ -496,6 +496,10 @@ exports.rejectRoomRes = async function(req,res){
 exports.acceptRoomRes = async function(req,res){
         if(!req.params.id) return res.json({Eror: "You must specify which room to show th reservations!"})
         if(!req.body.startDate) return res.status(400).json({Error:"You must specify the reservation to be rejected by sending its <startDate>"})
+        var selectedReservation = null
+        var unrejectedReservations = 0
+        var rejectedReservations = 0
+        var acceptedReservations = 0
         try{
             roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
             roomRead  = roomRes.data.data
@@ -520,10 +524,6 @@ exports.acceptRoomRes = async function(req,res){
             console.log(JSON.stringify({error: 'Cannot get the specified room'}))
             return res.status(404).json({error: 'Cannot get the specified room'})
         }
-        var selectedReservation = null
-        var unrejectedReservations = 0
-        var rejectedReservations = 0
-        var acceptedReservations = 0
         roomRead.reservations.forEach( async element => {
                     delete element._id
                     if(compareStartDates(element.startDate,req.body.startDate)){
@@ -533,7 +533,7 @@ exports.acceptRoomRes = async function(req,res){
                         try{
                              var rejectRoomBody = new Object()
                              rejectRoomBody.startDate = element.startDate
-                             var roomRejectRes = await axios.post('http://localhost:3000/api/users/location/reject_req_res/'+roomRead._id,rejectRoomBody)
+                             var roomRejectRes = await axios.post('http://localhost:3000/api/users/location/roomRes/update/rej_room_res/'+roomRead._id,rejectRoomBody)
                              rejectedReservations = rejectedReservations+1
                         }catch(error){
                             unrejectedReservations = unrejectedReservations+1
@@ -550,6 +550,30 @@ exports.acceptRoomRes = async function(req,res){
         delete selectedReservation._id
         selectedReservation.state = 'RESERVED'
         console.log({selectedReservationAcceptAfter:selectedReservation})
+        try{
+            roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
+            roomRead  = roomRes.data.data
+        }catch(error){
+            console.log(error.config);
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+                return res.json({error:'Error getting room with status code: '+ error.response.status,
+                serverResponse:error.response.data,
+                responseHaeders: error.response.headers})
+            } else if (error.request) {
+                console.log(error.request);
+                return res.json({Error:'The server did not respond for this request.',request:error.request})
+            } else {
+                console.log('Error', error.message);
+                return res.json({Error:'Unkonw error has happened',message: error.message})
+            }
+        }
+        if(!roomRead) {
+            console.log(JSON.stringify({error: 'Cannot get the specified room'}))
+            return res.status(404).json({error: 'Cannot get the specified room'})
+        }
         newRoom = await axios.post('http://localhost:3000/api/users/location/roomRes/update/curr_room_res/'+req.params.id,selectedReservation)
         }catch(error){
             console.log(error.config);

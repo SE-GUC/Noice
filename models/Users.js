@@ -107,7 +107,6 @@ const userSchema = new Schema({
     pastEvents: 
       [
         {
-            
             name:String,
             startDate: String,
             endDate: String
