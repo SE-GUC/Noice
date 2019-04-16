@@ -5,11 +5,16 @@ var id =''
 // IF YOU CHANGE the jobDescription or tags in the body, reflect them in the search test under this
 test('create vacancy',async()=>{
   const body={
+    title: "hamada",
     careerLevel:"create testing",
     jobDescription:"teset",
     educationLevel:"master phd",
+    partnerId: "dummy id",
+    time: "",
     skillsRequired:"yeb2a shaba7",
-    partnerId:"dummy id",
+    applicants: [],
+    status: false,
+    closed: false,
     tags:["tag1","tag2"]
 }
 expect.assertions(1)
