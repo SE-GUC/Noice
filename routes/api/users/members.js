@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const locationInMemberController = require('../../../controllers/locationController')
+const locationController = require('../../../controllers/locationController')
 const memberController = require('../../../controllers/memberController')
 const roomController = require('../../../controllers/roomController')
-
+const partnerController = require('../../../controllers/partnerController')
 //router.get('/:date', memberController.findLocationWithDate)
 
 router.get('/', memberController.getAllMember)
@@ -18,11 +18,16 @@ router.delete('/:id', memberController.deleteMember)
 router.get('/:id',memberController.findMember)
 
 // get all locations 
-router.get('/getLocations/1',locationInMemberController.getAllLocations)
+router.get('/getLocations/1',locationController.getAllLocations)
 
 //get a location profile
-router.get('/getLocation/:id',locationInMemberController.findLocation)
+router.get('/getLocation/:id',locationController.findLocation)
 
+
+router.get('/get_all/partners',partnerController.getAllPartners)
+
+//get all rooms for a certain location
+router.get('/get_all/rooms_for/:id',roomController.getRoomsForLoc)
 
 //get all rooms for the location
 /*router.get('/get_rooms_for_loc/:id',roomController.getRoomsForLoc)

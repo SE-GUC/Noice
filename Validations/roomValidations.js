@@ -13,7 +13,8 @@ module.exports = {
                     state: Joi.string().required().only('REQUESTED','RESERVED','REJECTED'),
                     startDate: Joi.date().required().format('DD-MM-YYYY hh:mm'),
                     endDate: Joi.date().required().format('DD-MM-YYYY hh:mm'),
-                    reserverId: Joi.string().required()
+                    reserverId: Joi.string().required(),
+                    _id:Joi.string().optional()
                 }
             )),
             tags: Joi.array(),
@@ -32,7 +33,8 @@ module.exports = {
                     state: Joi.string().required().only('REQUESTED','RESERVED','REJECTED'),
                     startDate: Joi.date().required().format('DD-MM-YYYY hh:mm'),
                     endDate: Joi.date().required().format('DD-MM-YYYY hh:mm'),
-                    reserverId: Joi.string().required()
+                    reserverId: Joi.string().required(),
+                    _id:Joi.string().optional()
                 }
             )),
             tags: Joi.array(),
