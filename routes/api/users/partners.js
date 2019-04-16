@@ -29,7 +29,7 @@ router.get('/viewoldvacancy/:id',vacancyController.getOldVacancy)
 
 router.post('/createvacancy',vacancyController.createVacancy)
 
-router.put('/updatevacancy/:id',vacancyController.editVacancy)
+router.put('/updatevacancy/:id',vacancyController.updateVacancy)
 
 router.delete('/deletevacancy/:id',vacancyController.deleteVacancy)
 
