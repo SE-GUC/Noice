@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 //import prop types which validates the inputs to this components
 import PropTypes from 'prop-types';
 //import actions on this component
-import {searchVacancy} from '../../actions/vacancyFilterActionsFolder/vacancyFilterActions';
+import {searchVacancy} from '../../actions/filterActionsFolder/filterActions';
 
 import Select from 'react-select'
 
@@ -55,6 +55,7 @@ class VacancySearch extends Component {
     async onSubmit(e) { // CHANGE THIS
         e.preventDefault();
         // console.log("You pressed submit")
+        if (this.state.attribute === '') return;
         const body = {
             attribute : this.state.attribute,
             value : this.state.value
@@ -63,8 +64,8 @@ class VacancySearch extends Component {
         this.props.searchVacancy(body)
 
         this.setState({
-            attribute: '',
-            value: '',
+            // attribute: '',
+            // value: '',
             //foundVacancies: []
             foundVacancies: [{data: {
                 careerLevel: '',

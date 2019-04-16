@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 //import prop types which validates the inputs to this components
 import PropTypes from 'prop-types';
 //import actions on this component
-import {searchRoom} from '../../actions/vacancyFilterActionsFolder/roomFilterActions';
+import {searchRoom} from '../../actions/filterActionsFolder/filterActions';
 
 import Select from 'react-select'
 
@@ -44,6 +44,7 @@ class RoomSearch extends Component {
     onSubmit(e) { // CHANGE THIS
         e.preventDefault();
         // console.log("You pressed submit")
+        if (this.state.attribute === '') return;
         const body = {
             attribute : this.state.attribute,
             value : this.state.value
@@ -52,8 +53,8 @@ class RoomSearch extends Component {
         this.props.searchRoom(body)
 
         this.setState({
-            attribute: '',
-            value: '',
+            // attribute: '',
+            // value: '',
             foundRooms: []
         })
 

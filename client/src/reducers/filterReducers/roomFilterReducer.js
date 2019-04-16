@@ -1,4 +1,4 @@
-import {SEARCH_ROOM}  from '../../actions/vacancyFilterActionsFolder/roomFilterTypes'
+import {SEARCH_ROOM}  from '../../actions/filterActionsFolder/filterTypes'
 
 const initialState = {
 // response from searching:
