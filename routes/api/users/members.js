@@ -3,8 +3,18 @@ const router = express.Router();
 
 const locationController = require('../../../controllers/locationController')
 const memberController = require('../../../controllers/memberController')
+const vacancyController = require('../../../controllers/vacancyController')
 const roomController = require('../../../controllers/roomController')
 const partnerController = require('../../../controllers/partnerController')
+
+//view all locations
+router.get('/location/',locationInMemberController.getAllLocations)
+// find location by date
+//router.get('/location/:date',locationInMemberController.findLocationDate)
+
+//get all vacancies
+router.get('/vacancy/',vacancyController.getAllVacancies)
+
 //router.get('/:date', memberController.findLocationWithDate)
 
 router.get('/', memberController.getAllMember)

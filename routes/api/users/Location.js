@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const location_controller = require('../../../controllers/locationController')
+const location_controller=require('../../../controllers/locationController')
 
 const roomController = require('../../../controllers/roomController')
 
@@ -12,7 +12,7 @@ router.post('/locationE/update/curr_loc/:id', location_controller.updateLocation
 
 router.delete('/locationE/delete/curr_loc/:id',location_controller.deleteLocation) //This is the location ID that is being sent
 
-router.get('/locationE/get/curr_loc/:id',location_controller.findLocation) //This is the location ID that is being sent
+router.get('/:id',location_controller.findLocation)
 
 router.put('/room/create/new_room/:id',roomController.createRoom)  //This is the location ID that is being sent
 
@@ -39,10 +39,6 @@ router.post('/roomRes/update/rej_room_res/:id',roomController.rejectRoomRes) //T
 router.post('/roomRes/update/acc_room_res/:id',roomController.acceptRoomRes) //This is the room ID that is being sent
 
 router.post('/roomRes/update/curr_room_res/:id',roomController.updateRoomRes) //This is the room ID that is being sent
-
-const roomController = require('../../../controllers/roomController')
-
-
 
 router.get('/',location_controller.getAllLocations)
 router.post('/',location_controller.createLocation)

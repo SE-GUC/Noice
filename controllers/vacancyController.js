@@ -1,5 +1,4 @@
 
-
 const express = require('express')
 const mongoose = require('mongoose')
 const axios = require("axios")
@@ -24,7 +23,10 @@ exports.getAllFinalVacancies = async function(req,res){
 exports.createVacancy = async function(req,res){
     try {
         const isValidated = validator.createValidation(req.body)
-        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        var error={
+            error:400
+        }
+        if (isValidated.error) return res.json({msg:'Error 400: Bad Request', data:isValidated.error.details[0].message})
         const newVacancy = await Vacancy.create(req.body)
         res.json({msg:'Vacancy was created successfully', data: newVacancy})
        }
@@ -40,7 +42,10 @@ exports.updateVacancy = async function(req,res){
         const updateVacancy = await Vacancy.findById(id)
         if(!updateVacancy) return res.status(404).send({error: 'Vacancy does not exist'})
         const isValidated = validator.updateValidation(req.body)
-        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        var error={
+            error:400
+        }
+        if (isValidated.error) return res.json({msg:'Error 400: Bad Request', data:isValidated.error.details[0].message})
         const upVacancy = await Vacancy.updateOne(req.body)
 
         var acceptedMember = SeeIfMemberIsAcceptedInBody(req.body)
@@ -246,9 +251,11 @@ exports.cancelApplication= async (req,res)=>{
 }
 
 exports.closeVacancy = async (req,res)=>{
-    res.json({msg:"we closed the vacancy",data:Vacancy.findByIdAndUpdate(id,Vacancy.findByIdAndUpdate(req.params.id,body={close:true}))})
+    const mid=req.params.id;
+    const closed= await Vacancy.findByIdAndUpdate(mid,{"closed": "true"});
+    const after= await Vacancy.findById(mid)
+    res.json({msg:"we closed the vacancy",data:after})
 }
-
 
 // Search format in POST body: { "attribute" : "attributeyouwantHERE" , "value" : "valueyouwantHERE"}
 exports.search = async function(req,res){

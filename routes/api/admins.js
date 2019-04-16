@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
@@ -5,6 +6,17 @@ const mongoose = require('mongoose')
 const admin_controller = require('../../controllers/adminController')
 const locationInAdminsController = require('../../controllers/locationController')
 const roomController = require('../../controllers/roomController')
+const memberController = require('../../controllers/memberController')
+
+router.get('/member/', memberController.getAllMember)
+
+router.post('/member/', memberController.createMember)
+
+router.put('/member/:id', memberController.updateMember)
+
+router.delete('/member/:id', memberController.deleteMember)
+
+router.get('/member/:id',memberController.findMember)
 
 //Admins controllers
 router.get('/',admin_controller.getAllAdmins)
@@ -24,9 +36,6 @@ router.put('/updateLocation/:id',locationInAdminsController.updateLocation)
 
 router.delete('/deleteLocation/:id',locationInAdminsController.deleteLocation)
 
-router.get('/rooms/view_room/:id',roomController.findRoom)
-
-router.delete
 // room filter
 router.post('/searchroom',roomController.search)
 

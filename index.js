@@ -31,6 +31,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(cors())
 
+require('./config/passport').passport
+
 app.get('/', (req, res) => {
     res.send(`<h1>Welcome to Lirten Hub</h1>
     <a href="/api/admins">Admins</a>
@@ -54,5 +56,5 @@ app.use((req, res) => {
     res.status(404).send({err: 'We can not find what you are looking for'});
  })
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`Server up and running on port ${port}`))

@@ -4,44 +4,35 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
     
     email: {
-     type: String,
-     required: true
+     type: String
+    
     },
     password: {
-     type: String,
-      required: true
+     type: String
     },
    firstName: {
-        type: String,
-        required: true
+        type: String
    },
    middleName: {
-    type: String,
-    required: true
+    type: String
    },
    lastName: {
-    type: String,
-    required: true
+    type: String
    },  
     birthDate: {
-        type: String,
-        required: true
+        type: String
     },
     gender: {
-        type: String,
-        required: true
+        type: String
     },
     address:{
-      type: String,
-      required: true
+      type: String
     },
     phoneNumber:{
-      type: String,
-      required: true
+      type: String
     },
     typeOfUser:{
-        type: String,
-        required: true
+        type: String
     },
     companyName: {
         type: String,
@@ -90,12 +81,7 @@ const userSchema = new Schema({
             Region: String,
             startTime: String,
             endTime: String,
-            rate: Number,
-            isDepartmentAvailable: [{
-                nameOfSubdepartment: String,
-                isAvailable: Boolean,
-                capacity: Number,
-            }]
+            rate: Number
         }
     ],
     skills: {
@@ -112,6 +98,10 @@ const userSchema = new Schema({
             endDate: String
         }
     ],
+    appliedVacancy: {
+        type: Array,
+        default:[]
+    },
     projectsCompleted:{
       type: String,
     },
