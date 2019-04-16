@@ -47,23 +47,24 @@ exports.updateVacancy = async function(req,res){
         if(!updateVacancy) return res.status(404).send({error: 'Vacancy does not exist'})
         const isValidated = validator.updateValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        const upVacancy = await Vacancy.updateOne(req.body)
+        const upVacancy = await Vacancy.findByIdAndUpdate(id,req.body)
 
-        var acceptedMember = SeeIfMemberIsAcceptedInBody(req.body)
+      /*  var acceptedMember = SeeIfMemberIsAcceptedInBody(req.body)
         if(!acceptedMember)
         {
              // If the update is to the vacancy itself, send a notification to everyone who applied
-             NotifyAllApplicantsThatVacancyUpdated(updateVacancy)
+            //  NotifyAllApplicantsThatVacancyUpdated(updateVacancy)
         }
         else{
             // If the update is to accept a member, send a notification to that member only
-            SendNotificationToAcceptedMember(acceptedMember,updateVacancy.empID)
+            // SendNotificationToAcceptedMember(acceptedMember,updateVacancy.empID)
         }
 
         //if(Object.keys(req.body.applicants).includes({"accepted" : "true"}))
         res.json({msg: 'Vacancy updated successfully', data:updateVacancy.applicants})
         
-       }
+       */
+    }
        catch(error) {
            // We will be handling the error later
            console.log(error)
