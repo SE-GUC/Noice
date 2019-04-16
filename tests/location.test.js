@@ -93,7 +93,8 @@ test('Create a new location', async () =>{
     expect(response2.data.data.firstName).toBe("Andrew")
 });
 
- /* test('Create a new room', async () =>{
+/*  test('Create a new room', async () =>{
+    jest.setTimeout(10000)
     const body={
         capacity:120,
         isAvailable:true,
@@ -105,7 +106,7 @@ test('Create a new location', async () =>{
           reserverId: icMember,
         }]
     }
-    const user =  await funcs.createLocationRoom(body)
+    const user =  await funcs.createLocationRoom(ic,body)
     const user2 =  await funcs.viewRoomById(user.data.data._id)
     expect(user.data.data._id).toEqual(user2.data.data._id)
     icRoom=user.data.data._id;
@@ -204,7 +205,6 @@ test('Create a new location', async () =>{
         expect(user.data.data._id).toEqual(user2.data.data._id)
     });
     
-
   
 
 
