@@ -13,6 +13,7 @@ import Button from 'react-bootstrap/Button';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 //requiring axios
 //const axios = require('axios');
 
@@ -20,6 +21,7 @@ import Col from 'react-bootstrap/Col';
 
 //class 3ady ya3ni 
 class CreateUsersForm extends Component {
+
   //contructor with the attribute of the crud you want
    constructor(props){
     super(props)
@@ -95,18 +97,21 @@ class CreateUsersForm extends Component {
      this.setState({[e.target.name]: e.target.value});
    }
    _onButtonClick() {
+     
     this.setState({
       typeOfUser:"Member",
       showComponent: true,
     });
   }
   _onButtonClick1() {
+  
     this.setState({
       typeOfUser:"Partner",
       showComponent1: true,
     });
   }
   _onButtonClick2() {
+
     this.setState({
       typeOfUser:"Co-working Space Owner",
       showComponent2: true,
@@ -140,11 +145,8 @@ class CreateUsersForm extends Component {
       <Form.Control placeholder = "Certificates Held" type ="text" name="certificatesHeld" onChange = {this.onChange} value={this.state.certificatesHeld}/>
     </Form.Group>
     
-    <Form.Group as={Col} controlId="Nsmr">
-      <Form.Label >Certificates Held</Form.Label>
-      <Form.Control placeholder = "Certificates Held" type ="text" name="mvqemvp" onChange = {this.onChange} value={this.state.pastEvents.name}/>
-    </Form.Group>
-    
+  
+  
     
 
    </Form>
@@ -179,14 +181,6 @@ class CreateUsersForm extends Component {
       <Form.Label >Certificates Held</Form.Label>
       <Form.Control placeholder = "Certificates Held" type ="text" name="certificatesHeld" onChange = {this.onChange} value={this.state.certificatesHeld}/>
     </Form.Group>
-    
-    <Form.Group as={Col} controlId="Nsmr">
-      <Form.Label >Certificates Held</Form.Label>
-      <Form.Control placeholder = "Certificates Held" type ="text" name="mvqemvp" onChange = {this.onChange} value={this.state.pastEvents.name}/>
-    </Form.Group>
-    
-    
-
    </Form>
       
     )
@@ -389,10 +383,11 @@ class CreateUsersForm extends Component {
   <Dropdown.Item onClick={this._onButtonClick2} as="button">Co-working Space Owner</Dropdown.Item>
 </DropdownButton>
 <Form.Label > </Form.Label>
+<Form.Group>
 {this.state.showComponent ?  this.renderMember() :null}
 {this.state.showComponent1 ?  this.renderPartner() :null}
 {this.state.showComponent2?  this.renderLocation() :null}
-  
+</Form.Group>
   
   <Button color="primary" className="float-right" type="submit" >
     Create User

@@ -108,9 +108,9 @@ module.exports = {
             interests: Joi.string().min(1).max(5000).required(),
             pastEvents: Joi.array().items(Joi.object().keys(
                 {
-                    name:Joi.string().min(1).max(5000).required(),
-                    startDate: Joi.string().min(1).max(5000).required(),
-                    endDate: Joi.string().min(1).max(5000).required()
+                    name:Joi.string().min(1).max(5000),
+                    startDate: Joi.string().min(1).max(5000),
+                    endDate: Joi.string().min(1).max(5000)
                 }
             )),
             projectsCompleted: Joi.string().min(1).max(5000).required(),
