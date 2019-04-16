@@ -1,6 +1,7 @@
 /**
  * @jest-environment node
  */
+const mongoose = require('mongoose');
 const funcs = require('./partnerAxios');
 
 let partid=''

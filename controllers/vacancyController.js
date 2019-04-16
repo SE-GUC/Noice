@@ -1,8 +1,4 @@
 
-const express = require('express')
-const mongoose = require('mongoose')
-const axios = require("axios")
-
 var Vacancy= require('../models/Vacancy')
 const validator = require('../validations/vacancyValidations')
 
@@ -160,11 +156,14 @@ exports.viewAllApplicants = async(req,res)=>{
     try {
         const id = req.params.id
         const Vacancyy = await Vacancy.findById(id)
-        if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
+        const error = {
+        error:404
+        }
+        if(!Vacancyy) return res.json({msg:'error 404 vacancy not found',data: error})
         var query = await Vacancy.find({
             _id:id
         }).select('applicants')
-        res.json({msg: 'application successfully', data: query})
+        res.json({msg: 'found the vacancy successfully, here is the applicants', data: query})
        }
        catch(error) {
            console.log(error)
@@ -177,8 +176,10 @@ exports.viewNumberOfApplicants = async function(req,res){
     try {
         const id = req.params.id
         const Vacancyy = await Vacancy.findById(id)
-        if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
-        console.log('im here '+Vacancyy.applicants.length)
+        const error = {
+            error:404
+            }
+        if(!Vacancyy) return res.json({msg:'error 404 vacancy not found',data: error})
         res.json({msg: 'no of applicants is', data: Vacancyy.applicants.length})
        }
        catch(error) {
@@ -190,13 +191,19 @@ exports.viewNumberOfApplicants = async function(req,res){
 exports.apply= async (req,res)=>{
     try {
         const id = req.params.id
-        const body = req.body
+        const userId = req.body.id
         var Vacancyy = await Vacancy.findById(id)
-        if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
-        console.log('im here '+Vacancyy.applicants.length)
-        Vacancyy.applicants.push(body)
-        console.log('now im pushed '+Vacancyy.applicants.length)
-        console.log(Vacancyy.applicants)
+        const isValidated = validator.applyValidation(req.body)
+        var error = {
+            error:400
+            }
+        if (isValidated.error) return res.json({msg:'error 400 id is not valid',data: isValidated.error.details[0].message, error: error})
+         error = {
+            error:404
+            }
+        if(!Vacancyy) return res.json({msg:'error 404 vacancy not found',data: error})
+        Vacancyy.applicants.push(userId)
+        console.log('applicants after pushing'+Vacancyy.applicants)
         const updateBody={
          "applicants":Vacancyy.applicants
         }
@@ -216,8 +223,14 @@ exports.cancelApplication= async (req,res)=>{
         const Vacancyid = req.params.id
         const Userid = req.body.id
         var Vacancyy = await Vacancy.findById(Vacancyid)
-        //we do not find what you are looking for, keep scrolling  
-        if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
+        var error = {
+            error:400
+            }
+        if (isValidated.error) return res.json({msg:'error 400 id is not valid',data: error})
+         error = {
+            error:404
+            }
+        if(!Vacancyy) return res.json({msg:'error 404 vacancy not found',data: error})
         for(i=0;i<Vacancyy.applicants.length;i++){
             console.log(Vacancyy.applicants[i])
             if(Vacancyy.applicants[i].id==Userid){
@@ -228,20 +241,22 @@ exports.cancelApplication= async (req,res)=>{
             }
          //checks if you you arent in the applicants list and returns an error message
             if(i== (Vacancyy.applicants.length-1)){
-            res.status(404).send({error: "You haven't applied to this vacancy"})}
+                return res.json({msg:'error 400 id is not valid',data: error})
         }
         console.log(Vacancyy.applicants)
         const updateBody={
-         "applicants":Vacancyy.applicants
+         applicants:Vacancyy.applicants
         }
         const placeholder = await Vacancy.findByIdAndUpdate(Vacancyid,updateBody)
         console.log('after update'+placeholder)
         Vacancyy = await Vacancy.findById(Vacancyid)
         res.json({msg: 'Application cancelled', data: Vacancyy})
        }
-       catch(error) {
-           console.log(error)
-       } 
+       
+}
+catch(error) {
+    console.log(error)
+} 
 }
 
 exports.closeVacancy = async (req,res)=>{

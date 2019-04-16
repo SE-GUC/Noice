@@ -1,11 +1,13 @@
 /**
  * @jest-environment node
  */
-
+const mongoose = require('mongoose');
 const funcs = require('./membersfn')
 
 let xid_1='';
 let xid_2='';
+
+
 
 
 //creates member and tests

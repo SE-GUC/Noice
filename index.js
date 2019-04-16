@@ -20,11 +20,13 @@ const app = express()
 // DB Config
 const db = require('./config/keys').mongoURI
 
+
 // Connect to mongo
 mongoose
     .connect(db)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log(err))
+
 
 // Init middleware
 app.use(express.json())
