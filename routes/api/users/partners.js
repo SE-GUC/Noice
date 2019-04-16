@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('passport')
 const router = express.Router()
 const partner_controller = require('../../../controllers/partnerController')
 const locationInPartnersController = require('../../../controllers/locationController')
