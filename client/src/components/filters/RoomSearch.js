@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+//open a connection with the store
+import {connect} from 'react-redux';
+//import prop types which validates the inputs to this components
+import PropTypes from 'prop-types';
+//import actions on this component
+import {searchRoom} from '../../actions/vacancyFilterActionsFolder/roomFilterActions';
+
 import Select from 'react-select'
 
-export default class Event extends Component {
+
+class RoomSearch extends Component {
 
     constructor(props) {
         super(props);
@@ -42,10 +49,14 @@ export default class Event extends Component {
             value : this.state.value
         }
 
-        axios.post('http://localhost:5000/api/users/location/searchroom', body)
-        .then(res => this.setState({foundRooms : res.data.data}))
-        
-       console.log(this.state.foundRooms)
+        this.props.searchRoom(body)
+
+        this.setState({
+            attribute: '',
+            value: '',
+            foundRooms: []
+        })
+
     }
 
     render() {
@@ -56,31 +67,23 @@ export default class Event extends Component {
 
                     <div className="form-group">
                         <label>Filter by: </label>
-                     <Select
-                        options={ options }
-                        onChange= {(value) => {this.onChangeAttribute(value)}}
-                        />
+                     <Select options={ options } onChange= {(value) => {this.onChangeAttribute(value)}}/>
                     </div>
 
 
                     <div className="form-group">
                         <label>Enter value: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.ID}
-                                onChange={this.onChangeValue}
-                                />
+                        <input  type="text" className="form-control" value={this.state.ID} onChange={this.onChangeValue} />
                     </div>
                     
-             
-                    
                         <br/>
-                        <div className="form-group">
-                            <input type="submit" value="Search" className="btn btn-primary" />
-                        </div>
+
+                    <div className="form-group">
+                        <input type="submit" value="Search" className="btn btn-primary" />
+                    </div>
                 </form>
                 
-                {this.state.foundRooms.map(foundRoom =>{
+                {this.props.rooms.map(foundRoom =>{
                 
                 return(
                     <div>
@@ -111,3 +114,15 @@ const options = [
     { label: "Location ID", value: "locationId" },
     { label: "Tags", value: "tags" }
   ]
+
+
+  RoomSearch.propTypes ={
+    searchRoom: PropTypes.func.isRequired,
+    rooms: PropTypes.array.isRequired
+  };
+
+  const mapStateToProps = state =>({
+    rooms: state.room.rooms
+  })
+
+  export default connect(mapStateToProps,{searchRoom})(RoomSearch);

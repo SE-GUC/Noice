@@ -1,19 +1,19 @@
-import {SEARCH_VACANCY}  from '../actions/vacancyFilterActionsFolder/vacancyFilterTypes'
+import {SEARCH_ROOM}  from '../../actions/vacancyFilterActionsFolder/roomFilterTypes'
 
 const initialState = {
 // response from searching:
-vacancies:[]
+rooms:[]
 };
 
 export default function(state = initialState, action){
     switch(action.type)
     {
-        case SEARCH_VACANCY:
+        case SEARCH_ROOM:
 
         return{
             ...state,
             // adds the result into searchResult
-            vacancies: action.payload
+            rooms: action.payload
         }
         default: return state;
     }

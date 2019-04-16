@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 //import actions on this component
 import {searchVacancy} from '../../actions/vacancyFilterActionsFolder/vacancyFilterActions';
 
-// import axios from 'axios';
 import Select from 'react-select'
 
 class VacancySearch extends Component {
