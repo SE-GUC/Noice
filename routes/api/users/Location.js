@@ -28,7 +28,7 @@ router.get('/room/get/curr_room/:id',roomController.findRoom) //This is the room
 
 router.put('/roomRes/create/new_room_res/:id',roomController.createRoomResReq)  //This is the room ID that is being sent
 
-router.delete('/roomRes/delete/curr_room_res/:id',roomController.deleteRoomResReq)  //This is the room ID that is being sent
+router.post('/roomRes/delete/curr_room_res/:id',roomController.deleteRoomResReq)  //This is the room ID that is being sent
 
 router.post('/roomRes/get/curr_room_res/:id',roomController.getRoomRes) //This is the room ID that is being sent
 
