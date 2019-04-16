@@ -1,26 +1,26 @@
 const axios = require('axios');
 const functions={
     viewAllLocations: async() =>{
-        const locations =  await axios.get('http://localhost:3000/api/users/location/')
+        const locations =  await axios.get('http://localhost:3000/api/users/location/locationE/get/all_locs/')
         return locations
     },
     viewLocationById:async(id)=>{
-        const locations =  await axios.get(`http://localhost:3000/api/users/location/${id}`)
+        const locations =  await axios.get(`http://localhost:3000/api/users/location/locationE/get/curr_loc/${id}`)
         console.log(locations.data.data)
         return locations
     },
     updateLocation : async (id,body) =>{
-        const locations = await axios.put(`http://localhost:3000/api/users/location/${id}`,body)
+        const locations = await axios.put(`http://localhost:3000/api/users/location/locationE/update/curr_loc/${id}`,body)
         console.log(locations.data.data)
         return locations
     },
     createLocation: async(body)=>{
-        const locations = await axios.post('http://localhost:3000/api/users/location/',body)
+        const locations = await axios.post('http://localhost:3000/api/users/location/locationE/create/new_loc/',body)
         console.log('location info is'+ locations.data.data)  
         return locations
     },
     deleteLocation : async (id)=>{
-        const locations = await axios.delete(`http://localhost:3000/api/users/location/${id}`)
+        const locations = await axios.delete(`http://localhost:3000/api/users/location/locationE/delete/curr_loc/${id}`)
         return locations
        },
     createMember: async(body)=>{
@@ -34,12 +34,12 @@ const functions={
         return locations
     },
     createLocationRoom: async(id,body)=>{
-        const locations = await axios.put('http://localhost:3000/api/users/location/add_room/',body)
+        const locations = await axios.put('http://localhost:3000/api/users/location/room/create/new_room/',body)
         console.log('Room info is'+ locations.data.data)  
         return locations
     },
     viewRoomById:async(id)=>{
-        const locations =  await axios.get(`http://localhost:3000/api/users/location/get_room/${id}`)
+        const locations =  await axios.get(`http://localhost:3000/api/users/location/room/get/curr_room/${id}`)
         console.log(locations.data.data)
         return locations
     },    
