@@ -20,6 +20,13 @@ exports.getAllFinalVacancies = async function(req,res){
     res.json({data: vacancy})
 }
 
+exports.getAllPendingVacancies = async function(req,res){
+    const vacancy= await Vacancy.find({
+        status : false
+    })
+    res.json({data: vacancy})
+}
+
 exports.createVacancy = async function(req,res){
     try {
         const isValidated = validator.createValidation(req.body)
@@ -312,4 +319,18 @@ exports.search = async function(req,res){
     }
 
     res.json({data:returnVacancy})
+}
+
+exports.getOldVacancy = async function(req,res){
+    const ownerid= req.params.id
+     const vacancyad = await Vacancyad.find({ownerid})
+     res.json({data: vacancyad})
+}
+
+
+exports.getMyVacancy = async function(req,res){
+    const ownerid= req.params.id
+    const _id= req.params.iid
+    const vacancyad = await Vacancyad.find({_id,ownerid})
+    res.json({data: vacancyad})
 }

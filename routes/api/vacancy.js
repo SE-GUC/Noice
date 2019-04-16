@@ -7,6 +7,8 @@ router.post('/search',vacancyController.search)
 //cruds
 router.get('/',vacancyController.getAllVacancies)
 router.get('/final/1',vacancyController.getAllFinalVacancies)
+router.get('/pending/1',vacancyController.getAllPendingVacancies)
+
 router.post('/',vacancyController.createVacancy)
 router.put('/:id', vacancyController.updateVacancy)
 router.delete('/:id',vacancyController.deleteVacancy)

@@ -1,32 +1,43 @@
 const express = require('express')
 const router = express.Router()
-const partner_controller = require('../../../controllers/partnerController')
-const locationInPartnersController = require('../../../controllers/locationController')
+const partnerController = require('../../../controllers/partnerController')
+const locationController = require('../../../controllers/locationController')
+const vacancyController = require('../../../controllers/vacancyController')
+const memberController = require('../../../controllers/memberController')
 
 
-router.get('/',partner_controller.getAllPartners)
 
-router.post('/',partner_controller.createPartner)
+router.get('/',partnerController.getAllPartners)
 
-router.put('/:id', partner_controller.updatePartner)
+router.post('/',partnerController.createPartner)
 
-router.delete('/:id',partner_controller.deletePartner)
+router.put('/:id', partnerController.updatePartner)
 
-router.get('/:id',partner_controller.findPartner)
+router.delete('/:id',partnerController.deletePartner)
 
-router.get('/partnerLocation/1',locationInPartnersController.getAllLocations)
+router.get('/:id',partnerController.findPartner)
 
-router.get('/partnerGetLocation/:id',locationInPartnersController.findLocation)
+router.get('/getalllocation/1',locationController.getAllLocations)
 
-router.get('/viewallvacancy',partner_controller.getAllvacancy)
+router.get('/getlocation/:id',locationController.findLocation)
 
-router.get('/viewmyvacancy/:id/:iid',partner_controller.getMyvacancy)
+router.get('/viewallvacancy',vacancyController.getAllVacancies)
 
-router.get('/viewoldvacancy/:id',partner_controller.getOldvacancy)
+router.get('/viewmyvacancy/:id/:iid',vacancyController.getMyVacancy)
 
-router.post('/createvacancy',partner_controller.createVacancy)
+router.get('/viewoldvacancy/:id',vacancyController.getOldVacancy)
 
-router.put('/updatevacancy/:id',partner_controller.editVacancy)
+router.post('/createvacancy',vacancyController.createVacancy)
 
-router.delete('/deletevacancy/:id',partner_controller.deleteVacancy)
+router.put('/updatevacancy/:id',vacancyController.editVacancy)
+
+router.delete('/deletevacancy/:id',vacancyController.deleteVacancy)
+
+router.get('findvacancy/:id',vacancyController.findVacancy)
+
+router.get('findmember/:id',memberController.findMember)
+
+router.get('getallmembers/', memberController.getAllMember)
+
+
 module.exports = router
