@@ -1,183 +1,72 @@
-
-const functions={
-
-    viewAllLocations: async() =>{
-
-        const locations =  await axios.get('http://localhost:5000/api/users/location/')
-
-        return locations
-
+const axios = require('axios');
+const functions = {
+    getRoomsFromLoc: async (id) => {
+        const room = await axios.get(`http://localhost:3000/api/users/location/room/get/rooms_for_loc/${id}`)
+        return room
     },
-
-    viewLocationById:async(id)=>{
-
-        const locations =  await axios.get(`http://localhost:5000/api/users/location/${id}`)
-
-        console.log(locations.data.data)
-
-        return locations
-
+    getAllRooms: async () => {
+        const room = await axios.get(`http://localhost:3000/api/users/location/room/get/all_rooms/`)
+        return room
     },
-
-    updateLocation : async (id,body) =>{
-
-        const locations = await axios.put(`http://localhost:5000/api/users/location/${id}`,body)
-
-        console.log(locations.data.data)
-
-        return locations
-
+    findRoom: async (id) => {
+        const room = await axios.get(`http://localhost:3000/api/users/location/room/get/curr_room/${id}`)
+        return room
     },
-
-    createLocation: async(body)=>{
-
-        const locations = await axios.post('http://localhost:5000/api/users/location/',body)
-
-        console.log('location info is'+ locations.data.data)  
-
-        return locations
-
+    viewResRequestsForRoom: async (id) => {
+        const room = await axios.get(`http://localhost:3000/api/users/location/roomRes/get/res_for_room/${id}`)
+        return room
     },
-
-    deleteLocation : async (id)=>{
-
-        const locations = await axios.delete(`http://localhost:5000/api/users/location/${id}`)
-
-        return locations
-
-       },
-
-    createMember: async(body)=>{
-
-        const locations = await axios.post('http://localhost:5000/api/users/member/',body)
-
-        console.log('Room info is'+ locations.data.data)  
-
-        return locations
-
+    getRoomRes: async (id, body) => {
+        const room = await axios.post('http://localhost:3000/api/users/location/roomRes/get/curr_room_res/'+id, body)
+        return room
     },
-
-    viewMemberById:async(id)=>{
-
-        const locations =  await axios.get(`http://localhost:5000/api/users/member/${id}`)
-
-        console.log(locations.data.data)
-
-        return locations
-
+    rejectRoomRes: async (id,body) => {
+        const room = await axios.post('http://localhost:3000/api/users/location/roomRes/update/rej_room_res/'+id,body)
+        return room
     },
-
-    createLocationRoom: async(id,body)=>{
-
-        const locations = await axios.put(`http://localhost:5000/api/users/location/add_room/${id}`,body)
-
-        console.log('Room info is'+ locations.data.data)  
-
-        return locations
-
+    search: async (body) => {
+        const room = await axios.post('http://localhost:3000/api/users/location/searchroom',body)
+        return room
     },
-
-    viewRoomById:async(id)=>{
-
-        const locations =  await axios.get(`http://localhost:5000/api/users/location/get_room/${id}`)
-
-        console.log(locations.data.data)
-
-        return locations
-
-    },    
-
-    membersViewAllLocations: async() =>{
-
-        const locations =  await axios.get('http://localhost:5000/api/users/member/getLocations/1/')
-
-        return locations
-
+    createRoomResReq: async (id,body) => {
+        const room = await axios.put(`http://localhost:3000/api/users/location/roomRes/create/new_room_res/`+id,body)
+        return room
     },
-
-    membersViewLocationRooms:async(id)=>{
-
-        const locations =  await axios.get(`http://localhost:5000/api/users/member/memberLocationRooms/${id}`)
-
-        console.log(locations.data.data)
-
-        return locations
-
+    deleteRoom: async (id) => {
+        const room = await axios.delete(`http://localhost:3000/api/users/location/room/delete/curr_room/${id}`)
+        return room
     },
-
-    membersApplyRoom: async(id)=>{
-
-        const locations = await axios.post(`http://localhost:5000/api/users/member/memberApplyRoom/${id}`,body)
-
-        console.log('room info is'+ locations.data.data)  
-
-        return locations
-
+    createRoom: async (id,body) => {
+        const room = await axios.put(`http://localhost:3000/api/users/location/room/create/new_room/${id}`,body)
+        return room
     },
-
-    membersViewreservedRooms:async(id)=>{
-
-        const locations =  await axios.get(`http://localhost:5000/api/users/member/memberGetRoomReserved/${id}`)
-
-        console.log(locations.data.data)
-
-
+    createLocation: async (body) => {
+        const locations = await axios.put('http://localhost:3000/api/users/location/locationE/create/new_loc/', body)
         return locations
-
     },
-
-
-    memberDeleteRoom : async (id)=>{
-
-        const locations = await axios.delete(`http://localhost:5000/api/users/member/memberDeleteRoomRes/${id}`)
-
+    deleteLocation: async (id) => {
+        const locations = await axios.delete(`http://localhost:3000/api/users/location/locationE/delete/curr_loc/${id}`)
         return locations
-
-       },
-
-    adminViewLocationById:async(id)=>{
-
-        const locations =  await axios.get(`http://localhost:5000/api/admins/viewLocation/${id}`)
-
-        console.log(locations.data.data)
-
-
-        return locations
-
     },
-
-
-    adminDeleteLocation : async (id)=>{
-
-        const locations = await axios.delete(`http://localhost:5000/api/admins/deleteLocation/${id}`)
-
-        return locations
-
-       },
-
-    adminUpdateLocation : async (id,body) =>{
-
-        const locations = await axios.put(`http://localhost:5000/api/admins/updateLocation/${id}`,body)
-
-        console.log(locations.data.data)
-
-
-        return locations
-
+    updateRoom: async (id, body) => {
+        const room = await axios.post('http://localhost:3000/api/users/location/room/update/curr_room/'+id,body)
+        return room
     },
-
-
-    partnersViewAllLocations: async() =>{
-
-        const locations =  await axios.get('http://localhost:5000/api/users/partners/partnerLocation/1')
-
-
-        return locations
-
+    deleteRoomResReq: async (id,startDate) => {
+        var room = await axios.post(`http://localhost:3000/api/users/location/roomRes/delete/curr_room_res/${id}`,startDate)
+        return room
     },
-
-
+    viewRoomById: async (id) => {
+        const locations = await axios.get(`http://localhost:3000/api/users/location/room/get/curr_room/${id}`)
+        return locations
+    },
+    findLocation: async (id) => {
+        const locations = await axios.get(`http://localhost:3000/api/users/location/locationE/get/curr_loc/${id}`)
+        return locations
+    },
+    updateRoomRes: async (id,body) => {
+        const locations = await axios.post(`http://localhost:3000/api/users/location/roomRes/update/curr_room_res/`+id,body)
+        return locations
     }
-
-
+}
 module.exports = functions;

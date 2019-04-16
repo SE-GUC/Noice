@@ -1,0 +1,65 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\omarm\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js test
+
+PATH: 
+  C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;F:\Programs\Brackets\command;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\omarm\AppData\Local\Microsoft\WindowsApps;;F:\Programs\modelsim_ase\win32aloem;C:\Users\omarm\AppData\Roaming\npm;C:\Users\omarm\AppData\Local\Programs\Microsoft VS Code\bin
+
+Yarn version: 
+  1.15.2
+
+Node version: 
+  10.15.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\Users\omarm\Desktop\Noice\package.json: Unexpected token / in JSON at position 214
+      at JSON.parse (<anonymous>)
+      at C:\Users\omarm\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\omarm\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:304:30)
+      at C:\Users\omarm\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "express-test",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "jest": {
+      "testEnvironment": "node"
+    },
+    "scripts": {
+      "start": "node index",
+      "dev": "nodemon index",
+      //"test": "jest"
+      "test": "node_modules/.bin/jest --watch"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "axios": "^0.18.0",
+      "bcryptjs": "^2.4.3",
+      "cors": "^2.8.5",
+      "express": "^4.16.4",
+      "joi": "^14.3.1",
+      "joi-date-extensions": "^1.2.0",
+      "jsonwebtoken": "^8.5.0",
+      "moment": "^2.24.0",
+      "mongoose": "^5.5.1",
+      "passport": "^0.4.0",
+      "passport-jwt": "^4.0.0"
+    },
+    "devDependencies": {
+      "jest": "^24.7.1",
+      "nodemon": "^1.18.10"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
