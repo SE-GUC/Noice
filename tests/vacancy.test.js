@@ -3,6 +3,7 @@ const funcs = require('./vacancyFn');
 /* 
 // Depends on the create vacancy
 // Any changes you do in create vacancy represent them here
+// add these immediately after the create vacancy test
 test('Search for a vacancy', async()=>{
 
     const body={

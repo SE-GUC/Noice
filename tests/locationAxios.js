@@ -86,7 +86,7 @@ const functions={
     },
     /* // COMMENTED because room create test is not yet created, when it is, this should be uncommented and should work
     searchRoom:async (req) => {
-        const room = await axios.post('http://localhost:3000/api/vacancy/search',req)
+        const room = await axios.post('http://localhost:5000/api/users/location/search',req)
         return room
     },*/
     }
