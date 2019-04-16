@@ -1,3 +1,4 @@
+
 const functions={
 
     viewAllLocations: async() =>{
@@ -120,9 +121,11 @@ const functions={
 
         console.log(locations.data.data)
 
+
         return locations
 
     },
+
 
     memberDeleteRoom : async (id)=>{
 
@@ -138,9 +141,11 @@ const functions={
 
         console.log(locations.data.data)
 
+
         return locations
 
     },
+
 
     adminDeleteLocation : async (id)=>{
 
@@ -156,18 +161,23 @@ const functions={
 
         console.log(locations.data.data)
 
+
         return locations
 
     },
+
 
     partnersViewAllLocations: async() =>{
 
         const locations =  await axios.get('http://localhost:5000/api/users/partners/partnerLocation/1')
 
+
         return locations
 
     },
 
+
     }
+
 
 module.exports = functions;
