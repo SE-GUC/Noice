@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const VacancySchema = new Schema({
+        title: {
+            type: String,
+            required: true
+        },    
         careerLevel: {
             type: String,
             required: true
@@ -12,18 +16,16 @@ const VacancySchema = new Schema({
         },
         educationLevel: {
             type: String,
-            required: true
         },
         partnerId: {
             type: String,
         },
-            time : {
-                 type : Date, default: Date.now 
-                },
-        
+        time:{
+             type : Date,
+              default: Date.now 
+            },
         skillsRequired: {
-            type: String,
-            required: true
+            type: String
         },
         applicants: {
             type: Array,
