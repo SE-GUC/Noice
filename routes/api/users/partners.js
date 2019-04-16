@@ -21,6 +21,10 @@ router.delete('/:id',partner_controller.deletePartner)
 
 router.get('/:id',partner_controller.findPartner)
 
+router.get('/get_all/rooms',roomController.getAllRooms)
+
+router.get('/get/room/:id',roomController.findRoom)
+
 router.get('/partnerLocation/1',locationInPartnersController.getAllLocations)
 
 router.get('/partnerGetLocation/:id',locationInPartnersController.findLocation)
