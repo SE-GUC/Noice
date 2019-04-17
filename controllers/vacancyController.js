@@ -156,11 +156,8 @@ exports.findVacancy = async function(req,res){
 exports.viewAllApplicants = async(req,res)=>{
     try {
         const id = req.params.id
-        const Vacancyy = await Vacancy.findById(id)
-        const error = {
-        error:404
-        }
-        if(!Vacancyy) return res.json({msg:'error 404 vacancy not found',data: error})
+        const vacancy = await Vacancy.findById(id)
+        if(!vacancy) return res.status(400).send({ error: 'vacancy does not exist' })
         var query = await Vacancy.find({
             _id:id
         }).select('applicants')
@@ -176,12 +173,9 @@ exports.viewAllApplicants = async(req,res)=>{
 exports.viewNumberOfApplicants = async function(req,res){
     try {
         const id = req.params.id
-        const Vacancyy = await Vacancy.findById(id)
-        const error = {
-            error:404
-            }
-        if(!Vacancyy) return res.json({msg:'error 404 vacancy not found',data: error})
-        res.json({msg: 'no of applicants is', data: Vacancyy.applicants.length})
+        const vacancy = await Vacancy.findById(id)
+        if(!vacancy) return res.status(404).send({ error: 'vacancy does not exist' })
+        res.json({msg: 'number of applicants is', data: Vacancyy.applicants.length})
        }
        catch(error) {
            console.log(error)
@@ -197,39 +191,32 @@ exports.apply= async (req,res)=>{
         const user = await User.findById(userId)
         
         const isValidated = validator.applyValidation(req.body)
-        var error = {
-            error:400
-            }
-        if (isValidated.error) return res.json({msg:'error 400 id is not valid',data: isValidated.error.details[0].message, error: error})
-         error = {
-            error:404
-            }
-        if(!vacancy) return res.json({msg:'error 404 vacancy not found',data: error})
-        if(!user) return res.json({msg:'error 4004 user not foundo',data: error})
-        
+        if(isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        if(!vacancy) return res.status(404).send({ error: 'vacancy does not exist' })
+        if(!user) return res.status(404).send({ error: 'user does not exist' })
         for(i=0;i<vacancy.applicants.length;i++){
-            if(vacancy.applicants[i]==userId){
+            if(vacancy.applicants[i]===userId){
               return res.json({msg:'error 400 you already applied to this vacancy',error:400})
             }
         }
-        vacancy.applicants.push(userId)
         for(i=0;i<user.appliedVacancy.length;i++){
             if(user.appliedVacancy==id){
               return res.json({msg:'error 400 you already applied to this vacancy',error:400})
             }
         }
         user.appliedVacancy.push(id)
-        
+        vacancy.applicants.push(userId)
         const vacancyUpdateBody={
          "applicants":vacancy.applicants
-        }
-        await Vacancy.findByIdAndUpdate(id,vacancyUpdateBody)
+           }
         const userUpdateBody={
             "appliedVacancy":user.appliedVacancy
            }
+        await Vacancy.findByIdAndUpdate(id,vacancyUpdateBody)
         await User.findByIdAndUpdate(userId,userUpdateBody)
         updatedVacancy = await Vacancy.findById(id)
-        res.json({msg: 'we applied to you', data: updatedVacancy})
+        updatedUser = await User.findById(userId)
+        res.json({msg: 'we applied to you', data: updatedVacancy.applicants + updatedUser.appliedVacancy})
        }
        catch(error) {
            console.log(error)
@@ -239,42 +226,35 @@ exports.apply= async (req,res)=>{
 exports.cancelApplication= async (req,res)=>{
     try {
         // declaring inputs
+        const isValidated = validator.applyValidation(req.body)
+        if(isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        
         const vacancyId = req.params.id
         const userId = req.body.userId
-        var vacancy = await Vacancy.findById(vacancyId)
-        var error = {
-            error:400
-            }
-        var user = await User.findById(userId)
-        var error = {
-                error:400
-                }    
-        const isValidated = validator.cancelMyApplicationValidation(req.body)
-        if (isValidated.error) return res.json({msg:'error 400 id is not valid',data: error})
-         error = {
-            error:404
-            }
-        if(!vacancy) return res.json({msg:'error 404 vacancy not found',data: error})
-        if(!user) return res.json({msg:'error 404 user not found',data: error})
+        
+        const vacancy = await Vacancy.findById(vacancyId)
+        const user = await User.findById(userId)
+        if(!vacancy) return res.status(404).send({ error: 'vacancy does not exist' })
+        if(!user) return res.status(404).send({ error: 'user does not exist' })
+        
         for(i=0;i<vacancy.applicants.length;i++){
-            console.log('current applicant is '+vacancy.applicants[i]+' and user id is '+ userId )
-            if(vacancy.applicants[i]==userId){
+            if(vacancy.applicants[i]===userId){
                vacancy.applicants.splice(i,1)
                const vacancyUpdateBody={
                 applicants:vacancy.applicants
                }
-               await Vacancy.findByIdAndUpdate(vacancyId,vacancyUpdateBody)
-               updatedVacancy = await Vacancy.findById(vacancyId)
                for(j=0;j<user.appliedVacancy.length;j++){
             console.log('current vacancy is '+user.appliedVacancy[j])
-                if(user.appliedVacancy==vacancyId){
+                if(user.appliedVacancy===vacancyId){
                     user.appliedVacancy.splice(j,1)
                     const userUpdateBody={
                      appliedVacancy:user.appliedVacancy
                     }
                     await User.findByIdAndUpdate(userId,userUpdateBody)
+                    await Vacancy.findByIdAndUpdate(vacancyId,vacancyUpdateBody)
+                    updatedVacancy = await Vacancy.findById(vacancyId)
                     updatedUser = User.findById(userId)
-                    return res.json({msg: 'you cancelled your application', data: vacancy,updatedUser})
+                    return res.json({msg: 'you cancelled your application', data: updatedVacancy,updatedUser})
                 }
             }
                

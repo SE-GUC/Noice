@@ -118,6 +118,7 @@ const userSchema = new Schema({
       type: String,
     },
     appliedVacancy: {
+        //array of schema
         type: Array,
         default:[]
     }
