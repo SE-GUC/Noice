@@ -124,6 +124,7 @@ test('Create a new location', async () =>{
   })*/
 
   test('First Location member should see is Costa', async () => {
+    jest.setTimeout(100000000)
     const response =  await funcs.membersViewAllLocations()
     expect(response.data.data[0].NameOfPlace).toEqual('Costa')
     });
