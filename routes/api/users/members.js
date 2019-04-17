@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const locationController = require('../../../controllers/locationController')
+const locationInMemberController = require('../../../controllers/locationController')
 const memberController = require('../../../controllers/memberController')
 const vacancyController = require('../../../controllers/vacancyController')
 const roomController = require('../../../controllers/roomController')
