@@ -1,7 +1,8 @@
-
+var remove = require('lodash.remove');
 var Vacancy= require('../models/Vacancy')
 const validator = require('../validations/vacancyValidations')
-
+const User = require('../models/Users')
+ 
 //var notification = require("../models/Notification")
 
 exports.getAllVacancies = async function(req,res){
@@ -191,8 +192,10 @@ exports.viewNumberOfApplicants = async function(req,res){
 exports.apply= async (req,res)=>{
     try {
         const id = req.params.id
-        const userId = req.body.id
-        var Vacancyy = await Vacancy.findById(id)
+        const userId = req.body.userId
+        const vacancy = await Vacancy.findById(id)
+        const user = await User.findById(userId)
+        
         const isValidated = validator.applyValidation(req.body)
         var error = {
             error:400
@@ -201,16 +204,32 @@ exports.apply= async (req,res)=>{
          error = {
             error:404
             }
-        if(!Vacancyy) return res.json({msg:'error 404 vacancy not found',data: error})
-        Vacancyy.applicants.push(userId)
-        console.log('applicants after pushing'+Vacancyy.applicants)
-        const updateBody={
-         "applicants":Vacancyy.applicants
+        if(!vacancy) return res.json({msg:'error 404 vacancy not found',data: error})
+        if(!user) return res.json({msg:'error 4004 user not foundo',data: error})
+        
+        for(i=0;i<vacancy.applicants.length;i++){
+            if(vacancy.applicants[i]==userId){
+              return res.json({msg:'error 400 you already applied to this vacancy',error:400})
+            }
         }
-        const placeholder = await Vacancy.findByIdAndUpdate(id,updateBody)
-        console.log('after update'+placeholder)
-        Vacancyy = await Vacancy.findById(id)
-        res.json({msg: 'we applied to you', data: Vacancyy})
+        vacancy.applicants.push(userId)
+        for(i=0;i<user.appliedVacancy.length;i++){
+            if(user.appliedVacancy==id){
+              return res.json({msg:'error 400 you already applied to this vacancy',error:400})
+            }
+        }
+        user.appliedVacancy.push(id)
+        
+        const vacancyUpdateBody={
+         "applicants":vacancy.applicants
+        }
+        await Vacancy.findByIdAndUpdate(id,vacancyUpdateBody)
+        const userUpdateBody={
+            "appliedVacancy":user.appliedVacancy
+           }
+        await User.findByIdAndUpdate(userId,userUpdateBody)
+        updatedVacancy = await Vacancy.findById(id)
+        res.json({msg: 'we applied to you', data: updatedVacancy})
        }
        catch(error) {
            console.log(error)
@@ -220,44 +239,57 @@ exports.apply= async (req,res)=>{
 exports.cancelApplication= async (req,res)=>{
     try {
         // declaring inputs
-        const Vacancyid = req.params.id
-        const Userid = req.body.id
-        var Vacancyy = await Vacancy.findById(Vacancyid)
+        const vacancyId = req.params.id
+        const userId = req.body.userId
+        var vacancy = await Vacancy.findById(vacancyId)
         var error = {
             error:400
             }
+        var user = await User.findById(userId)
+        var error = {
+                error:400
+                }    
+        const isValidated = validator.cancelMyApplicationValidation(req.body)
         if (isValidated.error) return res.json({msg:'error 400 id is not valid',data: error})
          error = {
             error:404
             }
-        if(!Vacancyy) return res.json({msg:'error 404 vacancy not found',data: error})
-        for(i=0;i<Vacancyy.applicants.length;i++){
-            console.log(Vacancyy.applicants[i])
-            if(Vacancyy.applicants[i].id==Userid){
-               console.log('found it in position '+i)
-               console.log(Vacancyy.applicants) 
-               Vacancyy.applicants.splice(i,1)
-                break
+        if(!vacancy) return res.json({msg:'error 404 vacancy not found',data: error})
+        if(!user) return res.json({msg:'error 404 user not found',data: error})
+        for(i=0;i<vacancy.applicants.length;i++){
+            console.log('current applicant is '+vacancy.applicants[i]+' and user id is '+ userId )
+            if(vacancy.applicants[i]==userId){
+               vacancy.applicants.splice(i,1)
+               const vacancyUpdateBody={
+                applicants:vacancy.applicants
+               }
+               await Vacancy.findByIdAndUpdate(vacancyId,vacancyUpdateBody)
+               updatedVacancy = await Vacancy.findById(vacancyId)
+               for(j=0;j<user.appliedVacancy.length;j++){
+            console.log('current vacancy is '+user.appliedVacancy[j])
+                if(user.appliedVacancy==vacancyId){
+                    user.appliedVacancy.splice(j,1)
+                    const userUpdateBody={
+                     appliedVacancy:user.appliedVacancy
+                    }
+                    await User.findByIdAndUpdate(userId,userUpdateBody)
+                    updatedUser = User.findById(userId)
+                    return res.json({msg: 'you cancelled your application', data: vacancy,updatedUser})
+                }
             }
-         //checks if you you arent in the applicants list and returns an error message
-            if(i== (Vacancyy.applicants.length-1)){
-                return res.json({msg:'error 400 id is not valid',data: error})
-        }
-        console.log(Vacancyy.applicants)
-        const updateBody={
-         applicants:Vacancyy.applicants
-        }
-        const placeholder = await Vacancy.findByIdAndUpdate(Vacancyid,updateBody)
-        console.log('after update'+placeholder)
-        Vacancyy = await Vacancy.findById(Vacancyid)
-        res.json({msg: 'Application cancelled', data: Vacancyy})
+               
+               
+               
+            }
        }
-       
+       res.json({msg:'you didnt apply for this vacancy',error:404})
 }
 catch(error) {
     console.log(error)
-} 
+ } 
 }
+
+
 
 exports.closeVacancy = async (req,res)=>{
     res.json({msg:"we closed the vacancy",data:Vacancy.findByIdAndUpdate(id,Vacancy.findByIdAndUpdate(req.params.id,body={close:true}))})

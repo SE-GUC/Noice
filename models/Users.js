@@ -116,6 +116,10 @@ const userSchema = new Schema({
     },
     certificatesHeld:{
       type: String,
+    },
+    appliedVacancy: {
+        type: Array,
+        default:[]
     }
    
 })

@@ -29,10 +29,16 @@ module.exports = {
         return Joi.validate(request, updateSchema)
     }, applyValidation: request => {
         const applySchema = {
-            id: Joi.string().min(3).max(30),
+            userId: Joi.string().min(3).max(30),
             
         }
-
+        return Joi.validate(request, applySchema)
+    },
+    cancelMyApplicationValidation: request => {
+        const applySchema = {
+            userId: Joi.string().min(3).max(30),
+            
+        }
         return Joi.validate(request, applySchema)
     }
 }
