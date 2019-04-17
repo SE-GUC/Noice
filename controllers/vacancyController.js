@@ -1,4 +1,3 @@
-var remove = require('lodash.remove');
 var Vacancy= require('../models/Vacancy')
 const validator = require('../validations/vacancyValidations')
 const User = require('../models/Users')
@@ -216,7 +215,7 @@ exports.apply= async (req,res)=>{
         await User.findByIdAndUpdate(userId,userUpdateBody)
         updatedVacancy = await Vacancy.findById(id)
         updatedUser = await User.findById(userId)
-        res.json({msg: 'we applied to you', data: updatedVacancy.applicants + updatedUser.appliedVacancy})
+        res.json({msg: 'we applied to you', data: updatedVacancy})
        }
        catch(error) {
            console.log(error)
@@ -245,7 +244,7 @@ exports.cancelApplication= async (req,res)=>{
                }
                for(j=0;j<user.appliedVacancy.length;j++){
             console.log('current vacancy is '+user.appliedVacancy[j])
-                if(user.appliedVacancy===vacancyId){
+                if(user.appliedVacancy[j]===vacancyId){
                     user.appliedVacancy.splice(j,1)
                     const userUpdateBody={
                      appliedVacancy:user.appliedVacancy
@@ -254,7 +253,7 @@ exports.cancelApplication= async (req,res)=>{
                     await Vacancy.findByIdAndUpdate(vacancyId,vacancyUpdateBody)
                     updatedVacancy = await Vacancy.findById(vacancyId)
                     updatedUser = User.findById(userId)
-                    return res.json({msg: 'you cancelled your application', data: updatedVacancy,updatedUser})
+                    return res.json({msg: 'you cancelled your application',data:updatedVacancy})
                 }
             }
                
@@ -271,9 +270,9 @@ catch(error) {
 
 
 
-exports.closeVacancy = async (req,res)=>{
-    res.json({msg:"we closed the vacancy",data:Vacancy.findByIdAndUpdate(id,Vacancy.findByIdAndUpdate(req.params.id,body={close:true}))})
-}
+/*exports.closeVacancy = async (req,res)=>{
+    res.json({msg:"we closed the vacancy",data:Vacancy.findByIdAndUpdate(req.params.id,Vacancy.findByIdAndUpdate(req.params.id,body={close:true}))})
+}*/
 
 
 // Search format in POST body: { "attribute" : "attributeyouwantHERE" , "value" : "valueyouwantHERE"}
