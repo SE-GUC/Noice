@@ -82,3 +82,8 @@ test ('delete vacancy',async()=>{
   expect(user.data.data._id).toEqual(user2.data.data._id)
 }) */
 
+test('delete vacancy', async () => {
+  const user =  await funcs.viewVacancyByID(ic)
+  const user2 =  await funcs.deleteVacancy(ic)
+  expect(user.data.data._id).toEqual(user2.data.data._id)
+});
