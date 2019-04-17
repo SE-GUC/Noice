@@ -18,7 +18,7 @@ const RoomSchema = new Schema({
       
             type:[{state:{
                 type:String,
-                default: 'UNRESERVED'
+                default: 'REQUESTED'
             },
             startDate:{
                 type:String,

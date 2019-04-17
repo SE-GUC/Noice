@@ -200,4 +200,15 @@ module.exports = {
 
         return Joi.validate(request, updateSchema)
     }, 
+       registerValidation: request => {
+        const registerValidation = {
+            email:Joi.string().email(),
+            password:Joi.string().min(3).max(500),
+            firstName:Joi.string().min(3).max(500),
+            middleName:Joi.string().min(3).max(500),
+            lastName:Joi.string().min(3).max(500)
+        }
+
+        return Joi.validate(request, registerValidation)
+    }, 
 }

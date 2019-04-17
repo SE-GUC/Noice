@@ -47,6 +47,7 @@ exports.updateLocation = async function(req,res){
         const isValidated = validator.updateLocationValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
         var updatedLocation = await location.findByIdAndUpdate(id,req.body)
+        updatedLocation = await location.findById(id)
         res.json({msg: 'Location is updated successfully', data: updatedLocation})
        }
        catch(error) {

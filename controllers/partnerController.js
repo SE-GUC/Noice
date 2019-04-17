@@ -3,14 +3,17 @@ const mongoose = require('mongoose')
 
 var Partner = require('../models/Users');
 const validator = require('../Validations/usersValidations')
-const Vacancyad = require('../models/Vacancy');
-const vvalidator = require('../validations/VacancyValidations')
+const Vacancy = require('../models/Vacancy');
+const vvalidator = require('../Validations/VacancyValidations')
 
 
 exports.createPartner = async function (req,res){
     try {
         const isValidated = validator.createPartnerValidation(req.body)
-        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        var error={
+            error:400
+        }
+        if (isValidated.error) return res.json({msg:'Error 400: Bad Request', data:isValidated.error.details[0].message})
         const newPartner = await Partner.create(req.body)
         res.json({msg:'Partner was created successfully', data: newPartner})
        }
@@ -24,7 +27,10 @@ exports.updatePartner = async function(req,res){
         const partner = await Partner.findById(mid);
         if(!partner) return res.status(404).send({error: 'Partner does not exist'})
         const isValidated = validator.updatePartnerValidation(req.body)
-        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        var error={
+            error:400
+        }
+        if (isValidated.error) return res.json({msg:'Error 400: Bad Request', data:isValidated.error.details[0].message})
         const updatedPartner = await Partner.findByIdAndUpdate(mid,req.body,function (err) {
            if (err) return next(err);
        });
@@ -71,9 +77,12 @@ exports.findPartner = async function(req,res){
 exports.createVacancy = async function(req,res){
     try {
         const isValidated = vvalidator.createValidation(req.body)
-        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        var error={
+            error:400
+        }
+        if (isValidated.error) return res.json({msg:'Error 400: Bad Request', data:isValidated.error.details[0].message})
         const newVacancy = await Vacancy.create(req.body)
-        res.json({msg:'Vacancy was created successfully', data: newVacancyad})
+        res.json({msg:'Vacancy was created successfully', data: newVacancy})
        }
        catch(error) {
            // We will be handling the error later
@@ -83,15 +92,19 @@ exports.createVacancy = async function(req,res){
 
 exports.editVacancy = async function(req,res){
     try {
-        const mid = req.params.id
-        const vacancyad = await Vacancy.findById(mid);
+        const _id = req.params.id
+        const partnerId =req.params.yourid
+        const vacancyad = await Vacancy.find({_id,partnerId});
         if(!vacancyad) return res.status(404).send({error: 'Vacancy does not exist'})
         const isValidated = vvalidator.updateValidation(req.body)
-        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        const updatedVacancyad = await Vacancy.findByIdAndUpdate(mid,req.body,function (err) {
+        var error={
+            error:400
+        }
+        if (isValidated.error) return res.json({msg:'Error 400: Bad Request', data:isValidated.error.details[0].message})
+        const updatedVacancyad = await Vacancy.findByIdAndUpdate(_id,req.body,function (err) {
            if (err) return next(err);
        });
-       const after= await Vacancy.findById(mid)
+       const after= await Vacancy.findById(_id)
        res.json({msg: 'Vacancy updated successfully', data: after});
        }
        catch(error) {
@@ -102,8 +115,9 @@ exports.editVacancy = async function(req,res){
 
 exports.deleteVacancy = async function(req,res){
     try {
-        const id = req.params.id
-        const deletedVacancyad = await Vacancy.findByIdAndRemove(id)
+        const partnerId= req.params.id
+        const _id= req.params.iid
+        const deletedVacancyad = await Vacancy.findByIdAndRemove({_id,partnerId})
         res.json({msg:'Vacancy was deleted successfully', data: deletedVacancyad})
        }
        catch(error) {
@@ -113,19 +127,19 @@ exports.deleteVacancy = async function(req,res){
 }
 
 exports.getOldvacancy = async function(req,res){
-    const ownerid= req.params.id
-     const vacancyad = await Vacancyad.find({ownerid})
+    const partnerId= req.params.id
+     const vacancyad = await Vacancy.find({partnerId})
      res.json({data: vacancyad})
 }
 
 exports.getAllvacancy = async function(req,res){
-     const vacancyad = await Vacancyad.find()
-     res.json({data: vacancyad})
+    const partners = await Vacancy.find({})
+    res.json({data: partners})
 }
 
 exports.getMyvacancy = async function(req,res){
-    const ownerid= req.params.id
+    const partnerId= req.params.id
     const _id= req.params.iid
-    const vacancyad = await Vacancyad.find({_id,ownerid})
+    const vacancyad = await Vacancy.find({_id,partnerId})
     res.json({data: vacancyad})
 }
