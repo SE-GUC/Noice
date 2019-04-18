@@ -3,6 +3,7 @@ const router = express.Router()
 const location_controller=require('../../../controllers/locationController')
 
 const roomController = require('../../../controllers/roomController')
+const event_controller = require('../../../controllers/eventController')
 
 router.get('/',location_controller.getAllLocations)
 
@@ -40,6 +41,27 @@ router.post('/update_room_res/:id',roomController.updateRoomRes)
 
 // room filter
 router.post('/searchroom',roomController.search)
+
+
+
+// search
+router.post('/events/search',event_controller.search)
+
+// View all Events
+router.get('/events/',event_controller.getAllEvents)
+
+// Create a Event
+router.post('/events/',event_controller.createEvent)
+
+// Update a Event
+router.put('/events/:id', event_controller.updateEvent)
+
+// Delete a Event
+router.delete('/events/:id',event_controller.deleteEvent)
+
+//Find a Event by ID
+router.get('/events/:id',event_controller.findEvent)
+
 
 
 module.exports = router

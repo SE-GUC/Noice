@@ -5,6 +5,7 @@ const locationInMemberController = require('../../../controllers/locationControl
 const memberController = require('../../../controllers/memberController')
 const vacancyController = require('../../../controllers/vacancyController')
 const roomController = require('../../../controllers/roomController')
+const event_controller = require('../../../controllers/eventController')
 
 //view all locations
 router.get('/location/',locationInMemberController.getAllLocations)
@@ -44,5 +45,25 @@ router.get('/get_room_res/:id',roomController.getRoomRes) */
 
 // room filter
 router.post('/searchroom',roomController.search)
+
+// search
+router.post('/events/search',event_controller.search)
+
+// View all Events
+router.get('/events/',event_controller.getAllEvents)
+
+// Create a Event
+router.post('/events/',event_controller.createEvent)
+
+// Update a Event
+router.put('/events/:id', event_controller.updateEvent)
+
+// Delete a Event
+router.delete('/events/:id',event_controller.deleteEvent)
+
+//Find a Event by ID
+router.get('/events/:id',event_controller.findEvent)
+
+
 
 module.exports = router

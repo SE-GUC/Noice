@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 
 
-
+const events = require('./routes/api/events')
 const location = require('./routes/api/users/location')
 const calender = require('./routes/api/calender')
 const members=require('./routes/api/users/members')
@@ -34,11 +34,16 @@ app.use(cors())
 app.get('/', (req, res) => {
     res.send(`<h1>Welcome to Lirten Hub</h1>
     <a href="/api/admins">Admins</a>
+    <a href="/api/calender">calender</a>
+    <a href="/api/notifications">notifications</a>
+    <a href="/api/events">events</a>
+    <a href="/api/vacancy">vacancy</a>
 `);
 })
 
 // Direct routes to appropriate files 
 
+app.use('/api/events',events)
 app.use('/api/users',users)
 app.use('/api/users/member',members)
 app.use('/api/users/location', location)

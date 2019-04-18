@@ -1,0 +1,35 @@
+const Joi = require('joi')
+
+
+module.exports = {
+    createValidation: request => {
+        const createSchema = {
+            Name: Joi.string().min(2).max(500).required(),
+            Owner: Joi.string().min(2).max(500).required(),
+            Type: Joi.string().min(3).max(500).required(),
+            Location: Joi.string().min(3).max(100).required(),
+            startDate: Joi.string().required(),
+            endDate: Joi.string(),
+            tags: Joi.array(),
+            Description: Joi.string().min(5).required(),
+            
+        }
+        return Joi.validate(request, createSchema)
+    },
+
+    updateValidation: request => {
+        const updateSchema = {
+            Name: Joi.string().min(2).max(500),
+            Owner: Joi.string().min(2).max(500),
+            Type: Joi.string().min(3).max(500),
+            Location: Joi.string().min(3).max(100),
+            Participants: Joi.number().min(0),
+            startDate: Joi.string(),
+            endDate: Joi.string(),
+            tags: Joi.array(),
+            Description: Joi.string().min(5),
+        }
+        return Joi.validate(request, updateSchema)
+    }, 
+
+}

@@ -4,6 +4,7 @@ const partner_controller = require('../../../controllers/partnerController')
 const locationInPartnersController = require('../../../controllers/locationController')
 const roomController = require('../../../controllers/roomController')
 const memberController = require('../../../controllers/memberController')
+const event_controller = require('../../../controllers/eventController')
 
 router.get('/member/', memberController.getAllMember)
 
@@ -37,5 +38,25 @@ router.delete('/deletevacancy/:id',partner_controller.deleteVacancy)
 
 // room filter
 router.post('/searchroom',roomController.search)
+
+// search
+router.post('/events/search',event_controller.search)
+
+// View all Events
+router.get('/events/',event_controller.getAllEvents)
+
+// Create a Event
+router.post('/events/',event_controller.createEvent)
+
+// Update a Event
+router.put('/events/:id', event_controller.updateEvent)
+
+// Delete a Event
+router.delete('/events/:id',event_controller.deleteEvent)
+
+//Find a Event by ID
+router.get('/events/:id',event_controller.findEvent)
+
+
 
 module.exports = router
