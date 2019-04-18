@@ -1,4 +1,5 @@
 const funcs = require('./vacancyFn');
+const mfuncs = require('./membersfn');
 mongoose = require("mongoose");
 var ic ='';
 var userId=''
@@ -25,6 +26,25 @@ const response = await funcs.createVacancy(body)
 ic= response.data.data._id;
 expect(response.data.data._id).toEqual(ic)
 })
+
+
+
+test('last vacancy careerLevel is create testing', async () => {
+  jest.setTimeout(100000)
+  const response =  await funcs.viewVacancy()
+  const length = response.data.length
+  expect(response.data.data[length-1].status).toEqual(false)
+  })
+
+
+
+test('View vacancy by id', async () => {
+    const response =  await funcs.viewVacancyByID(ic)
+    expect(response.data.data.jobDescription).toEqual('teset')
+    })
+
+    
+  
 
 /* 
 // Depends on the create vacancy
@@ -80,30 +100,30 @@ test('member should be created', async () =>{
           certificatesHeld: "Met Engineering"
       }
   expect.assertions(1)
-  const response = await ufuncs.createMember(body)
+  const response = await mfuncs.createMember(body)
   userId=response.data.data._id
   expect(response.data.data._id).toBe(userId)
 })
 
-test('apply on a vacancy',async()=>{
-  body={
-    "userId":""+userId
-  }
-  expect.assertions(1)
-  const res = await funcs.applyOnVacancy(ic,body)  
-  expect(res.data.data.applicants.length).toEqual(1)
-})
+// test('apply on a vacancy',async()=>{
+//   body={
+//     "userId":""+userId
+//   }
+//   expect.assertions(1)
+//   const res = await funcs.applyOnVacancy(ic,body)  
+//   expect(res.data.data.applicants.length).toEqual(1)
+// })
 
-test('apply on a vacancy again',async()=>{
-  body={
-    "id":"2",
-    "name":"ammar"
-  }
-  expect.assertions(1)
-  const response = await funcs.applyOnVacancy(ic,body)  
-  console.log(response.data.data)
-  expect(response.data.data.applicants[0].id).toEqual("1")
-})
+// test('apply on a vacancy again',async()=>{
+//   body={
+//     "id":"2",
+//     "name":"ammar"
+//   }
+//   expect.assertions(1)
+//   const response = await funcs.applyOnVacancy(ic,body)  
+//   console.log(response.data.data)
+//   expect(response.data.data.applicants[0].id).toEqual("1")
+// })
 
 /*test('cancel my application',async()=>{
   body={
@@ -131,10 +151,36 @@ test ('delete vacancy',async()=>{
 }) */
 
 test('first vacancy status is false', async () => {
-  jest.setTimeout(100000000)
-  const response =  await funcs.membersViewAllLocations()
+  jest.setTimeout(100000)
+  const response =  await funcs.viewVacancy()
   expect(response.data.data[0].status).toEqual(false)
-  });
+  })
+
+  test('admin View vacancy by id', async () => {
+    const response =  await funcs.adminViewVacancyByID(ic)
+    expect(response.data.data.jobDescription).toEqual('teset')
+    })
+
+
+    test('update vacancy', async () => {
+      const body={
+        title: "omar",
+        careerLevel:"create testing",
+        jobDescription:"teset",
+        educationLevel:"master phd",
+        partnerId: "dummy id",
+        time: "09:00",
+        skillsRequired:"yeb2a shaba7",
+        applicants: [],
+        status: false,
+        closed: false,
+        tags:["tag1","tag2"]
+    }
+      const response = await funcs.updateVacancy(ic,body)
+      const response2 = await funcs.updateVacancy(ic,body)
+      expect(response2.data.data.title).toBe("omar")
+  })
+
 
 
 test('delete vacancy', async () => {
@@ -142,3 +188,5 @@ test('delete vacancy', async () => {
   const user2 =  await funcs.deleteVacancy(ic)
   expect(user.data.data._id).toEqual(user2.data.data._id)
 })
+
+

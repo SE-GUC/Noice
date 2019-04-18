@@ -27,6 +27,11 @@ const functions = {
         return vacancy
     },
 
+    adminViewVacancyByID: async (id) => {
+        const vacancy = await axios.get(`http://localhost:5000/api/admins/vacancy/${id}`)
+        return vacancy
+    },
+
     createVacancy:async (req) => {
         const vacancy = await axios.post('http://localhost:5000/api/vacancy/',req)
         return vacancy

@@ -7,6 +7,8 @@ const admin_controller = require('../../controllers/adminController')
 const locationInAdminsController = require('../../controllers/locationController')
 const roomController = require('../../controllers/roomController')
 const memberController = require('../../controllers/memberController')
+const vacancyController = require('../../controllers/vacancyController')
+
 
 router.get('/member/', memberController.getAllMember)
 
@@ -38,5 +40,9 @@ router.delete('/deleteLocation/:id',locationInAdminsController.deleteLocation)
 
 // room filter
 router.post('/searchroom',roomController.search)
+
+//vacancy
+router.get('/vacancy/:id',vacancyController.findVacancy)
+
 
 module.exports = router
