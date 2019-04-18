@@ -4,6 +4,8 @@ const router = express.Router()
 const event_controller = require('../../controllers/eventController')
 
 
+
+// View all Events
 router.get('/',event_controller.getAllEvents)
 
 // Create a Event

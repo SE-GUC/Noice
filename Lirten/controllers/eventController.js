@@ -33,7 +33,7 @@ exports.getAllEvents = async function(req,res){
 exports.deleteEvent = async function(req,res){
     try {
         const id = req.params.id
-        const deletedEvent = await Event.findOneAndDelete(id)
+        const deletedEvent = await Event.findByIdAndDelete(id)
         res.json({msg:'Event was deleted successfully', data: deletedEvent})
        }
        catch(error) {

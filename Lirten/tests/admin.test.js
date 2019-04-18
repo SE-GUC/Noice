@@ -1,4 +1,4 @@
-const funcs = require('./adminsfn');
+/*const funcs = require('./adminsfn');
 
 test('view all admins',async()=>{
     expect.assertions(1)
@@ -47,3 +47,4 @@ test('create admin',async () =>{
     expect(response.data.data.age).toEqual(22)
 
 })
+*/

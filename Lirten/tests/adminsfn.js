@@ -1,3 +1,4 @@
+/*
 const axios = require('axios');
 const functions={
 viewAllAdmins: async() =>{
@@ -30,3 +31,4 @@ updateAdminById: async(id,body) =>{
 
 };
 module.exports = functions;
+*/
