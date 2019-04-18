@@ -1,6 +1,8 @@
 const funcs = require('./vacancyFn');
 mongoose = require("mongoose");
-var ic =''
+var ic ='';
+var userId=''
+
 
 // IF YOU CHANGE the jobDescription or tags in the body, reflect them in the search test under this
 test('create vacancy',async()=>{
@@ -51,15 +53,45 @@ test('Search for a vacancy', async()=>{
 
 })
 
+test('member should be created', async () =>{
+  const body = {
+          email: "kskamr@gmail.com",
+          password: "whyusfqavvdodis",
+          firstName: "dude1",
+          middleName: "Mohamed",
+          lastName: "Ayman",
+          birthDate: "17-10-1998",
+          gender: "male",
+          address: "starbuqdvqqvcks",
+          phoneNumber: "01223526878",
+          typeOfUser: "Member",
+          skills: "Programming",
+          interests: "Tech news",
+          pastEvents: [
+              {
+                  
+                  name: "MCM",
+                  startDate: "10/10/10",
+                  endDate: "10/10/11"
+              }
+          ],
+          projectsCompleted: "Noice",
+          reviewsReceived: "none",
+          certificatesHeld: "Met Engineering"
+      }
+  expect.assertions(1)
+  const response = await ufuncs.createMember(body)
+  userId=response.data.data._id
+  expect(response.data.data._id).toBe(userId)
+})
 
 test('apply on a vacancy',async()=>{
   body={
-    "id":"1",
-    "name":"ammar"
+    "userId":""+userId
   }
-  const response = await funcs.applyOnVacancy(ic,body)  
-  console.log(response.data.data)
-  expect(response.data.data.applicants[0].name).toEqual("ammar")
+  expect.assertions(1)
+  const res = await funcs.applyOnVacancy(ic,body)  
+  expect(res.data.data.applicants.length).toEqual(1)
 })
 
 test('apply on a vacancy again',async()=>{
