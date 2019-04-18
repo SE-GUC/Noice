@@ -1,4 +1,4 @@
-import {GETVACANCY} from '../actions/homeActionsFolder/homeTypes'
+import {GETVACANCY} from '../actions/vacancyActionFolder/vacancyTypes'
 
 const initialState={
     vacancies:[]

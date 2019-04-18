@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route,Link } from 'react-router-dom';
 import {Provider} from 'react-redux'
+
+//import your component here
 import Home from './components/Home'
+import Vacancy from './components/vacancyCruds/Vacancy'
+import Main from './components/main'
+
 //add the rest of the admin cruds here
 import CreateAdminForm from './components/adminCruds/CreateAdminForm'
 
@@ -10,6 +15,8 @@ import CreateAdminForm from './components/adminCruds/CreateAdminForm'
 import store from './store.js'
 //add other cruds here
 
+//react mdl components
+import { Footer, FooterSection, FooterLinkList,Layout,Header,Navigation,Drawer,Textfield,Content } from 'react-mdl';
 
 //bootstrap components 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,38 +32,48 @@ class App extends Component {
     return (
       <Provider store ={store}>
       {/*Store holds all the state together*/ }
-       <Router>
-          <div className="App">
-             {/*dont touch this*/ }
-             <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
-             <Navbar.Brand href="/">LirtenHub</Navbar.Brand>
-             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-             <Navbar.Collapse id="basic-navbar-nav">
-             <Nav className="lirten">
-           {/*create a url for your component here then add a route for it down with the SAME url and  component name,
-           dont forget to import your component name AND USE CAMEL CASE  le hwa awel 7arf mn kol kelma capital*/ }
-             <Nav.Link className="homeLink" href={'/home'}>Home</Nav.Link>
-             <Nav.Link className="vacancyLink" href={'/vacancy'}>Vacancy</Nav.Link>
-             <Nav.Link className="eventLink" href={'/event'}>Events</Nav.Link>
-             <Nav.Link className="adminCreateLink" href={'/adminCreate'}>CreateAdmin</Nav.Link>
-            </Nav>
-      
-       {/*add filter link here*/}
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <button type="button" className="btn btn-outline-info">Search</button>
-        </Form>
-           </Navbar.Collapse>
-           </Navbar><br/>
+      <Router>
+        <div className="App">
+            {/*the new header*/}
+            <div className="demo-big-content">
+               <Layout>
+                 <Header className= 'header-color' title="Lirten Hub" scroll>
+                   <Navigation>
+                     <Link to="/">Home</Link>
+                     <Link to="/createAdmin">Admin Cruds</Link>
+                     <Link to="/vacancy/viewAll">Vacancy View all</Link>
+                     
+                     </Navigation>
+                   </Header>
+                <Drawer title="User Name?">
+                     <Navigation>
+                     <Link to="/userProfile">
+                    {/*put an awesome icon here from https://fontawesome.com/icons/id-card?style=solid */}
+                     </Link>
+                     
+                     <Link to="/">Home</Link>
+                     <h1>Admin</h1>
+                     <Link to="/createAdmin">create</Link>
+                     <h2>Vacancy</h2>
+                     <Link to="/vacancy/viewAll">View all</Link>
+                     
+                      </Navigation>
+                 </Drawer>
+                 <Content>
+                 <div className="page-content" />
+                 <Main/>
+                 </Content>
+               </Layout>
+             </div>
+             
+             
+       
+         
 
-          {/* add a route for you here */}
-              <Switch>
-                <Route exact path='/adminCreate' component={ CreateAdminForm  } />
-                <Route exact path='/home' component={ Home  } />
               
-               </Switch>
-          </div>
-               </Router>
+
+        </div>
+     </Router>
       </Provider>
     );
    

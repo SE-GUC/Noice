@@ -1,4 +1,4 @@
-import {GETVACANCY} from './homeTypes';
+import {GETVACANCY} from './vacancyTypes';
 
 const axios = require('axios');
 export const  getVacancies = () => async dispatch =>{

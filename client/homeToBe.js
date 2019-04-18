@@ -1,45 +1,79 @@
 /*import React, { Component } from 'react';
-//defining smth like the scheme
-import PropTypes from 'prop-types'
-//connects the components with the store
-import {connect} from 'react-redux';
-//import the actions that on your component
-import{getVacancies} from '../actions/homeActionsFolder/homeActions'
+import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {Provider} from 'react-redux'
+import Home from './components/Home'
+//add the rest of the admin cruds here
+import CreateAdminForm from './components/adminCruds/CreateAdminForm'
+
+//importing the store
+import store from './store.js'
+//add other cruds here
+
+//react mdl components
+import { Footer, FooterSection, FooterLinkList } from 'react-mdl';
+
+//bootstrap components 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form'
+import FormControl from 'react-bootstrap/FormControl'
 
 
-class Home extends Component {
+class App extends Component {
 
-//a life cycle method that runs once when you first run this component
-  componentWillMount(){
-  this.props.getVacancies();
-}
-//a must have life cycle method that runs each time you render a component
-  render() {  
-    const vacancyItem =  this.props.vacancies.map(vacancy =>(
-      <div Key={vacancy.id}>
-      <h3>{vacancy.careerLevel}</h3>
-      <p> {vacancy.description}</p>
-      </div>
-    ))
+  render() {
     return (
-      <div>
-        <h1>Welcome Home</h1>
-        <h2>our latest Vacancies</h2>
-        {vacancyItem}
-      </div>
-    )
+      <Provider store ={store}>
+      {/*Store holds all the state together*/ }
+       <Router>
+          <div className="App">
+             {/*dont touch this*/ }
+             <Navbar sticky="top" bg="dark" variant="dark" expand="lg">
+             <Navbar.Brand href="/">LirtenHub</Navbar.Brand>
+             <Navbar.Toggle aria-controls="basic-navbar-nav" />
+             <Navbar.Collapse id="basic-navbar-nav">
+             <Nav className="lirten">
+           {/*create a url for your component here then add a route for it down with the SAME url and  component name,
+           dont forget to import your component name AND USE CAMEL CASE  le hwa awel 7arf mn kol kelma capital*/ }
+             <Nav.Link className="homeLink" href={'/home'}>Home</Nav.Link>
+             <Nav.Link className="vacancyLink" href={'/vacancy'}>Vacancy</Nav.Link>
+             <Nav.Link className="eventLink" href={'/event'}>Events</Nav.Link>
+             <Nav.Link className="adminCreateLink" href={'/adminCreate'}>CreateAdmin</Nav.Link>
+            </Nav>
+      
+       {/*add filter link here*/}
+        <Form inline>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <button type="button" className="btn btn-outline-info">Search</button>
+        </Form>
+           </Navbar.Collapse>
+           </Navbar><br/>
+           {/*creating a drawer from the left*/}
+           
+
+          {/* add a route for you here */}
+              <Switch>
+                <Route exact path='/adminCreate' component={ CreateAdminForm  } />
+                <Route exact path='/home' component={ Home  } />
+              
+               </Switch>
+               <Footer size="mini">
+             <FooterSection type="left" logo="Title">
+                  <FooterLinkList>
+                   <a href="#">Help</a>
+                  <a href="#">Privacy & Terms</a>
+               </FooterLinkList>
+               </FooterSection>
+</Footer>
+          </div>
+               </Router>
+      </Provider>
+    );
+   
   }
 }
-//defining the prop types that are passed to this component
-Home.propTypes={
-  getVacancies : PropTypes.func.isRequired,
-  home: PropTypes.array.isRequired
-  }
 
-
-const mapStateToProps = state =>({
-  home: state.home.items
-})
-
-export default connect(mapStateToProps, {getVacancies})(Home)
+export default App;
 */
