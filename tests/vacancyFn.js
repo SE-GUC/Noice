@@ -17,6 +17,11 @@ const functions = {
         return vacancy
     },
 
+    viewAllVacancies: async () => {
+        const vacancy = await axios.get('http://localhost:5000/api/vacancy/')
+        return vacancy
+    },
+
     viewVacancyByID: async (id) => {
         const vacancy = await axios.get(`http://localhost:5000/api/vacancy/${id}`)
         return vacancy

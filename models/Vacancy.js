@@ -21,8 +21,8 @@ const VacancySchema = new Schema({
             type: String,
         },
         time:{
-             type : Date,
-              default: Date.now 
+             type : String,
+              
             },
         skillsRequired: {
             type: String

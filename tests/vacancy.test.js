@@ -18,11 +18,11 @@ test('create vacancy',async()=>{
      closed: false,
      tags:["tag1","tag2"]
  }
- const vacancy =  await funcs.createVacancy(body)
- const vacancy2 =  await funcs.viewVacancyByID(vacancy.data.data._id)
- expect(vacancy.data.data._id).toEqual(vacancy2.data.data._id)
- ic=vacancy.data.data._id;
- })
+ expect.assertions(1)
+const response = await funcs.createVacancy(body)
+ic= response.data.data._id;
+expect(response.data.data._id).toEqual(ic)
+})
 
 /* 
 // Depends on the create vacancy
@@ -98,8 +98,15 @@ test ('delete vacancy',async()=>{
   expect(user.data.data._id).toEqual(user2.data.data._id)
 }) */
 
+test('first vacancy status is false', async () => {
+  jest.setTimeout(100000000)
+  const response =  await funcs.membersViewAllLocations()
+  expect(response.data.data[0].status).toEqual(false)
+  });
+
+
 test('delete vacancy', async () => {
   const user =  await funcs.viewVacancyByID(ic)
   const user2 =  await funcs.deleteVacancy(ic)
   expect(user.data.data._id).toEqual(user2.data.data._id)
-});
+})
