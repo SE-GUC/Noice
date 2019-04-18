@@ -3,12 +3,11 @@ const Joi = require('joi')
 module.exports = {
     createValidation: request => {
         const createSchema = {
+            title: Joi.string().min(1).max(500).required(),
             careerLevel: Joi.string().min(3).max(500).required(),
             jobDescription: Joi.string().min(3).max(100).required(),
-            educationLevel: Joi.string().min(0).max(3000).required(),
-            skillsRequired: Joi.string().min(0).max(3000).required(),
-            partnerId: Joi.string().min(0).max(25),
-            applicants: Joi.array(),
+            educationLevel: Joi.string().min(0).max(3000),
+            skillsRequired: Joi.string().min(0).max(3000),
             tags: Joi.array()
 
         }
@@ -18,6 +17,7 @@ module.exports = {
 
     updateValidation: request => {
         const updateSchema = {
+            title: Joi.string().min(1).max(500),
             careerLevel: Joi.string().min(3).max(500),
             jobDescription: Joi.string().min(3).max(100),
             educationLevel: Joi.string().min(0).max(3000),
@@ -27,5 +27,11 @@ module.exports = {
         }
 
         return Joi.validate(request, updateSchema)
-    }, 
+    }, applyValidation: request => {
+        const applySchema = {
+            userId: Joi.string().min(3).max(30),
+            
+        }
+        return Joi.validate(request, applySchema)
+    }
 }
