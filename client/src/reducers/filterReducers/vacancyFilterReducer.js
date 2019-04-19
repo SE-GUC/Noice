@@ -2,8 +2,7 @@ import {SEARCH_VACANCY}  from '../../actions/filterActionFolder/filterTypes'
 
 const initialState = {
 // response from searching:
-vacancies:[],
-rooms:[]
+vacancies:[]
 };
 
 export default function(state = initialState, action){
