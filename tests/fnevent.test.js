@@ -2,6 +2,7 @@ const funcs = require('./fnevent');
 
 let ic=''
 
+// if you change any values here reflect them in the search test under this one
 test('create event',async () =>{
     const body={
         Name:"create testing",
@@ -19,6 +20,19 @@ test('create event',async () =>{
 
 })
 
+// Depends on the create event test
+// Any changes you do in create event represent them here
+// add this immediately after the create event test
+test('Search for an Event', async()=>{
+
+    const body={
+       "attribute" : "Owner" ,
+       "value" : "mid" // if you change the create event values, reflect your changes here and in the expect
+    }
+    const response = await funcs.searchEvent(body)
+    expect(response.data.data[0].Type).toEqual("lastName")
+  
+  })
 
 test('view all events',async()=>{
     expect.assertions(1)
