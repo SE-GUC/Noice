@@ -73,6 +73,11 @@ const functions = {
         const vacancy = await axios.put(`http://localhost:5000/api/vacancy/apply/closeVacancy/${id}`,body)
         return vacancy
     },
+
+    createMember: async(body)=>{
+        const locations = await axios.post('http://localhost:5000/api/users/member/',body)
+        return locations
+    },
     
 };
      
