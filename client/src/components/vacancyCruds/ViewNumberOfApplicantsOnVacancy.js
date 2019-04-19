@@ -17,8 +17,7 @@ class ViewNumberOfApplicantsOnVacancy extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            ID: '',
-            amount:'#'
+            ID: ''
         }
     }
 
@@ -45,6 +44,7 @@ class ViewNumberOfApplicantsOnVacancy extends Component {
 
 
     render() {
+        console.log(this.props.amount1)
         return (
             <div>
                 <h3>get a Number of applicants on a vacancy</h3>
@@ -64,7 +64,7 @@ class ViewNumberOfApplicantsOnVacancy extends Component {
                             <input type="submit" value="get Amount" className="btn btn-primary" />
                         </div>
                         <div>
-                        Amount : {this.state.amount}
+                        Amount : {this.props.amount1.data}
                         </div>
                        
                 </form>
@@ -78,4 +78,8 @@ ViewNumberOfApplicantsOnVacancy.propTypes ={
     viewNumberOfApplicantsOnVacancy: PropTypes.func.isRequired
   };
 
-  export default connect(null,{viewNumberOfApplicantsOnVacancy})(ViewNumberOfApplicantsOnVacancy);
+  const mapStateToProps = state =>({
+    amount1: state.amount1.amount
+  })
+
+  export default connect(mapStateToProps,{viewNumberOfApplicantsOnVacancy})(ViewNumberOfApplicantsOnVacancy);

@@ -3,9 +3,9 @@ import {VIEW_NUMBER_OF_APPLICANTS_ON_VACANCY} from '../actions/vacancyActionsFol
 //intialize the state from the db
 const initialState={
 //items is the initial entries in the db
-Amounts:[],
+
 //we store here the response we get from making a new admin
-amount:{}
+amount:{data:'#'}
 };
 
 //reducers get the current state and an action
