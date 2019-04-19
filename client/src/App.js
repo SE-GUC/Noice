@@ -8,6 +8,8 @@ import CreateAdminForm from './components/adminCruds/CreateAdminForm'
 import DeleteUser from './components/userCruds/DeleteUser'
 import DeleteRoom from './components/roomCruds/DeleteRoom'
 import DeleteEvent from './components/eventCruds/DeleteEvent'
+import CreateEvent from './components/eventCruds/CreateEvent';
+import UpdateEvent from './components/eventCruds/UpdateEvent';
 import ViewNumberOfApplicantsOnVaccancy from './components/vacancyCruds/ViewNumberOfApplicantsOnVacancy'
 
 //importing the store
@@ -21,6 +23,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
+import ViewAllEvents from './components/eventCruds/ViewAllEvents';
+import ViewEvent from './components/eventCruds/ViewEvent';
+
 
 
 class App extends Component {
@@ -60,6 +65,10 @@ class App extends Component {
                 <Route exact path='/deleteUser' component={ DeleteUser  } />
                 <Route exact path='/deleteRoom' component={ DeleteRoom  } />
                 <Route exact path='/deleteEvent' component={ DeleteEvent  } />
+                <Route exact path='/createEvent' component={ CreateEvent  } />
+                <Route exact path='/UpdateEvent' component={ UpdateEvent  } />
+                <Route exact path='/viewAllEvents' component={ ViewAllEvents  } />
+                <Route exact path='/viewevent' component={ ViewEvent  } />
                 <Route exact path='/viewNumberOfApplicantsOnVacancy' component={ ViewNumberOfApplicantsOnVaccancy  } />
 
                </Switch>
