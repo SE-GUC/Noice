@@ -4,9 +4,13 @@
 import {combineReducers} from 'redux';
 import createAdminReducer from './adminReducer'
 import homeReducer from './homeReducer'
+import vacancyFilterReducer from './filterReducers/vacancyFilterReducer'
+import roomFilterReducer from './filterReducers/roomFilterReducer'
 //add your reducers here please use camelcale 
 //ffs use camelcase
 export default combineReducers({
     createAdmin : createAdminReducer,
-    home : homeReducer
+    home : homeReducer,
+    vacancay : vacancyFilterReducer,
+    room: roomFilterReducer
 });
