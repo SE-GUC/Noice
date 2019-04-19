@@ -42,7 +42,7 @@ class App extends Component {
                      <Link to="/">Home</Link>
                      <Link to="/createAdmin">Admin Cruds</Link>
                      <Link to="/vacancy/viewAll">Vacancy View all</Link>
-                     
+                     <Link to="/search/Vacancies">Filter Vacancies</Link>
                      </Navigation>
                    </Header>
                 <Drawer title="User Name?">
@@ -56,7 +56,7 @@ class App extends Component {
                      <Link to="/createAdmin">create</Link>
                      <h2>Vacancy</h2>
                      <Link to="/vacancy/viewAll">View all</Link>
-                     
+                     <Link to="/search/Vacancies">Filter Vacancies</Link>
                       </Navigation>
                  </Drawer>
                  <Content>
