@@ -14,6 +14,20 @@ router.get('/', async (req, res) => {
     const users = await User.find()
     res.json({data: users})
 })
+
+router.get('/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const user = await User.findById(id)
+        if(!user) return res.status(404).send({error: 'User does not exist'})
+        res.json({msg: 'User Found', data: user })
+       }
+       catch(error) {
+        // We will be handling the error later
+           console.log(error)
+       }
+  })
+
 router.post('/register', async (req, res) => {
 	try {
 		const isValidated = validator.registerValidation(req.body);
