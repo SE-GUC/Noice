@@ -42,7 +42,7 @@ router.delete('/deleteLocation/:id',locationInAdminsController.deleteLocation)
 router.post('/searchroom',roomController.search)
 
 //vacancy
-router.get('/vacancy/:id',vacancyController.findVacancy)
+router.get('/viewvacancy/:id',vacancyController.findVacancy)
 
 
 module.exports = router

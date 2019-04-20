@@ -5,6 +5,11 @@ var ic ='';
 var userId=''
 
 
+
+
+
+
+
 // IF YOU CHANGE the jobDescription or tags in the body, reflect them in the search test under this
 test('create vacancy',async()=>{
    jest.setTimeout(20000)
@@ -13,35 +18,30 @@ test('create vacancy',async()=>{
      careerLevel:"create testing",
      jobDescription:"teset",
      educationLevel:"master phd",
-     partnerId: "dummy id",
-     time: "09:00",
      skillsRequired:"yeb2a shaba7",
-     applicants: [],
-     status: false,
-     closed: false,
      tags:["tag1","tag2"]
  }
- expect.assertions(1)
 const response = await funcs.createVacancy(body)
 ic= response.data.data._id;
 expect(response.data.data._id).toEqual(ic)
-})
+});
 
 
 
-test('last vacancy careerLevel is create testing', async () => {
-  jest.setTimeout(100000)
-  const response =  await funcs.viewVacancy()
-  const length = response.data.length
-  expect(response.data.data[length-1].status).toEqual(false)
-  })
+// test('last vacancy educationLevel is master phd', async () => {
+//   jest.setTimeout(100000)
+//   const response =  await funcs.viewVacancy()
+//   const length = response.data.length
+//   expect(response.data.data[length-1].educationLevel).toEqual('master phd')
+//   })
 
 
 
 test('View vacancy by id', async () => {
+    jest.setTimeout(20000)
     const response =  await funcs.viewVacancyByID(ic)
-    expect(response.data.data.jobDescription).toEqual('teset')
-    })
+    expect(response.data.data._id).toEqual(ic)
+    });
 
     
   
@@ -71,7 +71,7 @@ test('Search for a vacancy', async()=>{
   const response = await funcs.searchVacancy(body)
   expect(response.data.data[1].jobDescription).toEqual("teset")
 
-})
+});
 
 test('member should be created', async () =>{
   const body = {
@@ -103,7 +103,7 @@ test('member should be created', async () =>{
   const response = await mfuncs.createMember(body)
   userId=response.data.data._id
   expect(response.data.data._id).toBe(userId)
-})
+});
 
 // test('apply on a vacancy',async()=>{
 //   body={
@@ -151,15 +151,15 @@ test ('delete vacancy',async()=>{
 }) */
 
 test('first vacancy status is false', async () => {
-  jest.setTimeout(100000)
+  jest.setTimeout(10000)
   const response =  await funcs.viewVacancy()
   expect(response.data.data[0].status).toEqual(false)
-  })
+  });
 
   test('admin View vacancy by id', async () => {
     const response =  await funcs.adminViewVacancyByID(ic)
     expect(response.data.data.jobDescription).toEqual('teset')
-    })
+    });
 
 
     test('update vacancy', async () => {
@@ -168,25 +168,20 @@ test('first vacancy status is false', async () => {
         careerLevel:"create testing",
         jobDescription:"teset",
         educationLevel:"master phd",
-        partnerId: "dummy id",
-        time: "09:00",
         skillsRequired:"yeb2a shaba7",
-        applicants: [],
-        status: false,
-        closed: false,
         tags:["tag1","tag2"]
     }
       const response = await funcs.updateVacancy(ic,body)
       const response2 = await funcs.updateVacancy(ic,body)
       expect(response2.data.data.title).toBe("omar")
-  })
+  });
 
 
 
-test('delete vacancy', async () => {
-  const user =  await funcs.viewVacancyByID(ic)
-  const user2 =  await funcs.deleteVacancy(ic)
-  expect(user.data.data._id).toEqual(user2.data.data._id)
-})
+  test('delete vacancy', async () => {
+    const user = await funcs.viewVacancyByID(ic)
+    const user2 =  await funcs.deleteVacancy(ic)
+    expect(user.data.data._id).toEqual(user2.data.data._id)
+    })
 
 

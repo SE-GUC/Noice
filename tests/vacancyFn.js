@@ -28,7 +28,7 @@ const functions = {
     },
 
     adminViewVacancyByID: async (id) => {
-        const vacancy = await axios.get(`http://localhost:5000/api/admins/vacancy/${id}`)
+        const vacancy = await axios.get(`http://localhost:5000/api/admins/viewvacancy/${id}`)
         return vacancy
     },
 
@@ -44,6 +44,11 @@ const functions = {
 
     deleteVacancy: async (id) => {
         const vacancy = await axios.delete(`http://localhost:5000/api/vacancy/${id}`)
+        return vacancy
+    },
+
+    deleteAllVacancies: async (id) => {
+        const vacancy = await axios.delete(`http://localhost:5000/api/vacancy/`)
         return vacancy
     },
     

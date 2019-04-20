@@ -13,6 +13,20 @@ exports.getAllVacancies = async function(req,res){
     res.json({data: vacancy})
 }
 
+ //Get Location by Id
+ exports.findVacancy = async function(req,res){
+    try {
+        const id = req.params.id
+        const vacancyId = await Vacancy.findById(id)
+        if(!vacancyId) return res.status(404).send({error: 'Vacancy does not exist'})
+        res.json({msg: 'Vacancy Found', data: vacancyId })
+       }
+       catch(error) {
+        // We will be handling the error later
+           console.log(error)
+       }
+  }
+
 exports.getAllFinalVacancies = async function(req,res){
     const vacancy= await Vacancy.find({
         status : true
@@ -36,38 +50,22 @@ exports.createVacancy = async function(req,res){
        }  
 }
 
+// Update a Vacancy
 exports.updateVacancy = async function(req,res){
     try {
         const id = req.params.id
-        const updateVacancy = await Vacancy.findById(id)
-        if(!updateVacancy) return res.status(404).send({error: 'Vacancy does not exist'})
+        const vacancy = await Vacancy.findById(id)
+        if(!vacancy) return res.status(404).send({error: 'Vacancy does not exist'})
         const isValidated = validator.updateValidation(req.body)
-        var error={
-            error:400
-        }
-        if (isValidated.error) return res.json({msg:'Error 400: Bad Request', data:isValidated.error.details[0].message})
-        const upVacancy = await Vacancy.updateOne(req.body)
-
-        var acceptedMember = SeeIfMemberIsAcceptedInBody(req.body)
-        if(!acceptedMember)
-        {
-             // If the update is to the vacancy itself, send a notification to everyone who applied
-             NotifyAllApplicantsThatVacancyUpdated(updateVacancy)
-        }
-        else{
-            // If the update is to accept a member, send a notification to that member only
-            SendNotificationToAcceptedMember(acceptedMember,updateVacancy.empID)
-        }
-
-        //if(Object.keys(req.body.applicants).includes({"accepted" : "true"}))
-        res.json({msg: 'Vacancy updated successfully', data:updateVacancy.applicants})
-        
+        if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        var updatedVacancy = await Vacancy.findByIdAndUpdate(id,req.body)
+        updatedVacancy = await Vacancy.findById(id)
+        res.json({msg: 'Vacancy is updated successfully', data: updatedVacancy})
        }
        catch(error) {
-           // We will be handling the error later
            console.log(error)
-       }
-}
+       }  
+    }
 
 function SeeIfMemberIsAcceptedInBody(reqbody)
 {
@@ -147,18 +145,7 @@ exports.deleteVacancy = async function(req,res){
            console.log(error)
        }  
 }
-exports.findVacancy = async function(req,res){
-    try {
-        const id = req.params.id
-        const Vacancyy = await Vacancy.findById(id)
-        if(!Vacancyy) return res.status(404).send({error: 'Vacancy does not exist'})
-        res.json({msg: 'Vacancy found successfully', data: Vacancyy})
-       }
-       catch(error) {
-           // We will be handling the error later
-           console.log(error)
-       } 
-}
+
 
 //handling applications
 //finds the required vacancy and selects the applicants attribute which is an array of ids of people who applied to this job
@@ -320,4 +307,24 @@ exports.search = async function(req,res){
     }
 
     res.json({data:returnVacancy})
+}
+
+
+
+exports.deleteAllVacancies = async function(req,res){
+    try {
+        const vacancy= await Vacancy.find()
+       for(const i = 0; i < vacancy.length; i + 1){
+           const id = vacancy[i]._id
+           const deletedVacancy = await Vacancy.findByIdAndDelete(id)
+           res.json({msg:'Vacancy was deleted successfully', data: deletedVacancy})
+
+
+       }
+
+       }
+       catch(error) {
+           // We will be handling the error later
+           console.log(error)
+       }  
 }

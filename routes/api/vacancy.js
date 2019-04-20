@@ -6,11 +6,13 @@ const vacancyController = require('../../controllers/vacancyController')
 router.post('/search',vacancyController.search)
 //cruds
 router.get('/',vacancyController.getAllVacancies)
+router.get('/:id',vacancyController.findVacancy)
 router.get('/final/1',vacancyController.getAllFinalVacancies)
 router.post('/',vacancyController.createVacancy)
 router.put('/:id', vacancyController.updateVacancy)
 router.delete('/:id',vacancyController.deleteVacancy)
-router.get('/:id',vacancyController.findVacancy)
+router.delete('/',vacancyController.deleteAllVacancies)
+
 // handling applications
 router.put('/apply/:id',vacancyController.apply)
 router.put('/apply/cancelMyApplication/:id',vacancyController.cancelApplication)
