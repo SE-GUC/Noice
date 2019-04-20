@@ -8,6 +8,8 @@ import {searchRoom} from '../../actions/filterActionFolder/filterActions';
 
 import Select from 'react-select'
 
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
 
 class RoomSearch extends Component {
 
@@ -62,7 +64,7 @@ class RoomSearch extends Component {
 
     render() {
         return (
-            <div>
+            <div style = {{textAlign: 'center'}}>
                 <h3>Filter Rooms</h3>
                 <form onSubmit={this.onSubmit}>
 
@@ -88,13 +90,16 @@ class RoomSearch extends Component {
                 
                 return(
                     <div>
-                    <strong>ID:</strong> <pre> {foundRoom._id}</pre>
+                        <Card  border="primary" style={{ width: '24rem', margin: 'auto', textAlign: 'left' }}>
+                        <Card.Header><Card.Title>ID:{foundRoom._id}</Card.Title></Card.Header>
+                        <Card.Body>
                     <strong>Capacity: </strong> <pre>{foundRoom.capacity}</pre>
                     <strong>Is Available: </strong> <pre>{JSON.stringify(foundRoom.isAvailable)}</pre>
                     <strong>Location ID: </strong> <pre>{foundRoom.locationId}</pre>
                     <strong>Reservations: </strong> <pre>{JSON.stringify(foundRoom.reservations, null, 4)}</pre>
                     <strong>Tags: </strong> <pre>{JSON.stringify(foundRoom.tags)}</pre>
-
+                    </Card.Body>
+                        </Card>
                     <hr />
                     </div>
                 )})}

@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import {searchVacancy} from '../../actions/filterActionFolder/filterActions';
 
 import Select from 'react-select'
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
 
 class VacancySearch extends Component {
 
@@ -85,7 +87,7 @@ class VacancySearch extends Component {
 
     render() {
         return (
-            <div>
+            <div style = {{textAlign: 'center'}}>
                 <h3>Filter Vacancies</h3>
                 <form onSubmit={this.onSubmit}>
 
@@ -111,8 +113,12 @@ class VacancySearch extends Component {
                {this.props.vacancay.map(foundVacancy =>{
                 
                 return(
+                    
                     <div>
-                    <strong>ID:</strong> <pre>{foundVacancy._id}</pre>
+                        
+                        <Card  border="primary" style={{ width: '22rem', margin: 'auto', textAlign: 'left' }}>
+                        <Card.Header><Card.Title>ID:{foundVacancy._id}</Card.Title></Card.Header>
+                        <Card.Body>
                     <strong>Career Level:</strong><pre> {foundVacancy.careerLevel}</pre>
                     <strong>Job Description:</strong> <pre>{foundVacancy.jobDescription}</pre>
                     <strong>Education Level:</strong> <pre>{foundVacancy.educationLevel}</pre>
@@ -122,7 +128,9 @@ class VacancySearch extends Component {
                     <strong>Status:</strong><pre> {JSON.stringify(foundVacancy.status)}</pre>
                     <strong>Closed:</strong><pre> {JSON.stringify(foundVacancy.closed)}</pre>
                     <strong>Tags:</strong><pre> {JSON.stringify(foundVacancy.tags)}</pre>
-
+                    </Card.Body>
+                        </Card>
+                        
                     <hr />
                     </div>
                 )})}
