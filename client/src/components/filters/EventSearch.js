@@ -11,6 +11,10 @@ import Select from 'react-select'
 import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck';
 
+/******     PLEASE READ:  ***********/
+// This will work if events are on this branch (at the time of writing this it isnt)
+// If the events are not on this branch, this will still work if you run the events backend from
+// another branch with port 5000
 class EventSearch extends Component {
 
     constructor(props) {
