@@ -6,6 +6,7 @@ import {Switch,Route} from 'react-router-dom'
 
 import vacancyFilter from './filters/VacancySearch'
 import roomFilter from './filters/RoomSearch'
+import eventFilter from './filters/EventSearch'
 const Main = ()=>(
 <Switch>
     <Route exact path ="/" component = {Home}/>,
@@ -14,6 +15,7 @@ const Main = ()=>(
 
     <Route  path= "/search/Vacancies" component = {vacancyFilter}/>
     <Route  path= "/search/Rooms" component = {roomFilter}/>
+    <Route  path= "/search/Events" component = {eventFilter}/>
 
     
 </Switch>

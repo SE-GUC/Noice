@@ -44,6 +44,7 @@ class App extends Component {
                      <Link to="/vacancy/viewAll">Vacancy View all</Link>
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
                      <Link to="/search/Rooms">Filter Rooms</Link>
+                     <Link to="/search/Events">Filter Events</Link>
                      </Navigation>
                    </Header>
                 <Drawer title="User Name?">
@@ -59,6 +60,7 @@ class App extends Component {
                      <Link to="/vacancy/viewAll">View all</Link>
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
                      <Link to="/search/Rooms">Filter Rooms</Link>
+                     <Link to="/search/Events">Filter Events</Link>
                       </Navigation>
                  </Drawer>
                  <Content>
