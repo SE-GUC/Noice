@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 //import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Event = props => (
+const Event = props => {console.log(props.event); return(
     <tr>
-        <td>{props.Event.event_Name}</td>
-        <td>{props.Event.event_Owner}</td>
-        <td>{props.Event.event_Type}</td>
-        <td>{props.Event.event_Location}</td>
-        <td>{props.Event.event_StartDate}</td>
-        <td>{props.Event.event_EndDate}</td>
-        <td>{props.Event.event_Description}</td>
-        <td>{props.Event.event_tags}</td>
+        <td>{props.event.Name}</td>
+        <td>{props.event.Owner}</td>
+        <td>{props.event.Type}</td>
+        <td>{props.event.Location}</td>
+        <td>{props.event.startDate}</td>
+        <td>{props.event.endDate}</td>
+        <td>{props.event.Description}</td>
+        <td>{props.event.tags}</td>
     </tr>
-)
+)}
 
 export default class ViewAllEvents extends Component {
 
@@ -25,7 +25,7 @@ export default class ViewAllEvents extends Component {
     componentDidMount() {
         axios.get('http://localhost:5000/api/events')
             .then(response => {
-                this.setState({events: response.data});
+                this.setState({events: response.data.data});
             })
             .catch(function (error) {
                 console.log(error);

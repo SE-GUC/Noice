@@ -53,9 +53,9 @@ class UpdateEvent extends Component {
    //prevents submitting empty values
     e.preventDefault();
    //the body you will send
-    const ID={
-    ID:this.state.ID
-    }
+    const ID= this.state.ID
+    console.log(ID)
+    
 
     const body={
         
@@ -63,9 +63,9 @@ class UpdateEvent extends Component {
         Owner:this.state.Owner ,
         Type:this.state.Type,
         Location:this.state.Location,
-        StartDate:this.state.StartDate,
+        startDate:this.state.StartDate,
         Description:this.state.Description,
-        tags:this.state.tags
+        tags:[this.state.tags]
    }
    //send an axios request
    this.props.updateEvent(ID,body)
@@ -84,63 +84,104 @@ class UpdateEvent extends Component {
     })
   }
   
-  //the life cycle method you need
-  render() {
+   //the life cycle method you need
+   render() {
     return (
       <div>
-          
-     <Form onSubmit={this.onSubmit}>
-  <Form.Row>
+        <Form onSubmit={this.onSubmit}>
+          <Form.Row>
+          <Form.Group as={Col} controlId="formGridID">
+              <Form.Label>ID</Form.Label>
+              <Form.Control
+                type="text"
+                value={this.state.ID}
+                onChange={e => this.setState({ID: e.target.value})}
+                placeholder="Enter Event ID"
+              />
+            </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridID">
-      <Form.Label>ID</Form.Label>
-      <Form.Control type="text" onChange ={this.onChange} placeholder="Enter Event ID" />
-    </Form.Group>
+            <Form.Group as={Col} controlId="formGridName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                value={this.state.Name}
+                onChange={e => this.setState({Name: e.target.value})}
+                placeholder="Enter Event Name"
+              />
+            </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridName">
-      <Form.Label>Name</Form.Label>
-      <Form.Control type="text" onChange ={this.onChange} placeholder="Enter Event Name" />
-    </Form.Group>
+            <Form.Group as={Col} controlId="formGridOwner">
+              <Form.Label>Owner</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Owner"
+                value={this.state.Owner}
+                onChange={e => this.setState({Owner: e.target.value})}
+              />
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formType">
+              <Form.Label>Type</Form.Label>
+              <Form.Control
+                placeholder="Type"
+                type="text"
+                name="Type"
+                value={this.state.Type}
+                onChange={e => this.setState({Type: e.target.value})}
+              />
+            </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridOwner">
-      <Form.Label>Owner</Form.Label>
-      <Form.Control type="text" placeholder="Owner" onChange ={this.onChange} />
-    </Form.Group>
-  </Form.Row>
-  <Form.Row>
-    <Form.Group as={Col} controlId="formType">
-      <Form.Label>Type</Form.Label>
-      <Form.Control placeholder="Type"  type ="text" name="Type" onChange = {this.onChange}/>
-    </Form.Group>
+            <Form.Group as={Col} controlId="formLocation">
+              <Form.Label>Location</Form.Label>
+              <Form.Control
+                placeholder="Location"
+                type="text"
+                name="Location"
+                value={this.state.Location}
+                onChange={e => this.setState({Location: e.target.value})}
+              />
+            </Form.Group>
 
-    <Form.Group as={Col} controlId="formLocation">
-      <Form.Label>Location</Form.Label>
-      <Form.Control placeholder ="Location" type ="text" name="Location" onChange = {this.onChange}>
-      </Form.Control>
-    </Form.Group>
+            <Form.Group as={Col} controlId="formStartDate">
+              <Form.Label>StartDate</Form.Label>
+              <Form.Control
+                placeholder="StartDate"
+                type="text"
+                name="StartDate"
+                value={this.state.StartDate}
+                onChange={e => this.setState({StartDate: e.target.value})}
+              />
+            </Form.Group>
 
-    <Form.Group as={Col} controlId="formStartDate">
-      <Form.Label>StartDate</Form.Label>
-      <Form.Control placeholder ="StartDate" type ="text" name="StartDate" onChange = {this.onChange}>
-      </Form.Control>
-    </Form.Group>
+            <Form.Group as={Col} controlId="formDescription">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                placeholder="Description"
+                type="text"
+                name="Descrition"
+                value={this.state.Description}
+                onChange={e => this.setState({Description: e.target.value})}
+              />
+            </Form.Group>
+          </Form.Row>
+          <Form.Group as={Col} controlId="formtags">
+            <Form.Label>tags</Form.Label>
+            <Form.Control
+              placeholder="tags"
+              type="text"
+              name="tags"
+              value={this.state.tags}
+              onChange={e => this.setState({tags: e.target.value})}
+            />
+          </Form.Group>
 
-    <Form.Group as={Col} controlId="formDescription">
-      <Form.Label>Description</Form.Label>
-      <Form.Control placeholder ="Description" type ="text" name="Descrition" onChange = {this.onChange}/>
-    </Form.Group>
-  </Form.Row>
-  <Form.Group as={Col} controlId="formtags">
-      <Form.Label>tags</Form.Label>
-      <Form.Control placeholder = "tags" type ="text" name="tags" onChange = {this.onChange}/>
-    </Form.Group>
-  
-  <Button variant="primary" type="submit">
-    Update Event
-  </Button>
-</Form>
+          <Button variant="primary" type="submit">
+            Update Event
+          </Button>
+        </Form>
       </div>
-    )
+    );
   }
 }
 
