@@ -6,11 +6,13 @@ import createAdminReducer from './adminReducer'
 import homeReducer from './homeReducer'
 import vacancyFilterReducer from './filterReducers/vacancyFilterReducer'
 import roomFilterReducer from './filterReducers/roomFilterReducer'
+import eventFilterReducer from './filterReducers/eventFilterReducer'
 //add your reducers here please use camelcale 
 //ffs use camelcase
 export default combineReducers({
     createAdmin : createAdminReducer,
     home : homeReducer,
     vacancay : vacancyFilterReducer,
-    room: roomFilterReducer
+    room: roomFilterReducer,
+    event : eventFilterReducer
 });
