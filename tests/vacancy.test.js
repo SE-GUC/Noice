@@ -4,17 +4,11 @@ mongoose = require("mongoose");
 var ic ='';
 var userId=''
 
-
-
-
-
-
-
 // IF YOU CHANGE the jobDescription or tags in the body, reflect them in the search test under this
 test('create vacancy',async()=>{
    jest.setTimeout(20000)
    const body={
-     title: "hamada",
+     title: "omar",
      careerLevel:"create testing",
      jobDescription:"teset",
      educationLevel:"master phd",
@@ -28,22 +22,27 @@ expect(response.data.data._id).toEqual(ic)
 
 
 
-// test('last vacancy educationLevel is master phd', async () => {
-//   jest.setTimeout(100000)
-//   const response =  await funcs.viewVacancy()
-//   const length = response.data.length
-//   expect(response.data.data[length-1].educationLevel).toEqual('master phd')
-//   })
+test('last vacancy title is omar', async () => {
+  jest.setTimeout(100000)
+  const response =  await funcs.viewVacancy()
+  const length = response.data.data.length
+  expect(response.data.data[length-1].title).toEqual('omar')
+  })
 
 
 
-test('View vacancy by id', async () => {
+test('View All Final Vacancies', async () => {
     jest.setTimeout(20000)
-    const response =  await funcs.viewVacancyByID(ic)
-    expect(response.data.data._id).toEqual(ic)
-    });
+    const response =  await funcs.viewAllFinalVacancies()
+    expect(response.data.data).toEqual([])
+    })
 
     
+    test('View vacancy by id', async () => {
+      jest.setTimeout(20000)
+      const response =  await funcs.viewVacancyByID(ic)
+      expect(response.data.data._id).toEqual(ic)
+      });
   
 
 /* 
