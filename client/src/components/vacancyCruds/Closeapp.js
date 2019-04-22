@@ -47,6 +47,9 @@ class Closeapp extends Component {
 	}
 
 };
+Closeapp.propTypes={
+	closeVac : PropTypes.func.isRequired
+}
 
 const mapStateToProps = state => ({
 	vacancys: state.vacancys.vacancys,

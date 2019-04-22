@@ -38,9 +38,16 @@ class Viewapplicants extends Component {
 
 };
 
+Viewapplicants.propTypes={
+	getApplicants : PropTypes.func.isRequired,
+	vacancys: PropTypes.array.isRequired
+}
+
 const mapStateToProps = state => ({
 	vacancys: state.vacancys.vacancys,
 	closed: state.vacancys.vacancy
 });
+
+
 
 export default connect(mapStateToProps,{ getApplicants })(Viewapplicants);

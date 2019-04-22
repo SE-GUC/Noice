@@ -49,7 +49,9 @@ class Acceptapp extends Component {
 	}
 
 };
-
+Acceptapp.propTypes={
+	acceptVac : PropTypes.func.isRequired
+}
 const mapStateToProps = state => ({
 	vacancys: state.vacancys.vacancys,
 	vacancy: state.vacancys.vacancy,
