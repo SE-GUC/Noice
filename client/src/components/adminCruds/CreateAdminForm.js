@@ -73,7 +73,7 @@ class CreateAdminForm extends Component {
 
     <Form.Group as={Col} controlId="formGridPassword">
       <Form.Label>Password</Form.Label>
-      <Form.Control placeholder="Password" onChange ={this.onChange} />
+      <Form.Control type="password" placeholder="Password" onChange ={this.onChange} />
     </Form.Group>
   </Form.Row>
   <Form.Row>
@@ -101,7 +101,7 @@ class CreateAdminForm extends Component {
   <Button variant="primary" type="submit">
     Create admin
   </Button>
-</Form>;
+</Form>
       </div>
     )
   }
