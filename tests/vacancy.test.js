@@ -45,7 +45,7 @@ test('View All Final Vacancies', async () => {
       });
   
 
-/* 
+ 
 // Depends on the create vacancy
 // Any changes you do in create vacancy represent them here
 // add these immediately after the create vacancy test
@@ -58,7 +58,7 @@ test('Search for a vacancy', async()=>{
     const response = await funcs.searchVacancy(body)
     expect(response.data.data[0].jobDescription).toEqual("teset")
   
-  }) */
+  }) 
 
 // Depends on the create vacancy
 test('Search for a vacancy', async()=>{
@@ -104,50 +104,46 @@ test('member should be created', async () =>{
   expect(response.data.data._id).toBe(userId)
 });
 
-// test('apply on a vacancy',async()=>{
-//   body={
-//     "userId":""+userId
-//   }
-//   expect.assertions(1)
-//   const res = await funcs.applyOnVacancy(ic,body)  
-//   expect(res.data.data.applicants.length).toEqual(1)
-// })
-
-// test('apply on a vacancy again',async()=>{
-//   body={
-//     "id":"2",
-//     "name":"ammar"
-//   }
-//   expect.assertions(1)
-//   const response = await funcs.applyOnVacancy(ic,body)  
-//   console.log(response.data.data)
-//   expect(response.data.data.applicants[0].id).toEqual("1")
-// })
-
-/*test('cancel my application',async()=>{
+test('apply on a vacancy',async()=>{
   body={
-    "id":"1",
-    "name":"ammar bardo"
+    "userId":""+userId
   }
   expect.assertions(1)
-  const response = await funcs.cancelMyApplication(id,body)
-  expect(response.data.data.applicants.length).toEqual(1)
-},50000)*/
+  const res = await funcs.applyOnVacancy(ic,body)  
+  expect(res.data.data.applicants.length).toEqual(1)
+})
+
+/*test('apply on a vacancy again',async()=>{
+  body={
+    "id":"2",
+    "name":"ammar"
+  }
+  expect.assertions(1)
+  const response = await funcs.applyOnVacancy(ic,body)  
+  console.log(response.data.data)
+  expect(response.data.data.applicants[0].id).toEqual("1")
+})*/
+
+// test('cancel my application',async()=>{
+//   body={
+//     "id":"1",
+//     "name":"ammar bardo"
+//   }
+//   expect.assertions(1)
+//   const response = await funcs.cancelMyApplication(id,body)
+//   expect(response.data.data.applicants.length).toEqual(1)
+// },50000)
 
 
-/*test('close vacancy',async()=>{
+test('close vacancy',async()=>{
   const body={
     closed:true
   }
   const response = await funcs.closeVacancy(ic,body)
-  expect(response.data.closed).toEqual(true) 
+  expect(response.data.data.closed).toEqual(true) 
   
 },500000) 
-test ('delete vacancy',async()=>{
-  const user =  await funcs.viewVacancyByID(ic)
-  const user2 =  await funcs.deleteVacancy(ic)
-  expect(user.data.data._id).toEqual(user2.data.data._id)
-}) */
+
 
 test('first vacancy status is false', async () => {
   jest.setTimeout(10000)
