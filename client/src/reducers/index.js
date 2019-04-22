@@ -16,7 +16,7 @@ export default combineReducers({
     vacancay : vacancyFilterReducer,
     room: roomFilterReducer,
     event : eventFilterReducer,
-    amount1: vacancyReducer,
+    //amount1: vacancyReducer,
     name1: eventReducer,
     owner1: eventReducer,
     type1: eventReducer,
