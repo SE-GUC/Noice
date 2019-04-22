@@ -7,6 +7,7 @@ import homeReducer from './homeReducer'
 import vacancyFilterReducer from './filterReducers/vacancyFilterReducer'
 import roomFilterReducer from './filterReducers/roomFilterReducer'
 import eventFilterReducer from './filterReducers/eventFilterReducer'
+import vacancyReducer from './vacancyReducer'
 //add your reducers here please use camelcale 
 //ffs use camelcase
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
     home : homeReducer,
     vacancay : vacancyFilterReducer,
     room: roomFilterReducer,
-    event : eventFilterReducer
+    event : eventFilterReducer,
+    vacancys: vacancyReducer
 });
