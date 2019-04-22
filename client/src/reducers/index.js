@@ -5,6 +5,7 @@ import {combineReducers} from 'redux';
 import createAdminReducer from './adminReducer'
 import homeReducer from './homeReducer'
 import vacancyFilterReducer from './filterReducers/vacancyFilterReducer'
+import viewAllRoomsReducer from './RoomReducers/viewAllRoomsReducer'
 import roomFilterReducer from './filterReducers/roomFilterReducer'
 import eventFilterReducer from './filterReducers/eventFilterReducer'
 //add your reducers here please use camelcale 
@@ -14,5 +15,6 @@ export default combineReducers({
     home : homeReducer,
     vacancay : vacancyFilterReducer,
     room: roomFilterReducer,
+    viewRooms: viewAllRoomsReducer,
     event : eventFilterReducer
 });

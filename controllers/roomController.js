@@ -11,7 +11,7 @@ exports.getAllRooms = async function(req,res){
 }
 //GET ALL ROOMS FOR A SPECIFIED LOCATION
 exports.getRoomsForLoc = async function(req,res){
-    axios.get('http://localhost:3000/api/users/location/locationE/get/curr_loc/'+req.params.id)   
+    axios.get('http://localhost:5000/api/users/location/locationE/get/curr_loc/'+req.params.id)   
     .then(locationRes=>{
         var location = locationRes.data.data
        if(!location){
@@ -53,7 +53,7 @@ exports.createRoom = async function(req,res){
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
         var locationRes = null
          try {
-             locationRes = await axios.get('http://localhost:3000/api/users/location/locationE/get/curr_loc/'+req.body.locationId)   
+             locationRes = await axios.get('http://localhost:5000/api/users/location/locationE/get/curr_loc/'+req.body.locationId)   
          }catch(error){
             console.log(error.config);
             if (error.response) {
@@ -108,7 +108,7 @@ exports.updateRoom = async function(req,res){
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
         var locationRes = null
         try {
-            locationRes = await axios.get('http://localhost:3000/api/users/location/locationE/get/curr_loc/'+req.body.locationId)  
+            locationRes = await axios.get('http://localhost:5000/api/users/location/locationE/get/curr_loc/'+req.body.locationId)  
         }
         catch(error) {
             console.log(error.config);
@@ -196,7 +196,7 @@ exports.findRoom = async function(req,res){
 exports.createRoomResReq = async function(req,res){
     var roomRes = null
     try {
-        roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
+        roomRes = await axios.get('http://localhost:5000/api/users/location/room/get/curr_room/'+req.params.id)   
      } catch(error) {
             console.log(error.config);
             if (error.response) {
@@ -235,7 +235,7 @@ exports.createRoomResReq = async function(req,res){
         console.log({roomReadKey:roomRead})
         var newRoom = null;
         try{
-            newRoom = await axios.post('http://localhost:3000/api/users/location/room/update/curr_room/'+req.params.id,roomRead)
+            newRoom = await axios.post('http://localhost:5000/api/users/location/room/update/curr_room/'+req.params.id,roomRead)
     }
     catch(error) {
         console.log(error.config);
@@ -262,7 +262,7 @@ exports.deleteRoomResReq = async function(req,res){
     if(!req.params.id) return res.status(400).json({Error:'You must specify the id of the room that has this reservation.'})
     var roomRes = null
     try {
-        roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
+        roomRes = await axios.get('http://localhost:5000/api/users/location/room/get/curr_room/'+req.params.id)   
      } catch(error) {
             console.log(error.config);
             if (error.response) {
@@ -289,7 +289,7 @@ exports.deleteRoomResReq = async function(req,res){
         var deletedRoomResRes = null
         try{
             console.log({reqBody:req.body})
-            deletedRoomResRes = await axios.post('http://localhost:3000/api/users/location/roomRes/get/curr_room_res/'+req.params.id,req.body)
+            deletedRoomResRes = await axios.post('http://localhost:5000/api/users/location/roomRes/get/curr_room_res/'+req.params.id,req.body)
             deletRoomRes = deletedRoomResRes.data
             if(!deletRoomRes) return res.status(404).json({Error:'No reservation with that start date'})
         }catch(error){
@@ -317,7 +317,7 @@ exports.deleteRoomResReq = async function(req,res){
         console.log({roomReadKey:roomRead})
         var newRoom = null;
         try{
-         newRoom = await axios.post('http://localhost:3000/api/users/location/room/update/curr_room/'+req.params.id,roomRead)
+         newRoom = await axios.post('http://localhost:5000/api/users/location/room/update/curr_room/'+req.params.id,roomRead)
         }
        catch(error) {
         console.log(error.config);
@@ -346,7 +346,7 @@ exports.updateRoomRes = async function(req,res){
         if(!req.body.startDate){
             return res.status(400).json({error:'You must specify the start date of the reservation'})
         }
-            var roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
+            var roomRes = await axios.get('http://localhost:5000/api/users/location/room/get/curr_room/'+req.params.id)   
             var roomRead  = roomRes.data.data
             console.log(JSON.stringify({room:roomRead}))
             if(!roomRead) {
@@ -370,7 +370,7 @@ exports.updateRoomRes = async function(req,res){
             roomRead['reservations'].push(newRoomRes)
             delete roomRead._id
             delete roomRead.__v
-            const newRoom = await axios.post('http://localhost:3000/api/users/location/room/update/curr_room/'+req.params.id,roomRead)
+            const newRoom = await axios.post('http://localhost:5000/api/users/location/room/update/curr_room/'+req.params.id,roomRead)
             return  res.json({msg:'Room Reservation was updated successfully', data: newRoom.data})
        }
         catch(error) {
@@ -386,7 +386,7 @@ exports.getRoomRes = async function(req,res){
     try {
         if(!req.body.startDate) return res.status(400).json({Error:'You must specify the start date of the reservation'})
         if(!req.params.id) res.status(400).json({Error:'You must specify the id of the room that has this reservation.'})
-        var roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
+        var roomRes = await axios.get('http://localhost:5000/api/users/location/room/get/curr_room/'+req.params.id)   
         var roomRead  = roomRes.data.data
         console.log(JSON.stringify({room:roomRead}))
         if(!roomRead) {
@@ -412,7 +412,7 @@ exports.viewResRequestsForRoom = async function(req,res){
     var roomRes;
     var roomRead;
     try{
-        roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
+        roomRes = await axios.get('http://localhost:5000/api/users/location/room/get/curr_room/'+req.params.id)   
         roomRead  = roomRes.data.data
     }catch(error){
         console.log(error)
@@ -433,7 +433,7 @@ exports.rejectRoomRes = async function(req,res){
     if(!req.params.id) return res.status(400).json({Eror: "You must specify which room to show th reservations!"})
     if(!req.body.startDate) return res.status(400).json({Error:"You must specify the reservation to be rejected by sending its <startDate>"})
     try{
-        roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
+        roomRes = await axios.get('http://localhost:5000/api/users/location/room/get/curr_room/'+req.params.id)   
         roomRead  = roomRes.data.data
     }catch(error){
         console.log(error.config);
@@ -472,7 +472,7 @@ exports.rejectRoomRes = async function(req,res){
         delete selectedReservation._id
         selectedReservation.state = 'REJECTED'
         console.log({selectedReservationRejectAfter:selectedReservation})
-        newRoom = await axios.post('http://localhost:3000/api/users/location/roomRes/update/curr_room_res/'+req.params.id,selectedReservation)
+        newRoom = await axios.post('http://localhost:5000/api/users/location/roomRes/update/curr_room_res/'+req.params.id,selectedReservation)
     }catch(error){
         console.log(error.config);
         if (error.response) {
@@ -501,7 +501,7 @@ exports.acceptRoomRes = async function(req,res){
         var rejectedReservations = 0
         var acceptedReservations = 0
         try{
-            roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
+            roomRes = await axios.get('http://localhost:5000/api/users/location/room/get/curr_room/'+req.params.id)   
             roomRead  = roomRes.data.data
         }catch(error){
             console.log(error.config);
@@ -533,7 +533,7 @@ exports.acceptRoomRes = async function(req,res){
                         try{
                              var rejectRoomBody = new Object()
                              rejectRoomBody.startDate = element.startDate
-                             var roomRejectRes = await axios.post('http://localhost:3000/api/users/location/roomRes/update/rej_room_res/'+roomRead._id,rejectRoomBody)
+                             var roomRejectRes = await axios.post('http://localhost:5000/api/users/location/roomRes/update/rej_room_res/'+roomRead._id,rejectRoomBody)
                              rejectedReservations = rejectedReservations+1
                         }catch(error){
                             unrejectedReservations = unrejectedReservations+1
@@ -551,7 +551,7 @@ exports.acceptRoomRes = async function(req,res){
         selectedReservation.state = 'RESERVED'
         console.log({selectedReservationAcceptAfter:selectedReservation})
         try{
-            roomRes = await axios.get('http://localhost:3000/api/users/location/room/get/curr_room/'+req.params.id)   
+            roomRes = await axios.get('http://localhost:5000/api/users/location/room/get/curr_room/'+req.params.id)   
             roomRead  = roomRes.data.data
         }catch(error){
             console.log(error.config);
@@ -574,7 +574,7 @@ exports.acceptRoomRes = async function(req,res){
             console.log(JSON.stringify({error: 'Cannot get the specified room'}))
             return res.status(404).json({error: 'Cannot get the specified room'})
         }
-        newRoom = await axios.post('http://localhost:3000/api/users/location/roomRes/update/curr_room_res/'+req.params.id,selectedReservation)
+        newRoom = await axios.post('http://localhost:5000/api/users/location/roomRes/update/curr_room_res/'+req.params.id,selectedReservation)
         }catch(error){
             console.log(error.config);
             if (error.response) {

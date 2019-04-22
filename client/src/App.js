@@ -13,6 +13,9 @@ import CreateAdminForm from './components/adminCruds/CreateAdminForm'
 
 //importing the store
 import store from './store.js'
+import RoomFromLocationForm from './components/roomCruds/RoomFromLocationForm';
+import UpdateRoom from './components/roomCruds/updateRoom';
+import adminForm from './components/roomCruds/adminForm'
 //add other cruds here
 
 //react mdl components
@@ -24,6 +27,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
+import updateRoom from './components/roomCruds/updateRoom';
 
 
 class App extends Component {
@@ -61,10 +65,15 @@ class App extends Component {
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
                      <Link to="/search/Rooms">Filter Rooms</Link>
                      <Link to="/search/Events">Filter Events</Link>
+                     <Nav.Link className="viewRoomLink" href={'/locationRoom'}>Room from location</Nav.Link>
+                     <Nav.Link className="adminRoomLink" href={'/adminRoom'}>Room from admin</Nav.Link>
                       </Navigation>
                  </Drawer>
                  <Content>
                  <div className="page-content" />
+                 <Route exact path='/locationRoom' render={(props)=><RoomFromLocationForm id="5cb134e04828eb67908abf08"{...props}/>} />
+                 <Route exact path='/updateRoom' render={(props)=><updateRoom id="5cb134e04828eb67908abf08"{...props}/>} />
+                 <Route exact path='/adminRoom' component={ adminForm  } />
                  <Main/>
                  </Content>
                </Layout>
