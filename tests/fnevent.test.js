@@ -37,7 +37,7 @@ test('Search for an Event', async()=>{
 test('view all events',async()=>{
     expect.assertions(1)
     const response =  await funcs.viewAllEvents()
-    expect(response.data.data.length).toEqual(4)  
+    expect(response.data.data.length).toEqual(5)  
 },10000)
 
 
