@@ -12,6 +12,7 @@ import '../../App.css';
 import Fab from '@material-ui/core/Fab';
 import {updateRoom} from '../../actions/roomActionFolder/roomActions';
 import {connect} from 'react-redux';
+import Switch from '@material-ui/core/Switch';
 
 
 const styles = theme => ({
@@ -51,11 +52,15 @@ class UpdateRoom extends React.Component {
     this.state = { 
       ID: '',
       capacity:'',
+      checkedA: false,
       open: false,
       open2:false,
     }
   }
-
+      
+      handleChangeChecked = name => event => {
+        this.setState({ [name]: event.target.checked });
+      };  
       handleChange = name => event => {
         this.setState({
           [name]: event.target.value,
@@ -65,20 +70,23 @@ class UpdateRoom extends React.Component {
          e.preventDefault();
          this.setState({
           ID: '',
-        capacity:''
+        capacity:'',
+        checkedA: false,
+        open: false,
+        open2:false,
                   })
        }
-       handleClick = (id,Capacity) => {
+       handleClick = (id,Capacity,Availability) => {
          if(this.state.capacity>50 ||this.state.capacity<0 ){
         this.setState({ open: true });
        }
       else{
-        const body = new Object({
+        const body = {
           capacity: Capacity,
-          isAvailable:"true",
+          isAvailable: Availability,
           locationId: "5cb134e04828eb67908abf08",
           reservations:[],
-        });
+        };
         this.props.updateRoom(id,body);
         this.setState({ open2: true  });
       }
@@ -145,22 +153,22 @@ class UpdateRoom extends React.Component {
         />
         <br /><br/>
         <div>
-        <center>Available<Switches/>Not Available</center>
-        </div>
+        <center>Not Available<Switch checked={this.state.checkedA} onChange={this.handleChange('checkedA')} value={this.state.checkedA}/>Available</center>
+          </div>
       </Typography>
       <Typography ALIGN="CENTER" >
-      <Fab color="primary" variant='extended' ALIGN="CENTER" onClick={()=>{this.handleClick(this.state.ID,this.state.capacity)}} className={classes.button}>
+      <Fab color="primary" variant='extended' ALIGN="CENTER" onClick={()=>{this.handleClick(this.state.ID,this.state.capacity,this.state.checkedA)}} className={classes.button}>
         UPDATE
       </Fab>
       <Snackbar
-                  open={this.state.open2}
-                  onClose={this.handleClose2}
-                  TransitionComponent={Fade}
-                  ContentProps={{
-                    'aria-describedby': 'message-id',
-                  }}
-                  message={<span id="message-id">Room has been updated successfully</span>}
-                />
+          open={this.state.open2}
+          onClose={this.handleClose2}
+          TransitionComponent={Fade}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">Room has been updated successfully</span>}
+      />
       <Snackbar
           open={this.state.open}
           onClose={this.handleClose}

@@ -72,7 +72,7 @@ class App extends Component {
                  <Content>
                  <div className="page-content" />
                  <Route exact path='/locationRoom' render={(props)=><RoomFromLocationForm id="5cb134e04828eb67908abf08"{...props}/>} />
-                 <Route exact path='/updateRoom' render={(props)=><updateRoom id="5cb134e04828eb67908abf08"{...props}/>} />
+                 <Route exact path='/updateRoom' render={(props)=><UpdateRoom id="5cb134e04828eb67908abf08"{...props}/>} />
                  <Route exact path='/adminRoom' component={ adminForm  } />
                  <Main/>
                  </Content>

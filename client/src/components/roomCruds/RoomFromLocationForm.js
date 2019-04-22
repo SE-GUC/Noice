@@ -284,7 +284,7 @@ class SimpleCard extends React.Component {
                       <IconButton aria-label="Delete" color="secondary" onClick={()=>{this.handleClick2(value._id)}}>
                         <DeleteIcon />
                       </IconButton>
-                      <IconButton color="primary" aria-label="Update" href='/updateRoom'>
+                      <IconButton color="primary" aria-label="Update" href='/UpdateRoom'>
                         <EditIcon/>
                       </IconButton>
                       <Fab variant="extended" aria-label="viewRes" className={classes.fab}>
