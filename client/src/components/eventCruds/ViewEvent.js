@@ -112,7 +112,7 @@ ViewEvent.propTypes ={
   };
 
   const mapStateToProps = state =>({
-    amount1: state.amount1.amount,
+    //amount1: state.amount1.amount,
     name1: state.name1.name
   })
 
