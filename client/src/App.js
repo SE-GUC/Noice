@@ -46,9 +46,11 @@ class App extends Component {
                      </Navigation>
                    </Header>
                 <Drawer title="User Name?">
+                <i class="fas fa-id-card"></i>
                      <Navigation>
                      <Link to="/userProfile">
                     {/*put an awesome icon here from https://fontawesome.com/icons/id-card?style=solid */}
+                   
                      </Link>
                      
                      <Link to="/">Home</Link>
@@ -65,13 +67,6 @@ class App extends Component {
                  </Content>
                </Layout>
              </div>
-             
-             
-       
-         
-
-              
-
         </div>
      </Router>
       </Provider>
