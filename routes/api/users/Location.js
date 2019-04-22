@@ -3,6 +3,17 @@ const router = express.Router()
 const location_controller=require('../../../controllers/locationController')
 
 const roomController = require('../../../controllers/roomController')
+const memberController = require('../../../controllers/memberController')
+
+router.get('/member/', memberController.getAllMember)
+
+router.post('/member/', memberController.createMember)
+
+router.put('/member/:id', memberController.updateMember)
+
+router.delete('/member/:id', memberController.deleteMember)
+
+router.get('/member/:id',memberController.findMember)
 
 router.get('/',location_controller.getAllLocations)
 
