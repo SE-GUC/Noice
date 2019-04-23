@@ -9,21 +9,18 @@ import Vacancy from './components/vacancyCruds/Vacancy'
 import Main from './components/main'
 
 //add the rest of the admin cruds here
-import CreateAdminForm from './components/adminCruds/CreateAdminForm'
+import signUpForm from './components/usersCruds/signUpForm'
 
 //importing the store
 import store from './store.js'
 //add other cruds here
 
 //react mdl components
-import { Footer, FooterSection, FooterLinkList,Layout,Header,Navigation,Drawer,Textfield,Content } from 'react-mdl';
+import {Layout,Header,Navigation,Drawer,Content } from 'react-mdl';
 
 //bootstrap components 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
+
 
 
 class App extends Component {
@@ -42,20 +39,23 @@ class App extends Component {
                      <Link to="/">Home</Link>
                      <Link to="/createAdmin">Admin Cruds</Link>
                      <Link to="/vacancy/viewAll">Vacancy View all</Link>
+                     <Link to="/signup">Sign Up</Link>
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
                      <Link to="/search/Rooms">Filter Rooms</Link>
                      <Link to="/search/Events">Filter Events</Link>
+
                      </Navigation>
                    </Header>
-                <Drawer title="User Name?">
+                   <Drawer title="User Name?">
                      <Navigation>
                      <Link to="/userProfile">
                     {/*put an awesome icon here from https://fontawesome.com/icons/id-card?style=solid */}
+                   
                      </Link>
-                     
                      <Link to="/">Home</Link>
                      <h1>Admin</h1>
-                     <Link to="/createAdmin">create</Link>
+                     <Link to="/admin/createAdmin">create</Link>
+                     <Link to="/admin/viewAdmin">view</Link>
                      <h2>Vacancy</h2>
                      <Link to="/vacancy/viewAll">View all</Link>
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
@@ -67,6 +67,11 @@ class App extends Component {
                      <Link to="/delete/Event">Delete Events</Link>
                      <Link to="/viewAll/Event">View All Events</Link>
                      <Link to="/ViewById/Event">View Event By ID</Link>
+                     <Link to="/vacancy/getApplicants">Get Applicants</Link>
+                     <Link to="/vacancy/accept">Accept applicant</Link>
+                     <Link to="/vacancy/close">Close Vacancy</Link>
+
+
                       </Navigation>
                  </Drawer>
                  <Content>
@@ -75,13 +80,6 @@ class App extends Component {
                  </Content>
                </Layout>
              </div>
-             
-             
-       
-         
-
-              
-
         </div>
      </Router>
       </Provider>

@@ -2,7 +2,7 @@ import {SEARCH_VACANCY}  from '../../actions/filterActionFolder/filterTypes'
 
 const initialState = {
 // response from searching:
-vacancies:[]
+vacancies:[],
 };
 
 export default function(state = initialState, action){
@@ -14,7 +14,7 @@ export default function(state = initialState, action){
                 // adds the result into searchResult
                 vacancies: action.payload
             }
-                
+            
         default: return state;
     }
 }

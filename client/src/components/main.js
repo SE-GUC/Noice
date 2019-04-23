@@ -1,10 +1,17 @@
+
 import React from 'react';
 import Home from './Home'
+import closeapp from './vacancyCruds/Closeapp'
 import ViewVacancy from './vacancyCruds/Vacancy'
 import CreateEvent from './eventCruds/CreateEvent'
 import admin from './adminCruds/CreateAdminForm'
 import {Switch,Route} from 'react-router-dom'
-
+import getapp from './vacancyCruds/Viewapplicants'
+import acceptapp from './vacancyCruds/Acceptapp'
+import closeapp from './vacancyCruds/Closeapp'
+import vacancyFilter from './filters/VacancySearch'
+import roomFilter from './filters/RoomSearch'
+import eventFilter from './filters/EventSearch'
 import vacancyFilter from './filters/VacancySearch'
 import roomFilter from './filters/RoomSearch'
 import eventFilter from './filters/EventSearch'
@@ -24,7 +31,11 @@ const Main = ()=>(
     <Route  path= "/delete/Event" component = {DeleteEvent}/>
     <Route  path= "/viewAll/Event" component = {ViewAllEvents}/>
     <Route  path= "/ViewById/Event" component = {ViewEvent}/>
-
+    <Route  path= "/vacancy/viewAll" component = {ViewVacancy}/>
+    <Route  path="/vacancy/getApplicants" component= {getapp}/>
+    <Route  path="/vacancy/accept" component= {acceptapp}/>
+    <Route  path="/vacancy/close" component= {closeapp}/>
+    <Route  path="/vacancy/close" component= {closeapp}/>
     <Route  path= "/search/Vacancies" component = {vacancyFilter}/>
     <Route  path= "/search/Rooms" component = {roomFilter}/>
     <Route  path= "/search/Events" component = {eventFilter}/>

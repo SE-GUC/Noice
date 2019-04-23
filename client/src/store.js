@@ -3,7 +3,8 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 //we will change it into our db state later
-const intialState ={};
+const intialState ={
+};
 
 //our middleware is the thunk thingy
 const middleware = [thunk];
@@ -13,7 +14,10 @@ const store = createStore(
     rootReducer,
     intialState,
     compose(
-    applyMiddleware(...middleware)
+
+    applyMiddleware(...middleware),
+   
+
     )
     );
 
