@@ -5,6 +5,7 @@ const initialState={
   user:[],
   //we store here the response we get from making a new admin
   user:{},
+  id:{},
   name:{}
   };
 //reducers get the current state and an action
@@ -18,6 +19,12 @@ export default function(state = initialState,action){
           ...state,
           //adds the new item in the current state
           signUp: action.payload
+        }
+        case DELETE_EVENT:
+        return{
+          ...state,
+          //adds the new item in the current state
+          id: action.payload
         }
         case VIEW_USER:
         return{
