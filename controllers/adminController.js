@@ -21,7 +21,7 @@ exports.updateAdmin = async function(req,res){
         if(!admin) return res.status(404).send({error: 'Admin does not exist'})
         const isValidated = validator.updateValidation(req.body)
         if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-        var updatedAdmin = await Admin.findOneAndUpdate(req.body)
+        var updatedAdmin = await Admin.findByIDAndUpdate(req.body)
         res.json({msg: 'Admin is updated successfully', data: updatedAdmin})
        }
        catch(error) {
@@ -36,7 +36,7 @@ exports.getAllAdmins = async function(req,res){
 exports.deleteAdmin = async function(req,res){
     try {
         const id = req.params.id
-        const deletedAdmin = await Admin.findOneAndDelete(id)
+        const deletedAdmin = await Admin.findByIDAndDelete(id)
         res.json({msg:'Admin was deleted successfully', data: deletedAdmin})
        }
        catch(error) {
