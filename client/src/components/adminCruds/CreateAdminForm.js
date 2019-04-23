@@ -68,12 +68,12 @@ class CreateAdminForm extends Component {
   <Form.Row>
     <Form.Group as={Col} controlId="formGridEmail">
       <Form.Label>Email</Form.Label>
-      <Form.Control type="email" onChange ={this.onChange} placeholder="Enter email" />
+      <Form.Control type="email"  name="email" onChange ={this.onChange} placeholder="Enter email" />
     </Form.Group>
 
     <Form.Group as={Col} controlId="formGridPassword">
       <Form.Label>Password</Form.Label>
-      <Form.Control type="password" placeholder="Password" onChange ={this.onChange} />
+      <Form.Control type="password" placeholder="Password" name="password" onChange ={this.onChange} />
     </Form.Group>
   </Form.Row>
   <Form.Row>

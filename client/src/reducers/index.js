@@ -8,13 +8,18 @@ import vacancyFilterReducer from './filterReducers/vacancyFilterReducer'
 import roomFilterReducer from './filterReducers/roomFilterReducer'
 import eventFilterReducer from './filterReducers/eventFilterReducer'
 import vacancyReducer from './vacancyReducer'
+
+import userReducer from './userReducer';
 //add your reducers here please use camelcale 
 //ffs use camelcase
 export default combineReducers({
-    adminRed : adminReducer,
+    createAdmin : createAdminReducer,
+    viewUserByID : userReducer,
+    deleteUser : userReducer,
     home : homeReducer,
     vacancay : vacancyFilterReducer,
     room: roomFilterReducer,
     event : eventFilterReducer,
     vacancys: vacancyReducer
+
 });
