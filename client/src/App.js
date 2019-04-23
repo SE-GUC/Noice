@@ -65,6 +65,12 @@ class App extends Component {
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
                      <Link to="/search/Rooms">Filter Rooms</Link>
                      <Link to="/search/Events">Filter Events</Link>
+                     <h3>Events</h3>
+                     <Link to="/create/Event">Create Events</Link>
+                     <Link to="/update/Event">Update Events</Link>
+                     <Link to="/delete/Event">Delete Events</Link>
+                     <Link to="/viewAll/Event">View All Events</Link>
+                     <Link to="/ViewById/Event">View Event By ID</Link>
                      <Link to="/vacancy/getApplicants">Get Applicants</Link>
                      <Link to="/vacancy/accept">Accept applicant</Link>
                      <Link to="/vacancy/close">Close Vacancy</Link>
