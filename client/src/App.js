@@ -55,7 +55,8 @@ class App extends Component {
                      
                      <Link to="/">Home</Link>
                      <h1>Admin</h1>
-                     <Link to="/createAdmin">create</Link>
+                     <Link to="/admin/createAdmin">create</Link>
+                     <Link to="/admin/viewAdmin">view</Link>
                      <h2>Vacancy</h2>
                      <Link to="/vacancy/viewAll">View all</Link>
                      <Link to="/search/Vacancies">Filter Vacancies</Link>

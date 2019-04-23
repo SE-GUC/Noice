@@ -18,16 +18,7 @@ const adminSchema = new Schema({
     age: {
         type: Number, 
         required: true
-    },
-    education:{
-        type:[String]
-    },
-    active: {
-        type: Boolean,
-    },
-    deactivationDate:{
-        type: String,
-        required: true
     }
+    
 })
 module.exports = Admin = mongoose.model('admins', adminSchema)
