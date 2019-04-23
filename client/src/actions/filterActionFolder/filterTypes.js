@@ -1,0 +1,3 @@
+export const SEARCH_VACANCY ='SEARCH_VACANCY';
+export const SEARCH_ROOM ='SEARCH_ROOM';
+export const SEARCH_EVENT ='SEARCH_EVENT';

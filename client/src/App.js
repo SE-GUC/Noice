@@ -38,7 +38,10 @@ class App extends Component {
                      <Link to="/createAdmin">Admin Cruds</Link>
                      <Link to="/vacancy/viewAll">Vacancy View all</Link>
                      <Link to="/signup">Sign Up</Link>
-                     
+                     <Link to="/search/Vacancies">Filter Vacancies</Link>
+                     <Link to="/search/Rooms">Filter Rooms</Link>
+                     <Link to="/search/Events">Filter Events</Link>
+
                      </Navigation>
                    </Header>
                    <Drawer title="User Name?">
@@ -49,9 +52,11 @@ class App extends Component {
                      </Link>
                      <Link to="/">Home</Link>
                      <h1>Admin</h1>
-                     <Link to="/createAdmin">create</Link>
+                     <Link to="/admin/createAdmin">create</Link>
+                     <Link to="/admin/viewAdmin">view</Link>
                      <h2>Vacancy</h2>
                      <Link to="/vacancy/viewAll">View all</Link>
+<<<<<<< HEAD
                      <Link to="/viewUser">View User</Link>
                      <Link to="/deleteUser">Delete User</Link>
                      <Link to="/viewAllUsers">View All Users</Link>
@@ -59,6 +64,15 @@ class App extends Component {
                      <Link to="/partner">Partner Update</Link>
                      <Link to="/location">Co-Working Space Update</Link>
       
+=======
+                     <Link to="/search/Vacancies">Filter Vacancies</Link>
+                     <Link to="/search/Rooms">Filter Rooms</Link>
+                     <Link to="/search/Events">Filter Events</Link>
+                     <Link to="/vacancy/getApplicants">Get Applicants</Link>
+                     <Link to="/vacancy/accept">Accept applicant</Link>
+                     <Link to="/vacancy/close">Close Vacancy</Link>
+
+>>>>>>> user
                       </Navigation>
                  </Drawer>
                  <Content>
