@@ -1,11 +1,14 @@
 // importing react and connect
 import React, { Component } from 'react';
+import {Switch,Route} from 'react-router-dom'
+import { Redirect } from 'react-router'
 //open a connection with the store
 import {connect} from 'react-redux';
 //import prop types which validates the inputs to this components
 import PropTypes from 'prop-types';
 //import actions on this component
 import {signUp} from '../../actions/usersActionsFolder/usersActions';
+import Member from '../usersCruds/memberUpdate'
 
 //import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,7 +42,6 @@ class signUpForm extends Component {
     this._onButtonClick = this._onButtonClick.bind(this);
     this._onButtonClick1= this._onButtonClick1.bind(this);
     this._onButtonClick2 = this._onButtonClick2.bind(this);
-    this.routeChange = this.routeChange.bind(this);
   }
   _onButtonClick() {
      
@@ -57,26 +59,21 @@ class signUpForm extends Component {
 
     this.setState({
       typeOfUser:"Co-working Space Owner"
+      
     });
   }
+  _onButtonClick3() {
+
+    this.setState({
+      redirect: true
+    });
+  }
+  
   //on change set the state with the target value from any event(e)
    onChange(e){
      this.setState({[e.target.name]: e.target.value});
    }
-   routeChange() {
-     if(this.state.typeOfUser ==='Member'){
-    let path = `/member`;
-    this.props.history.push(path);
-     }
-     if(this.state.typeOfUser ==='Partner'){
-      let path = `/partner`;
-      this.props.history.push(path);
-       }
-       if(this.state.typeOfUser ==='Co-working Space Owner'){
-        let path = `/location`;
-        this.props.history.push(path);
-         }
-  }
+   
    //what happens when you click the submit button
    async onSubmit(e){
    //prevents submitting empty values
@@ -92,11 +89,17 @@ class signUpForm extends Component {
    }
    //send an axios request
    this.props.signUp(body)
-   this.routeChange()
+   this._onButtonClick3()
+   
   }
   
   //the life cycle method you need
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return (<Redirect to='/' />)
+    
+    }
     return (
       <div>
       
@@ -154,7 +157,7 @@ class signUpForm extends Component {
 <Form.Row>
  <Col> 
  <Form.Group as={Col} >
-  <Button variant="primary" type="submit" onClick={this.onSubmit}  >
+  <Button variant="primary"  className="float-right"  type="submit" onClick={this.onSubmit}  >
     Create Account
   </Button>
   </Form.Group>
