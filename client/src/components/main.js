@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Home'
 import ViewVacancy from './vacancyCruds/Vacancy'
+import createVacancy from './vacancyCruds/CreateVacancy'
 import CreateEvent from './eventCruds/CreateEvent'
 import admin from './adminCruds/CreateAdminForm'
 import {Switch,Route} from 'react-router-dom'
@@ -25,6 +26,7 @@ const Main = ()=>(
     <Route  path="/vacancy/getApplicants" component= {getapp}/>
     <Route  path="/vacancy/accept" component= {acceptapp}/>
     <Route  path="/vacancy/close" component= {closeapp}/>
+    <Route  path="/vacancy/create" component= {createVacancy}/>
 
     <Route  path= "/create/Event" component = {CreateEvent}/>
     <Route  path= "/update/Event" component = {UpdateEvent}/>
