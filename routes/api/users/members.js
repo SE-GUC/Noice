@@ -8,7 +8,7 @@ const roomController = require('../../../controllers/roomController')
 const partnerController = require('../../../controllers/partnerController')
 
 //view all locations
-router.get('/location/',locationInMemberController.getAllLocations)
+//router.get('/location/',memberController.getAllLocations)
 // find location by date
 //router.get('/location/:date',locationInMemberController.findLocationDate)
 

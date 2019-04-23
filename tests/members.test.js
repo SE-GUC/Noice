@@ -43,7 +43,6 @@ test('member should be created', async () =>{
 
 //to test this first create 3 members
 test('number of members should be more than 1', async () =>{
-    expect.assertions(1)
     const response = await funcs.viewMember()
     expect(response.data.data.length).not.toBe(0)
 })
