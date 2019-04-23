@@ -63,7 +63,7 @@ class CreateAdminForm extends Component {
   //the life cycle method you need
   render() {
     return (
-      <div>
+      <div className='home-grid'>
      <Form onSubmit={this.onSubmit}>
   <Form.Row>
     <Form.Group as={Col} controlId="formGridEmail">
@@ -98,10 +98,15 @@ class CreateAdminForm extends Component {
       <Form.Control placeholder = "age" type ="number" name="age" onChange = {this.onChange} value={this.state.age}/>
     </Form.Group>
   
+<<<<<<< HEAD
   <Button variant="primary" type="submit">
     Create admin
   </Button>
 </Form>
+=======
+    <button type="submit" class="custom-btn">Create admin</button>
+</Form>;
+>>>>>>> 75946dff48194546cfcaede96b714b67ef1717ec
       </div>
     )
   }
