@@ -67,6 +67,6 @@ router.post('/login', async (req, res) => {
             return res.json({token: `Bearer ${token}`})
         }
 		else return res.status(400).send({ password: 'Wrong password' });
-	} catch (e) {}
+	} catch (e) {"Login Failed"}
 });
-module.exports = router
+module.exports = routers

@@ -12,6 +12,24 @@ export default function(state = initialState,action){
           //adds the new item in the current state
           signUp: action.payload
         }
+        case UPDATE_MEMBER:
+        return{
+          ...state,
+          //adds the new item in the current state
+          signUp: action.payload
+        }
+        case UPDATE_LOCATION:
+        return{
+          ...state,
+          //adds the new item in the current state
+          signUp: action.payload
+        }
+        case UPDATE_PARTNER:
+        return{
+          ...state,
+          //adds the new item in the current state
+          signUp: action.payload
+        }
         //our default returns the current state this is a place holder for now
         default: return state;
       }

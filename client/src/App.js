@@ -4,12 +4,10 @@ import { BrowserRouter as Router, Switch, Route,Link } from 'react-router-dom';
 import {Provider} from 'react-redux'
 
 //import your component here
-import Home from './components/Home'
-import Vacancy from './components/vacancyCruds/Vacancy'
 import Main from './components/main'
 
 //add the rest of the admin cruds here
-import signUpForm from './components/usersCruds/signUpForm'
+
 
 //importing the store
 import store from './store.js'
@@ -54,8 +52,9 @@ class App extends Component {
                      <Link to="/createAdmin">create</Link>
                      <h2>Vacancy</h2>
                      <Link to="/vacancy/viewAll">View all</Link>
-                     
-                     
+                     <Link to="/member">Member Update</Link>
+                     <Link to="/partner">Partner Update</Link>
+                     <Link to="/location">Co-Working Space Update</Link>
                       </Navigation>
                  </Drawer>
                  <Content>
