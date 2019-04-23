@@ -4,6 +4,7 @@
 import {combineReducers} from 'redux';
 import createAdminReducer from './adminReducer'
 import homeReducer from './homeReducer'
+import viewRoomResForLocReducer from './rooms/viewroomresforloc' 
 import vacancyFilterReducer from './filterReducers/vacancyFilterReducer'
 import viewAllRoomsReducer from './RoomReducers/viewAllRoomsReducer'
 import roomFilterReducer from './filterReducers/roomFilterReducer'
@@ -16,5 +17,6 @@ export default combineReducers({
     vacancay : vacancyFilterReducer,
     room: roomFilterReducer,
     viewRooms: viewAllRoomsReducer,
+    roomResLoc : viewRoomResForLocReducer,
     event : eventFilterReducer
 });

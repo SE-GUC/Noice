@@ -49,14 +49,17 @@ class App extends Component {
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
                      <Link to="/search/Rooms">Filter Rooms</Link>
                      <Link to="/search/Events">Filter Events</Link>
-                     </Navigation>
+                     </Navigation> 
                    </Header>
                 <Drawer title="User Name?">
                      <Navigation>
                      <Link to="/userProfile">
                     {/*put an awesome icon here from https://fontawesome.com/icons/id-card?style=solid */}
                      </Link>
-                     
+                     <Link to="/location/view/roomreservations">View reservations from Loc view</Link>
+                     <Link to="/member/view/roomreservations">View reservations from Member view</Link>
+                     <Link to="/member/view/createRoomRes">Create room reservation from Member view</Link>
+  
                      <Link to="/">Home</Link>
                      <h1>Admin</h1>
                      <Link to="/createAdmin">create</Link>

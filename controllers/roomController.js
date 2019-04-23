@@ -290,6 +290,7 @@ exports.deleteRoomResReq = async function(req,res){
         try{
             console.log({reqBody:req.body})
             deletedRoomResRes = await axios.post('http://localhost:5000/api/users/location/roomRes/get/curr_room_res/'+req.params.id,req.body)
+            console.log({deletedRoomResRes:deletedRoomResRes})
             deletRoomRes = deletedRoomResRes.data
             if(!deletRoomRes) return res.status(404).json({Error:'No reservation with that start date'})
         }catch(error){
@@ -393,6 +394,7 @@ exports.getRoomRes = async function(req,res){
             console.log(JSON.stringify({error: 'Cannot get the specified room'}))
             return res.status(404).json({error: 'Cannot get the specified room'})
         }
+        console.log({reservations:roomRead.reservations})
         roomRead.reservations.forEach(element => {
             if(compareStartDates(element.startDate,req.body.startDate)){
                 return res.json({Msg: 'Reservation found successfully', data: element})
@@ -405,7 +407,7 @@ exports.getRoomRes = async function(req,res){
             return res.status(error.response.status).json({error:'Error getting room with status code'+ error.status})
         }
        }
-       i}
+       }
 //View a specified room in a specified location
 exports.viewResRequestsForRoom = async function(req,res){
     if(!req.params.id) return res.json({Eror: "You must specify which room to show th reservations!"})
@@ -612,10 +614,43 @@ function compareDates (startDate1,endDate1,startDate2,state){
 }
 //COMPARE START DATES
 function compareStartDates (startDate1,startDate2){
-    var d1 = new Date(startDate1)
-    var d3 = new Date(startDate2)
-    var bool = d1.getTime()==d3.getTime()
-    console.log({Date1:d1.getTime(),Date2:d3.getTime(),Result: bool})
+    
+    const dateAndTime1 = startDate1.split(" ")
+    const Time1 = dateAndTime1[1]
+    const HrsAndMins1 = Time1.split(":")
+    const Hrs1 = HrsAndMins1[0]
+    const Mins1 = HrsAndMins1[1]
+    const date1 = dateAndTime1[0]
+    const daysAndMonAndYr1 = date1.split("-")
+    const days1 =  daysAndMonAndYr1[0]
+    const Mon1 = daysAndMonAndYr1[1]
+    const Yr1 = daysAndMonAndYr1[2]
+    console.log({
+        Yr1:Yr1,
+        Mon1:Mon1,
+        days1:days1,
+        Hrs1:Hrs1,
+        Mins1:Mins1
+    })
+    const dateAndTime2 = startDate2.split(" ")
+    const Time2 = dateAndTime2[1]
+    const HrsAndMins2 = Time2.split(":")
+    const Hrs2 = HrsAndMins2[0]
+    const Mins2 = HrsAndMins2[1]
+    const date2 = dateAndTime2[0]
+    const daysAndMonAndYr2 = date2.split("-")
+    const days2 =  daysAndMonAndYr2[0]
+    const Mon2 = daysAndMonAndYr2[1]
+    const Yr2 = daysAndMonAndYr2[2]
+    console.log({
+        Yr2:Yr2,
+        Mon2:Mon2,
+        days2:days2,
+        Hrs2:Hrs2,
+        Mins2:Mins2
+    })
+    var bool = startDate1==startDate2
+    console.log("The value is: "+ bool)
     return bool
 }
 

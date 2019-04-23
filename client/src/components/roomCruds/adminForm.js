@@ -73,7 +73,7 @@ class Admin extends React.Component {
                                 margin="normal"
                                 variant="outlined"
                             />
-                        <Fab variant="extended" aria-label="member" className={classes.fab}>
+                        <Fab variant="extended" aria-label="member" className={classes.fab} href="/member/view/roomreservations">
                                 VIEW
                         </Fab>
                     </form>

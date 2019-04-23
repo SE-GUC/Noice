@@ -287,7 +287,7 @@ class SimpleCard extends React.Component {
                       <IconButton color="primary" aria-label="Update" href='/UpdateRoom'>
                         <EditIcon/>
                       </IconButton>
-                      <Fab variant="extended" aria-label="viewRes" className={classes.fab}>
+                      <Fab variant="extended" aria-label="viewRes" className={classes.fab} href='/location/view/roomreservations'>
                          View Reservation
                       </Fab>
                   </ListItem>  
