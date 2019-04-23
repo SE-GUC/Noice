@@ -56,15 +56,12 @@ class App extends Component {
                      <Link to="/admin/viewAdmin">view</Link>
                      <h2>Vacancy</h2>
                      <Link to="/vacancy/viewAll">View all</Link>
-<<<<<<< HEAD
                      <Link to="/viewUser">View User</Link>
                      <Link to="/deleteUser">Delete User</Link>
                      <Link to="/viewAllUsers">View All Users</Link>
                      <Link to="/member">Member Update</Link>
                      <Link to="/partner">Partner Update</Link>
                      <Link to="/location">Co-Working Space Update</Link>
-      
-=======
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
                      <Link to="/search/Rooms">Filter Rooms</Link>
                      <Link to="/search/Events">Filter Events</Link>
@@ -72,7 +69,7 @@ class App extends Component {
                      <Link to="/vacancy/accept">Accept applicant</Link>
                      <Link to="/vacancy/close">Close Vacancy</Link>
 
->>>>>>> user
+
                       </Navigation>
                  </Drawer>
                  <Content>
