@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 //import prop types which validates the inputs to this components
 import PropTypes from 'prop-types';
 //import actions on this component
-import {updatePartner} from '../../actions/usersActionsFolder/usersActions';
+import {updateMember} from '../../actions/usersActionsFolder/usersActions';
 
 //import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,7 +19,7 @@ import Col from 'react-bootstrap/Col';
 
 
 //class 3ady ya3ni 
-class partnerForm extends Component {
+class memberForm extends Component {
 
   //contructor with the attribute of the crud you want
    constructor(props){
@@ -29,18 +29,18 @@ class partnerForm extends Component {
       gender: '',
       address:'',
       phoneNumber:'',
-      typeOfUser:'Partner',
-      companyName: '',
-      companyLocation: '',
-      field:'',
-      projects: 
+      typeOfUser:'Member',
+      skills: '',
+      interests: '',
+      pastEvents: 
           {
-              name: '',
+              name:'',
               startDate: '',
               endDate: '',
           },
-
-     
+      projectsCompleted:'',
+      reviewsReceived:'',
+      certificatesHeld: ''
   };
     //bind the methods with the entity
     this.onChange = this.onChange.bind(this);
@@ -63,18 +63,21 @@ class partnerForm extends Component {
       gender: this.state.gender,
       address:this.state.address,
       phoneNumber:this.state.phoneNumber, 
-      companyName: this.state.companyName,
-      companyLocation: this.state.companyLocation,
-      field:this.state.field,
-      projects: 
+      skills: this.state.skills,
+      interests: this.state.interests,
+      pastEvents: 
           {
-              name: this.state.name,
+              id:this.state.id,
+              name:this.state.name,
               startDate: this.state.startDate,
               endDate: this.state.endDate,
-          }
-        }
+          },
+      projectsCompleted:this.state.projectsCompleted,
+      reviewsReceived:this.state.reviewsReceived,
+      certificatesHeld: this.state.certificatesHeld,
+   }
    //send an axios request
-   this.props.updatePartner(body)
+   this.props.updateMember(body)
 
 
    //reset the inputs to empty 
@@ -83,16 +86,20 @@ class partnerForm extends Component {
     gender: '',
     address:'',
     phoneNumber:'',
-    typeOfUser:'Partner',
-    companyName: '',
-      companyLocation: '',
-      field:'',
-      projects: 
-          {
-              name: '',
-              startDate: '',
-              endDate: '',
-          },
+    typeOfUser:'Member',
+    
+    skills: '',
+    interests: '',
+    pastEvents: 
+        {
+            id:'',
+            name:'',
+            startDate: '',
+            endDate: '',
+        },
+    projectsCompleted:'',
+    reviewsReceived:'',
+    certificatesHeld: '',
     })
   }
   
@@ -135,53 +142,29 @@ class partnerForm extends Component {
     </Form.Group>
     </Col>
   </Form.Row>
-  <Form.Row> 
-  <Col>
-  <Form.Group as={Col} controlId="formCompanyName">
-      <Form.Label >Company Name</Form.Label>
-      <Form.Control placeholder = "Company Name" type ="text" name="companyName" onChange = {this.onChange} value={this.state.companyName}/>
+
+  <Form.Group as={Col} controlId="formSkills">
+      <Form.Label >Skills</Form.Label>
+      <Form.Control placeholder = "Skills" type ="text" name="skills" onChange = {this.onChange} value={this.state.skills}/>
     </Form.Group>
-    </Col>
-    <Col>
-    <Form.Group as={Col} controlId="formCompanyLocation">
-      <Form.Label >Company Location</Form.Label>
-      <Form.Control placeholder = "Company Location" type ="text" name="companyLocation" onChange = {this.onChange} value={this.state.companyLocation}/>
+
+    <Form.Group as={Col} controlId="formInterests">
+      <Form.Label >Interests</Form.Label>
+      <Form.Control placeholder = "Interests" type ="text" name="interests" onChange = {this.onChange} value={this.state.interests}/>
     </Form.Group>
-    </Col>
-    <Col>
-    <Form.Group as={Col} controlId="formField">
-      <Form.Label >Field</Form.Label>
-      <Form.Control placeholder = "Field" type ="text" name="field" onChange = {this.onChange} value={this.state.field}/>
+
+    <Form.Group as={Col} controlId="formProjectsCompleted">
+      <Form.Label >Projects Completed</Form.Label>
+      <Form.Control placeholder = "Projects Completed" type ="text" name="projectsCompleted" onChange = {this.onChange} value={this.state.projectsCompleted}/>
     </Form.Group>
-    </Col>
-    </Form.Row> 
-    <Form.Row>
-     <Col>
-     <Form.Group as={Col} >
-    <Form.Label >Projects</Form.Label>
+    <Form.Group as={Col} controlId="formReviewsReceived">
+      <Form.Label >Reviews Received</Form.Label>
+      <Form.Control placeholder = "Reviews Received" type ="text" name="reviewsReceived" onChange = {this.onChange} value={this.state.reviewsReceived}/>
     </Form.Group>
-    </Col>
-    </Form.Row>
-    <Form.Row> 
-    <Col>   
-    <Form.Group as={Col} controlId="formName">
-      <Form.Label >Name</Form.Label>
-      <Form.Control placeholder = "Name" type ="text" name="name" onChange = {this.onChange} value={this.state.projects.name}/>
+    <Form.Group as={Col} controlId="formcertificatesHeld">
+      <Form.Label >Certificates Held</Form.Label>
+      <Form.Control placeholder = "Certificates Held" type ="text" name="certificatesHeld" onChange = {this.onChange} value={this.state.certificatesHeld}/>
     </Form.Group>
-    </Col>
-    <Col>   
-    <Form.Group as={Col} controlId="formStartTime">
-      <Form.Label>Start Time</Form.Label>
-      <Form.Control placeholder = "eg.HH-mm" type ="text" name="startTime" onChange = {this.onChange} value={this.state.projects.startTime} />
-    </Form.Group>
-    </Col>
-    <Col>
-    <Form.Group as={Col} controlId="formEndTime">
-      <Form.Label>End Time</Form.Label>
-      <Form.Control placeholder = "eg.HH-mm" type ="text" name="endTime" onChange = {this.onChange} value={this.state.projects.endTime} />
-    </Form.Group>
-    </Col>
-    </Form.Row>
       
     <Form.Row>
     <Col>
@@ -199,11 +182,11 @@ class partnerForm extends Component {
 }
 
 
-partnerForm.propTypes ={
-    updatePartner: PropTypes.func.isRequired
+memberForm.propTypes ={
+    updateMember: PropTypes.func.isRequired
 };
 
 
 
 //exports the component to god knows where
-export default connect(null,{updatePartner})(partnerForm);
+export default connect(null,{updateMember})(memberForm);

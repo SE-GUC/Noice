@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 //import prop types which validates the inputs to this components
 import PropTypes from 'prop-types';
 //import actions on this component
-import {updatePartner} from '../../actions/usersActionsFolder/usersActions';
+import {updateLocation} from '../../actions/usersActionsFolder/usersActions';
 
 //import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,13 +13,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 
-//requiring axios
-//const axios = require('axios');
 
 
 
 //class 3ady ya3ni 
-class partnerForm extends Component {
+class locationForm extends Component {
 
   //contructor with the attribute of the crud you want
    constructor(props){
@@ -29,18 +27,18 @@ class partnerForm extends Component {
       gender: '',
       address:'',
       phoneNumber:'',
-      typeOfUser:'Partner',
-      companyName: '',
-      companyLocation: '',
-      field:'',
-      projects: 
-          {
-              name: '',
-              startDate: '',
-              endDate: '',
-          },
-
-     
+      typeOfUser:'Co-working Space',
+      NameOfPlace: '',
+      date:'',
+      workingPlaceDepartments: {
+          nameOfDepartments: '',
+          City: '',
+          Region: '',
+          startTime: '',
+          endTime: '',
+          rate: -1,
+    
+  } ,
   };
     //bind the methods with the entity
     this.onChange = this.onChange.bind(this);
@@ -63,18 +61,19 @@ class partnerForm extends Component {
       gender: this.state.gender,
       address:this.state.address,
       phoneNumber:this.state.phoneNumber, 
-      companyName: this.state.companyName,
-      companyLocation: this.state.companyLocation,
-      field:this.state.field,
-      projects: 
-          {
-              name: this.state.name,
-              startDate: this.state.startDate,
-              endDate: this.state.endDate,
-          }
-        }
+      NameOfPlace: this.state.NameOfPlace,
+      date:this.state.date,
+      workingPlaceDepartments: {
+          nameOfDepartments: this.state.nameOfDepartments,
+          City: this.state.City,
+          Region: this.state.Region,
+          startTime: this.state.startTime,
+          endTime: this.state.endTime,
+          rate: this.state.rate,
+      }
+  } 
    //send an axios request
-   this.props.updatePartner(body)
+   this.props.updateLocation(body)
 
 
    //reset the inputs to empty 
@@ -83,16 +82,18 @@ class partnerForm extends Component {
     gender: '',
     address:'',
     phoneNumber:'',
-    typeOfUser:'Partner',
-    companyName: '',
-      companyLocation: '',
-      field:'',
-      projects: 
-          {
-              name: '',
-              startDate: '',
-              endDate: '',
-          },
+    typeOfUser:'Co-working Space',
+    NameOfPlace: '',
+    date:'',
+    workingPlaceDepartments: {
+        nameOfDepartments: '',
+        City: '',
+        Region: '',
+        startTime: '',
+        endTime: '',
+        rate: -1,
+  
+} ,
     })
   }
   
@@ -135,54 +136,65 @@ class partnerForm extends Component {
     </Form.Group>
     </Col>
   </Form.Row>
-  <Form.Row> 
-  <Col>
-  <Form.Group as={Col} controlId="formCompanyName">
-      <Form.Label >Company Name</Form.Label>
-      <Form.Control placeholder = "Company Name" type ="text" name="companyName" onChange = {this.onChange} value={this.state.companyName}/>
+  <Form.Row>
+  <Col> 
+  <Form.Group as={Col} controlId="formNameofPlace">
+      <Form.Label >Name Of Place</Form.Label>
+      <Form.Control placeholder = "Date" type ="text" name="date" onChange = {this.onChange} value={this.state.date}/>
     </Form.Group>
     </Col>
     <Col>
-    <Form.Group as={Col} controlId="formCompanyLocation">
-      <Form.Label >Company Location</Form.Label>
-      <Form.Control placeholder = "Company Location" type ="text" name="companyLocation" onChange = {this.onChange} value={this.state.companyLocation}/>
-    </Form.Group>
-    </Col>
-    <Col>
-    <Form.Group as={Col} controlId="formField">
-      <Form.Label >Field</Form.Label>
-      <Form.Control placeholder = "Field" type ="text" name="field" onChange = {this.onChange} value={this.state.field}/>
+    <Form.Group as={Col} controlId="formDate">
+      <Form.Label >Date</Form.Label>
+      <Form.Control placeholder = "Interests" type ="text" name="interests" onChange = {this.onChange} value={this.state.interests}/>
     </Form.Group>
     </Col>
     </Form.Row> 
     <Form.Row>
      <Col>
      <Form.Group as={Col} >
-    <Form.Label >Projects</Form.Label>
+    <Form.Label >Working Departments</Form.Label>
     </Form.Group>
     </Col>
     </Form.Row>
+    <Form.Group as={Col} controlId="formNameofDepartment">
+      <Form.Label >Name Of Department</Form.Label>
+      <Form.Control placeholder = "Name Of Department" type ="text" name="NameofDepartment" onChange = {this.onChange} value={this.state.workingPlaceDepartments.nameOfDepartments}/>
+    </Form.Group>
     <Form.Row> 
-    <Col>   
-    <Form.Group as={Col} controlId="formName">
-      <Form.Label >Name</Form.Label>
-      <Form.Control placeholder = "Name" type ="text" name="name" onChange = {this.onChange} value={this.state.projects.name}/>
+    <Col>
+    <Form.Group as={Col} controlId="formCity">
+      <Form.Label >City</Form.Label>
+      <Form.Control placeholder = "City" type ="text" name="city" onChange = {this.onChange} value={this.state.workingPlaceDepartments.City}/>
     </Form.Group>
     </Col>
+    <Col>
+    <Form.Group as={Col} controlId="formRegion">
+      <Form.Label >Region</Form.Label>
+      <Form.Control placeholder = "Region" type ="text" name="region" onChange = {this.onChange} value={this.state.workingPlaceDepartments.Region}/>
+    </Form.Group>
+    </Col>
+    </Form.Row> 
+    <Form.Row> 
     <Col>   
     <Form.Group as={Col} controlId="formStartTime">
       <Form.Label>Start Time</Form.Label>
-      <Form.Control placeholder = "eg.HH-mm" type ="text" name="startTime" onChange = {this.onChange} value={this.state.projects.startTime} />
+      <Form.Control placeholder = "eg.HH-mm" type ="text" name="startTime" onChange = {this.onChange} value={this.state.workingPlaceDepartments.startTime} />
     </Form.Group>
     </Col>
     <Col>
     <Form.Group as={Col} controlId="formEndTime">
       <Form.Label>End Time</Form.Label>
-      <Form.Control placeholder = "eg.HH-mm" type ="text" name="endTime" onChange = {this.onChange} value={this.state.projects.endTime} />
+      <Form.Control placeholder = "eg.HH-mm" type ="text" name="endTime" onChange = {this.onChange} value={this.state.workingPlaceDepartments.endTime} />
+    </Form.Group>
+    </Col>
+    <Col>
+    <Form.Group as={Col} controlId="formRate">
+      <Form.Label>Rate</Form.Label>
+      <Form.Control placeholder = "rate" type ="number" name="rate" onChange = {this.onChange} value={this.state.workingPlaceDepartments.rate} />
     </Form.Group>
     </Col>
     </Form.Row>
-      
     <Form.Row>
     <Col>
     <Form.Group as={Col}>
@@ -199,11 +211,11 @@ class partnerForm extends Component {
 }
 
 
-partnerForm.propTypes ={
-    updatePartner: PropTypes.func.isRequired
+locationForm.propTypes ={
+    updateLocation: PropTypes.func.isRequired
 };
 
 
 
 //exports the component to god knows where
-export default connect(null,{updatePartner})(partnerForm);
+export default connect(null,{updateLocation})(locationForm);

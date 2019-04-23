@@ -1,6 +1,10 @@
 
+
 import React from 'react';
 import Home from './Home'
+import memberUpdate from './usersCruds/memberUpdate'
+import partnerUpdate from './usersCruds/partnerUpdate'
+import locationUpdate from './usersCruds/locati
 import closeapp from './vacancyCruds/Closeapp'
 import ViewVacancy from './vacancyCruds/Vacancy'
 import CreateEvent from './eventCruds/CreateEvent'
@@ -25,7 +29,11 @@ const Main = ()=>(
     <Route exact path ="/" component = {Home}/>,
     <Route  path= "/createAdmin" component = {admin}/>
     <Route  path= "/vacancy/viewAll" component = {ViewVacancy}/>
-
+    <Route  path= "/signup" component = {signUp}/>
+    <Route  path= "/member" component = {memberUpdate}/>
+    <Route  path= "/partner" component = {partnerUpdate}/>
+    <Route  path= "/location" component = {locationUpdate}/>
+    <Route  path= "/viewUser" component = {viewUser} />
     <Route  path= "/create/Event" component = {CreateEvent}/>
     <Route  path= "/update/Event" component = {UpdateEvent}/>
     <Route  path= "/delete/Event" component = {DeleteEvent}/>
