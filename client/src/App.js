@@ -39,14 +39,11 @@ class App extends Component {
                      <Link to="/">Home</Link>
                      <Link to="/createAdmin">Admin Cruds</Link>
                      <Link to="/vacancy/viewAll">Vacancy View all</Link>
-<<<<<<< HEAD
                      <Link to="/signup">Sign Up</Link>
-                     
-=======
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
                      <Link to="/search/Rooms">Filter Rooms</Link>
                      <Link to="/search/Events">Filter Events</Link>
->>>>>>> 75946dff48194546cfcaede96b714b67ef1717ec
+
                      </Navigation>
                    </Header>
                    <Drawer title="User Name?">
@@ -61,17 +58,13 @@ class App extends Component {
                      <Link to="/admin/viewAdmin">view</Link>
                      <h2>Vacancy</h2>
                      <Link to="/vacancy/viewAll">View all</Link>
-<<<<<<< HEAD
-                     
-                     
-=======
                      <Link to="/search/Vacancies">Filter Vacancies</Link>
                      <Link to="/search/Rooms">Filter Rooms</Link>
                      <Link to="/search/Events">Filter Events</Link>
                      <Link to="/vacancy/getApplicants">Get Applicants</Link>
                      <Link to="/vacancy/accept">Accept applicant</Link>
                      <Link to="/vacancy/close">Close Vacancy</Link>
->>>>>>> 75946dff48194546cfcaede96b714b67ef1717ec
+
                       </Navigation>
                  </Drawer>
                  <Content>

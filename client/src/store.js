@@ -14,12 +14,10 @@ const store = createStore(
     rootReducer,
     intialState,
     compose(
-<<<<<<< HEAD
+
     applyMiddleware(...middleware),
    
-=======
-    applyMiddleware(...middleware)
->>>>>>> 75946dff48194546cfcaede96b714b67ef1717ec
+
     )
     );
 
