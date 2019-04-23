@@ -5,6 +5,9 @@ import CreateEvent from './eventCruds/CreateEvent'
 import admin from './adminCruds/CreateAdminForm'
 import {Switch,Route} from 'react-router-dom'
 
+import getapp from './vacancyCruds/Viewapplicants'
+import acceptapp from './vacancyCruds/Acceptapp'
+import closeapp from './vacancyCruds/Closeapp'
 import vacancyFilter from './filters/VacancySearch'
 import roomFilter from './filters/RoomSearch'
 import eventFilter from './filters/EventSearch'
@@ -17,7 +20,11 @@ const Main = ()=>(
 <Switch>
     <Route exact path ="/" component = {Home}/>,
     <Route  path= "/createAdmin" component = {admin}/>
+    
     <Route  path= "/vacancy/viewAll" component = {ViewVacancy}/>
+    <Route  path="/vacancy/getApplicants" component= {getapp}/>
+    <Route  path="/vacancy/accept" component= {acceptapp}/>
+    <Route  path="/vacancy/close" component= {closeapp}/>
 
     <Route  path= "/create/Event" component = {CreateEvent}/>
     <Route  path= "/update/Event" component = {UpdateEvent}/>
