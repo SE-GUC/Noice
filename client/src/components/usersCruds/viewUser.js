@@ -62,7 +62,7 @@ class ViewUser extends Component {
     onSubmit(e) {
         e.preventDefault();
         console.log("You pressed submit")
-        const id = this.state.ID
+        const id = this.state._id
         this.props.viewUser(id)
     }
 
@@ -77,7 +77,7 @@ class ViewUser extends Component {
                         <label>ID of the user: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.ID}
+                                value={this.state._id}
                                 onChange={(evt) => this.onChangeID(evt)}
                                 />
                     </div>

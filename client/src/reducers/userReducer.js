@@ -1,4 +1,4 @@
-import { SIGN_UP, VIEW_USER } from "../actions/usersActionsFolder/usersTypes";
+import { SIGN_UP, VIEW_USER, DELETE_USER } from "../actions/usersActionsFolder/usersTypes";
 
 const initialState={
   //items is the initial entries in the db
@@ -20,6 +20,7 @@ export default function(state = initialState,action){
           //adds the new item in the current state
           signUp: action.payload
         }
+
         case UPDATE_MEMBER:
         return{
           ...state,

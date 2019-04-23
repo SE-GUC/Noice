@@ -9,6 +9,8 @@ import locationUpdate from './usersCruds/locationUpdate'
 import viewUser from './usersCruds/viewUser'
 
 import {Switch,Route} from 'react-router-dom'
+import deleteUser from './usersCruds/deleteUser';
+import viewAllUsers from './usersCruds/viewAllUsers';
 const Main = ()=>(
 <Switch>
     <Route exact path ="/" component = {Home}/>,
@@ -19,6 +21,8 @@ const Main = ()=>(
     <Route  path= "/partner" component = {partnerUpdate}/>
     <Route  path= "/location" component = {locationUpdate}/>
     <Route  path= "/viewUser" component = {viewUser} />
+    <Route  path= "/deleteUser" component = {deleteUser} />
+    <Route  path= "/viewAllUsers" component = {viewAllUsers} />
 
 </Switch>
 )
