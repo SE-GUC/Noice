@@ -6,3 +6,5 @@ export const SIGN_UP='SIGN_UP';
 export const UPDATE_MEMBER='UPDATE_MEMBER';
 export const UPDATE_LOCATION='UPDATE_LOCATION';
 export const UPDATE_PARTNER='UPDATE_PARTNER';
+export const VIEW_USER = 'VIEW_USER'
+

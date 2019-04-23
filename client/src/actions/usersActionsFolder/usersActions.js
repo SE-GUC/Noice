@@ -4,6 +4,8 @@ import {SIGN_UP} from './usersTypes';
 import {UPDATE_MEMBER} from './usersTypes';
 import {UPDATE_LOCATION} from './usersTypes';
 import {UPDATE_PARTNER} from './usersTypes';
+import { VIEW_USER } from "./usersTypes";
+
 
 
 const axios = require('axios');
@@ -15,13 +17,14 @@ export const createUsers=  (body)=> async dispatch =>{
             payload: data
         }));
     
-}
+};
 export const signUp=  (body)=> async dispatch =>{
    await axios.post('http://localhost:5000/api/users/register',body)
     .then(data => dispatch({
         type: SIGN_UP,
         payload: data
     }));
+
 
 }
 export const updateMember=  (body)=> async dispatch =>{
@@ -50,3 +53,14 @@ export const updatePartner=  (body)=> async dispatch =>{
     }));
     
 }
+
+export const viewUser = id => async dispatch => {
+    console.log("action called");
+    await axios.get(`http://localhost:5000/api/users/${id}`, id).then(data =>
+      dispatch({
+        type: VIEW_USER,
+        payload: data
+      })
+    );
+  };
+

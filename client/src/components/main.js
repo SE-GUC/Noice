@@ -6,6 +6,8 @@ import signUp from './usersCruds/signUpForm'
 import memberUpdate from './usersCruds/memberUpdate'
 import partnerUpdate from './usersCruds/partnerUpdate'
 import locationUpdate from './usersCruds/locationUpdate'
+import viewUser from './usersCruds/viewUser'
+
 import {Switch,Route} from 'react-router-dom'
 const Main = ()=>(
 <Switch>
@@ -16,6 +18,8 @@ const Main = ()=>(
     <Route  path= "/member" component = {memberUpdate}/>
     <Route  path= "/partner" component = {partnerUpdate}/>
     <Route  path= "/location" component = {locationUpdate}/>
+    <Route  path= "/viewUser" component = {viewUser} />
+
 </Switch>
 )
 export default Main;

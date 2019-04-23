@@ -4,9 +4,11 @@
 import {combineReducers} from 'redux';
 import createAdminReducer from './adminReducer'
 import homeReducer from './homeReducer'
+import userReducer from './userReducer';
 //add your reducers here please use camelcale 
 //ffs use camelcase
 export default combineReducers({
     createAdmin : createAdminReducer,
+    viewUserByID : userReducer,
     home : homeReducer
 });
