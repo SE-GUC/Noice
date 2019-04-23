@@ -10,5 +10,6 @@ import userReducer from './userReducer';
 export default combineReducers({
     createAdmin : createAdminReducer,
     viewUserByID : userReducer,
+    deleteUser : userReducer,
     home : homeReducer
 });

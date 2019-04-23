@@ -2,6 +2,7 @@
 import {CREATE_USER} from './usersTypes';
 import {SIGN_UP} from './usersTypes';
 import { VIEW_USER } from "./usersTypes";
+import { DELETE_USER } from "./usersTypes";
 
 
 const axios = require('axios');
@@ -24,11 +25,21 @@ export const signUp=  (body)=> async dispatch =>{
 
 };
 
-export const viewUser = id => async dispatch => {
+export const viewUser = 
+id => async dispatch => {
     console.log("action called");
     await axios.get(`http://localhost:5000/api/users/${id}`, id).then(data =>
       dispatch({
         type: VIEW_USER,
+        payload: data
+      })
+    );
+  };
+
+  export const deleteUser = id => async dispatch => {
+    await axios.delete(`http://localhost:5000/api/users/${id}`, id).then(data =>
+      dispatch({
+        type: DELETE_USER,
         payload: data
       })
     );
