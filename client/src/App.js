@@ -40,6 +40,7 @@ class App extends Component {
                      <Link to="/createAdmin">Admin Cruds</Link>
                      <Link to="/vacancy/viewAll">Vacancy View all</Link>
                      <Link to="/signup">Sign Up</Link>
+                     <Link to="/viewUser">View All Users</Link>
                      
                      </Navigation>
                    </Header>
