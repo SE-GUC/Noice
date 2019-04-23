@@ -1,7 +1,10 @@
 import React from 'react';
 import Home from './Home'
 import ViewVacancy from './vacancyCruds/Vacancy'
-import admin from './adminCruds/CreateAdminForm'
+import createAdmin from './adminCruds/CreateAdminForm'
+import viewAdmin from './adminCruds/ViewDeleteAdmin'
+
+
 import {Switch,Route} from 'react-router-dom'
 
 import vacancyFilter from './filters/VacancySearch'
@@ -10,9 +13,10 @@ import eventFilter from './filters/EventSearch'
 const Main = ()=>(
 <Switch>
     <Route exact path ="/" component = {Home}/>,
-    <Route  path= "/createAdmin" component = {admin}/>
+    <Route  path= "/admin/createAdmin" component = {createAdmin}/>
+    <Route  path= "/admin/viewAdmin" component = {viewAdmin}/>
     <Route  path= "/vacancy/viewAll" component = {ViewVacancy}/>
-
+ 
     <Route  path= "/search/Vacancies" component = {vacancyFilter}/>
     <Route  path= "/search/Rooms" component = {roomFilter}/>
     <Route  path= "/search/Events" component = {eventFilter}/>

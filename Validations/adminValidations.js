@@ -7,7 +7,7 @@ module.exports = {
             middleName: Joi.string().min(1).required(),
             lastName: Joi.string().min(1).required(),
             age: Joi.number().required(),
-            education: Joi.array()
+            
         }
 
         return Joi.validate(request, createSchema)
@@ -18,17 +18,10 @@ module.exports = {
             firstName: Joi.string().min(2),
             middleName: Joi.string().min(1),
             lastName: Joi.string().min(1),
-            age: Joi.number(),
-            education: Joi.array()
+            age: Joi.number()
         }
 
         return Joi.validate(request, updateSchema)
     }, 
-    deactivateValidation: request => {
-        const deactivateSchema = {
-          active: Joi.boolean().invalid(true)
-        }
-
-        return Joi.validate(request, deactivateSchema)
-    },
+   
 }
